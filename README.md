@@ -2,7 +2,7 @@
 
 ### How are the terms denoting historically marginalised people used in LOD?
 
-* The initial lists of terms from WM [in Dutch](https://github.com/cultural-ai/LODlit/blob/main/query_terms_nl.txt) and [English](https://github.com/cultural-ai/LODlit/blob/main/query_terms_en.txt)
+* The initial lists of terms from WM [in Dutch](https://github.com/cultural-ai/LODlit/blob/main/target_terms_nl.txt) and [English](https://github.com/cultural-ai/LODlit/blob/main/target_terms_en.txt)
 * [getting_word_forms](https://github.com/cultural-ai/LODlit/blob/main/getting_word_forms.ipynb) – script to get word forms in Dutch and English;
 
   ###### SPARQL-query to DBnary to get English word forms
