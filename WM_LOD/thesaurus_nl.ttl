@@ -1,0 +1,1495 @@
+@prefix wsm: <http://example.nl/wordsmatter/thesaurus#> . #glossary
+@prefix culco: <http://example.nl/ontology#> . #glossary schema #W3C ID
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bibo: <http://purl.org/ontology/bibo/> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+
+# Dutch version
+# Dutch labels are in a separate file
+
+
+culco:ContentiousIssue a rdfs:Class .
+culco:Suggestion a rdfs:Class .
+
+culco:hasSuggestion
+	a rdf:Property .
+
+culco:hasContentiousLabel
+	a rdf:Property .
+
+culco:hasSuggestedLabel
+	a rdf:Property .
+
+culco:suggestedFor
+	a rdf:property .
+
+culco:hasAltLabelExample
+	a rdf:Property .
+
+culco:hasUsageExample
+	a rdf:Property .
+
+#Aboriginal
+
+wsm:94_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Aboriginal"@nl ;
+	skos:exactMatch wsm:90 ;
+	dcterms:description "De term ‘Aboriginal' komt van de Latijnse woorden ab en origine, die samen ‘van het begin’ betekenen. ‘Aboriginal' komt vaak voor, onder andere in collectiedatabases van musea, om de oorspronkelijke bewoners van een plek te omschrijven. De term wordt vooral gebruikt om te verwijzen naar inheemse volken in Australië en Canada (zie: Inheems). In Canada heeft men echter recentelijk de voorkeur gegeven aan de term Inheems. ‘Aboriginal’ houdt onvoldoende rekening met de complexiteit en diversiteit van inheemse volken. Veel inheemse volken in beide landen willen geen ‘Aboriginal’ genoemd worden en geven de voorkeur aan andere termen die hun identiteit kenmerken, zoals taal, land en clan relaties. In Canada begon men de term toe te passen in de jaren 1980, toen men een juridische en overkoepelende term zocht om de bestaande – maar controversiële – categorieën ‘indiaan’, ‘Inuit’ en ‘Métis’ te beschrijven (zie: Indiaan en Eskimo)."@nl ;
+	dcterms:references
+		wsm:116_nl,
+		wsm:105_nl ;
+	culco:hasContentiousLabel
+		wsm:l_142, # Aboriginal
+		wsm:l_228, # Indiaan
+		wsm:l_287, # Inuit
+		wsm:l_288 ; # Métis
+	culco:hasSuggestion
+		wsm:0_nl_s , #general suggestion
+		wsm:94_nl_s_02,
+		wsm:94_nl_s_03,
+		wsm:94_nl_s_04 .
+
+wsm:0_nl_s #general suggestion
+	a culco:Suggestion ;
+	culco:suggestedFor #this suggestion may refer to multiple labels
+		wsm:l_142, #Aboriginal
+		wsm:l_149, #Afkomst
+		wsm:l_150, #Allochtoon
+		wsm:l_198, #Gekleurd
+		wsm:l_228, #Indiaan
+		wsm:l_232, #Inheems
+		wsm:l_269, #Pygmee
+		wsm:l_276 ; #Stam
+ 	rdf:value "Gebruik terminologie die door de groepen zelf wordt gebruikt en als respectvol wordt beschouwd."@nl .
+
+wsm:94_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Als het niet mogelijk is om generalisatie te voorkomen, bijvoorbeeld wanneer de groepsnaam niet te achterhalen valt: gebruik dan ‘Aboriginal’ als samengesteld zelfstandig naamwoord – altijd met hoofdletter A. Bijvoorbeeld: 'Aboriginal personen', Aboriginal Australiërs."@nl ;
+	culco:suggestedFor
+		wsm:l_142 ;
+	culco:hasSuggestedLabel
+		wsm:l_143 ; # Aboriginal personen
+	culco:hasAltLabelExample wsm:l_144 . # Aboriginal Australiërs
+		
+wsm:94_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "In Canada geven sommige First Nation groepen de voorkeur aan ‘inheems’, bijvoorbeeld ‘inheemse persoon/personen’. ‘First Nations’ kan ook acceptabel zijn."@nl ;
+	culco:suggestedFor
+		wsm:l_142 ;
+	culco:hasSuggestedLabel
+		wsm:l_145, #inheems
+		wsm:l_147 ; #First Nations
+	culco:hasAltLabelExample
+		wsm:l_146, #inheemse persoon
+		wsm:l_146_p . #inheemse personen
+
+wsm:94_nl_s_04
+	a culco:Suggestion ;
+	rdf:value "In Australië passen ‘Aboriginal’ en ‘Straat Torres­-eilanders’ soms."@nl ;
+	culco:suggestedFor
+		wsm:l_142 ;
+	culco:hasSuggestedLabel
+		wsm:l_142,
+		wsm:l_148 . #Straat Torres­-eilanders
+
+#Afkomst
+
+wsm:95_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Afkomst"@nl ;
+	skos:exactMatch wsm:101 ;
+	dcterms:description "‘Afkomst' is op zich geen controversiële term, maar de term wordt vaak gebruikt om aan iemand te vragen waar hij of zij geboren is. Omdat de vraag vaak gesteld wordt aan mensen waarvan op basis van hun uiterlijk aangenomen wordt dat zij ergens anders vandaan komen dan uit Nederland, kan de term in deze context wel als gevoelig ervaren worden (zie bijvoorbeeld ook Roots en Allochtoon en artikel Simone Zeefuik en Wayne Modest)."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_149 ;
+	culco:hasSuggestion
+		wsm:141_nl_s_01, #from Roots
+		wsm:141_nl_s_02, #from Roots
+		wsm:0_nl_s , #general suggestion
+		wsm:96_nl_s_02, #from Allochtoon
+		wsm:96_nl_s_03, #from Allochtoon
+		wsm:96_nl_s_04 . #from Allochtoon
+
+#Allochtoon
+
+wsm:96_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Allochtoon"@nl ;
+	skos:exactMatch wsm:91 ;
+	dcterms:description "‘Allochtoon’ wordt in het Nederlands gebruikt sinds de 20ste eeuw, oorspronkelijk als een geologische term. Het woord (waarvan het antoniem ‘autochtoon' is) betekent letterlijk ‘van een andere grond/ locatie'. Het werd in de jaren 1970 in Nederland geïntroduceerd als identiteitscategorie, ter vervanging voor ‘immigrant' dat in die tijd een steeds negatievere connotatie kreeg. De term was bedoeld als generieke term om iemand te benoemen die zelf, of waarvan een ouder buiten Nederland geboren was. De term werd echter gesplitst in de subcategorieën ‘westerse’ en ‘niet­westerse’ allochtonen, waarmee een onderscheid gemaakt werd tussen verschillende categorieën buitenstaanders. De term is geleidelijk aan meer en meer gebruikt als synoniem voor mensen die zichtbaar anders lijken, bijvoorbeeld niet­witte mensen. De term is impopulair geworden bij zowel beleidsmakers als het publiek en sommige gemeentes hebben zelfs besloten om het woord niet meer te gebruiken."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_150 ;
+	culco:hasSuggestion
+		wsm:0_nl_s , #general suggestion
+		wsm:96_nl_s_02,
+		wsm:96_nl_s_03,
+		wsm:96_nl_s_04 .
+
+wsm:96_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Er is een groeiende tendens om het koppelteken te gebruiken, zoals in Marokkaans­Nederlands, Surinaams­Nederlands etc."@nl ;
+	culco:suggestedFor
+		wsm:l_150 ;
+	culco:hasAltLabelExample
+		wsm:l_151 , #Marokkaans­-Nederlands
+		wsm:l_152 . #Surinaams­-Nederlands
+
+wsm:96_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "De term ‘persoon met een ... achtergrond’ wordt algemeen gebruikt en is voor velen aanvaardbaar."@nl ;
+	culco:suggestedFor
+		wsm:l_150 ;
+	culco:hasUsageExample
+		"persoon met een ... achtergrond"@nl .
+
+wsm:96_nl_s_04
+	a culco:Suggestion ;
+	rdf:value "Welke van de drie alternatieven ook gekozen wordt, het moet consistent worden gebruikt. Als we bijvoorbeeld kiezen voor ‘persoon met een Surinaamse achtergrond’ moeten we het ook hebben over een ‘persoon met een Duitse of Japanse achtergrond’."@nl ;
+	culco:suggestedFor
+		wsm:l_150 .
+
+#Barbaar
+
+wsm:97_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Barbaar"@nl ;
+	skos:exactMatch wsm:92 ;
+	dcterms:description "De term ‘barbaar' komt uit de klassieke oudheid. In het oude Griekenland verwees het naar mensen met een onbekende taal of cultuur. Vanaf de 16de eeuw werden kaarten en reisverslagen gemaakt die naar Noord­ Afrika verwezen als ‘Barbarije' en naar de inwoners als ‘barbaren'. Deze woorden kregen in de volgende eeuwen een steeds negatievere associatie met piraterij en de slavenhandel en de betekenis van ‘barbaar' veranderde geleidelijk aan in onbeschaafd. Tegenwoordig wordt de term vaak gebruikt om aan te geven dat iets of iemand niet voldoet aan de algemeen aanvaarde normen en waarden, waarmee gewoonlijk de waarden van de hogere sociale klassen worden bedoeld."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_153 ;
+	culco:hasSuggestion
+		wsm:97_nl_s_01,
+		wsm:97_nl_s_02 .
+
+wsm:97_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Er bestaat geen alternatief voor deze term."@nl ;
+	culco:suggestedFor
+		wsm:l_153 .
+
+wsm:97_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "De term kan wel gebruikt worden in een beschrijvende of historische context. Gebruik in dat geval aanhalingstekens. Bijvoorbeeld: “De ‘barbaren’ waren mensen met wie de Grieken in de Oudheid in contact kwamen.”"@nl ;
+	culco:suggestedFor
+		wsm:l_153 ;
+	culco:hasUsageExample
+		"De ‘barbaren’ waren mensen met wie de Grieken in de Oudheid in contact kwamen."@nl .
+
+#Bediende
+
+wsm:98_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Bediende"@nl ;
+	skos:exactMatch wsm:137 ;
+	dcterms:description "‘Bediende’, ‘page’, ‘knecht’ en ‘baboe’ zijn termen die vaak voorkomen in museumdatabases, en dan met name in de beschrijvingen van schilderijen en foto’s. Deze verwante termen beschrijven een persoon die in andermans huishouden werkzaam is om huishoudelijke taken te verrichten, zoals koken en schoonmaken, of ter assistentie. De termen veronderstellen op zich geen grove uitbuiting ofschoon zij een hiërarchische relatie op basis van klasse en macht beschrijven die soms gekenmerkt wordt door uitbuiting. De veelvoudige en complexe relaties die bedienden kunnen hebben met hun meesters maken het niet makkelijk, zelfs riskant, om een oordeel te vellen over de rol van de bediende of de omstandigheden waaronder deze leefde. De term ‘page' beschrijft een jonge, mannelijke bediende die voor een edelman werkt, of – wanneer het de Renaissance betreft ­ als bediende voor modieuze dames en heren. Vandaag de dag wordt het in sommige kringen als vernederend of beledigend beschouwd om te verwijzen naar iemand als bediende of page. De term noemen in de beschrijving van historische schilderijen of foto’s kan in sommige gevallen echter wel worden aangeraden"@nl ;
+	culco:hasContentiousLabel
+		wsm:l_154,
+		wsm:l_155, #page
+		wsm:l_156, #knecht
+		wsm:l_157 ; #baboe
+	culco:hasSuggestion
+		wsm:98_nl_s_01,
+		wsm:98_nl_s_02,
+		wsm:98_nl_s_03,
+		wsm:98_nl_s_04 .
+
+wsm:98_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Over het algemeen adviseren wij een meer kritische benadering van de termen."@nl ;
+	culco:suggestedFor
+		wsm:l_154,
+		wsm:l_155, #page
+		wsm:l_156, #knecht
+		wsm:l_157 . #baboe
+
+wsm:98_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Indien bekend, gebruik de naam van de persoon."@nl ;
+	culco:suggestedFor
+		wsm:l_154,
+		wsm:l_155, #page
+		wsm:l_156, #knecht
+		wsm:l_157 . #baboe
+
+wsm:98_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "Indien de naam niet bekend is, kan het gebruik van ‘bediende' de machtsverhoudingen soms juist transparant en duidelijk maken."@nl ;
+	culco:suggestedFor
+		wsm:l_154 .
+
+wsm:98_nl_s_04
+	a culco:Suggestion ;
+	rdf:value "De term ‘page' wordt nog zelden gebruikt, en kan beter vermeden worden (zie voorbeeld Eveline Sint Nicolaas)."@nl ;
+	culco:suggestedFor
+		wsm:l_155 .
+
+#Berber
+
+wsm:99_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Berber"@nl ;
+	skos:exactMatch wsm:93 ;
+	dcterms:description "‘Berber’ verwijst naar diverse groepen mensen die in verschillende landen in het noorden van Afrika leven. De term stamt uit de klassieke oudheid en verscheen voor het eerst in Arabische manuscripten in 900 v.C. Velen denken echter ten onrechte dat de term door Europeanen gecreëerd is en gerelateerd is aan de term ‘barbaar' (zie: Barbaar). Hoewel nog steeds gebruikt door veel mensen die zichzelf als Berber beschouwen, raakt het uit de gratie en geven steeds meer mensen de voorkeur aan de term ‘Amazigh’."@nl ;
+	dcterms:references
+		wsm:97_nl ;
+	culco:hasContentiousLabel
+		wsm:l_158 ;
+	culco:hasSuggestion
+		wsm:99_nl_s_01 .
+
+wsm:99_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Amazigh (enkelvoud) en Imazighen (meervoud)"@nl ;
+	culco:suggestedFor
+		wsm:l_158 ;
+	culco:hasSuggestedLabel
+		wsm:l_159, #Amazigh
+		wsm:l_160 . #Imazighen
+
+#Blank
+
+wsm:100_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Blank"@nl ;
+	skos:exactMatch wsm:95 ;
+	dcterms:description "In Nederland wordt ‘blank’ vaak in plaats van ‘wit’ gebruikt (zie: Wit). De term wordt gebruikt als identiteitscategorie en deelt zijn genealogie met andere termen, zoals bijvoorbeeld Zwart (afkomstig uit het Latijn). De term komt voort uit de raciale wetenschappen in de 18de en 19de eeuw. Van Dale definieert ‘blank’ onder andere als “niet bevlekt” en “niet gekleurd” (zie: Wit, Zwart en Mensen van kleur). De associatie met zulke ‘neutrale’ en zelfs positieve connotaties van het woord heeft tot kritiek geleid van de antiracisme­beweging, die er voor pleit om de term te vervangen door de term ‘wit’."@nl ;
+	dcterms:references
+		wsm:147_nl,
+		wsm:149_nl,
+		wsm:109_nl ; #Mensen van kleur – Gekleurd
+	culco:hasContentiousLabel
+		wsm:l_161 ;
+	culco:hasSuggestion
+		wsm:100_nl_s_01,
+		wsm:100_nl_s_02 .
+
+wsm:100_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term ‘wit’ wordt steeds vaker gebruikt, vooral door activisten en wetenschappers."@nl ;
+	culco:suggestedFor
+		wsm:l_161 ;
+	culco:hasSuggestedLabel
+		wsm:l_162 .
+
+wsm:100_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Wit"@nl ;
+	culco:suggestedFor
+		wsm:l_161 ;
+	culco:hasSuggestedLabel
+		wsm:l_162 .
+
+#Bombay
+
+wsm:101_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Bombay"@nl ;
+	skos:exactMatch wsm:96 ;
+	dcterms:description "‘Bombay’ is het koloniale toponiem – de (nieuwe) naamgeving van geografische plaatsen door koloniale heersers – van de Indiase stad Mumbai. De term werd voor het eerst gebruikt in de 16de eeuw. Het hernoemen van plaatsen komt vaak voor, zowel vroeger als nu, en vaak vanwege politieke veranderingen. Zowel onder kolonialisme als tijdens dekolonisatie, maar ook nu nog, is dit een belangrijke ideologie. Koloniale overheersers noemden steden en andere plaatsen naar belangrijke figuren of plekken uit eigen land. Het hernoemen van plekken – dan wel door nieuwe namen te geven dan wel oude namen in ere te herstellen – is een belangrijk symbool voor nieuwe naties. De naam uit het koloniale tijdperk kan voor sommige inwoners beledigend zijn, omdat het een pijnlijke herinnering is aan het kolonialisme. Ook toen Mumbai onafhankelijk was geworden, bleef men het nog lang Bombay noemen. Calcutta (nu Kolkata) en Chennai (Madras) zijn vergelijkbare voorbeelden van koloniale toponiemen die verengelst werden tijdens de koloniale periode. Andere koloniale toponiemen zijn onder meer: Jakarta (Batavia), Myanmar (Birma) en Zimbabwe (Zuid­-Rhodesië)."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_163,
+		wsm:l_165, #Calcutta
+		wsm:l_166, #Madras
+		wsm:l_167, #Batavia
+		wsm:l_168, #Birma
+		wsm:l_169 ; #Zuid­-Rhodesië
+	culco:hasSuggestion
+		wsm:101_nl_s_01 .
+
+wsm:101_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Mumbai"@nl ;
+	culco:suggestedFor
+		wsm:l_163 ;
+	culco:hasSuggestedLabel
+		wsm:l_164 .
+
+#Bosneger
+
+wsm:102_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Bosneger"@nl ;
+	skos:exactMatch wsm:97 ;
+	dcterms:description "In het Nederlands komt de term ‘bosneger’ voort uit de termen ‘bosch’ en ‘neger’ (zie: Neger). Het was een pejoratieve term voor Afrikanen (en hun afstammelingen) die aan de slavernij ontsnapten in Suriname en de Guyana’s en in bergachtige gebieden gingen wonen. Hiervandaan vochten zij tegen kolonisatie. Sommige mensen in Suriname en in Nederland gebruiken de term vandaag de dag als synoniem voor ‘Marron’ en ‘Boslandcreool’ Hoewel de term ‘Marron’ ook betwist wordt, wordt deze beter aanvaard (zie: Marron)."@nl ;
+	dcterms:references
+		wsm:133_nl,
+		wsm:127_nl ;
+	culco:hasContentiousLabel
+		wsm:l_170,
+		wsm:l_171, #Neger
+		wsm:l_172, #Marron
+		wsm:l_173 ; #Boslandcreool
+	culco:hasSuggestion
+		wsm:102_nl_s_01,
+		wsm:1_nl_s . #general suggestion
+
+wsm:102_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Marron"@nl ;
+	culco:suggestedFor
+		wsm:l_170 ;
+	culco:hasSuggestedLabel
+		wsm:l_172 . #Marron
+
+#(De) Derde Wereld
+
+wsm:103_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "(De) Derde Wereld"@nl ;
+	skos:exactMatch wsm:139 ;
+	dcterms:description "Hoewel de term ‘Derde Wereld’ nog steeds voorkomt in alledaags taalgebruik, wordt het beschouwd als een overblijfsel van de Koude Oorlogspolitiek. De wereld werd toen verdeeld in drie groepen op basis van politieke en economische oriëntaties of allianties. De term ‘Eerste Wereld’ beschrijft de Verenigde Staten en hun bond­ genoten, waaronder Japan, Canada en landen in West­Europa, terwijl landen die deel uitmaakten van het communistische blok, inclusief China, USSR, Cuba en landen in Oost­Europa, de ‘Tweede Wereld’ vormden. ‘Derde Wereld’ werd voor het eerst gebruikt (in een artikel van Alfred Sauvy in 1952) om die landen te beschrijven die politiek georiënteerd waren op de Eerste noch de Tweede Wereld. De term werd ook een economische indeling, die werd gebruikt om te verwijzen naar de armste landen en regio's van de wereld. Dit omvatte landen in Azië, Afrika, Latijns­Amerika en het Caribisch gebied, waarvan er velen voorheen door Europa waren gekoloniseerd. Steeds meer mensen vinden dat de term niet langer geschikt is, omdat het geen nauwkeurige beschrijving is van de complexiteit van de wereld en omdat het een verdeling van de wereld suggereert in westerse superioriteit en niet­westerse inferioriteit."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_174,
+		wsm:l_175, #Eerste Wereld
+		wsm:l_176, #Tweede Wereld
+		wsm:l_177, #ontwikkelingslanden
+		wsm:l_178 ; #lagelonenlanden
+	culco:hasSuggestion
+		wsm:103_nl_s_01,
+		wsm:103_nl_s_02 .
+
+wsm:103_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Zowel ‘ontwikkelingslanden’ als ‘lagelonenlanden’ zijn als alternatieven genoemd. Deze termen worden echter net zo goed betwist, om dezelfde redenen als Derde Wereld."@nl ;
+	culco:suggestedFor
+		wsm:l_174 .
+
+wsm:103_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Het heeft de voorkeur om zo specifiek mogelijk te zijn, en de landen te benoemen."@nl ;
+	culco:suggestedFor
+		wsm:l_174,
+		wsm:l_175, #Eerste Wereld
+		wsm:l_176, #Tweede Wereld
+		wsm:l_177, #ontwikkelingslanden
+		wsm:l_178 . #lagelonenlanden
+
+#Dwerg
+
+wsm:104_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Dwerg"@nl ;
+	skos:exactMatch wsm:104 ;
+	dcterms:description "Dwerggroei (Achondroplasie) is een medische of genetische aandoening van kleine mensen. Als de term ‘dwerg' niet binnen de medische context wordt gebruikt, wordt het als een belediging opgevat. De term ‘dwerg’ wordt in het Nederlands gebruikt sinds de 14de eeuw. Toen had het de connotatie van monsterlijk. Satirische verbeeldingen van kleine mensen komen vaak voor in (de geschiedenis van) Europese kunst, literatuur en film. In 19de en vroeg 20ste­eeuwse koloniale tentoonstellingen, freak shows en circussen werden mensen met dwerggroei gezien als abnormaal ‘anders’, in sommige opzichten vergelijkbaar met de raciale verbeelding van gekoloniseerde mensen. Vergelijkbare beledigende termen zijn ‘lilliputter’ en ‘pygmee’"@nl ;
+	culco:hasContentiousLabel
+		wsm:l_179,
+		wsm:l_180, #lilliputter
+		wsm:l_181 ; #pygmee
+	culco:hasSuggestion
+		wsm:104_nl_s_01,
+		wsm:104_nl_s_02 .
+
+wsm:104_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "‘Dwerg’ is van toepassing indien gebruikt in een medische diagnose of beschrijving. In andere gevallen, gebruik ‘van kleine lengte’, ‘kleine mensen’ of ‘iemand met dwerggroei’."@nl ;
+	culco:suggestedFor
+		wsm:l_179 ;
+	culco:hasSuggestedLabel
+		wsm:l_182, #van kleine lengte
+		wsm:l_183, #kleine mensen
+		wsm:l_184 . #iemand met dwerggroei
+
+wsm:104_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "‘Dwerg’ en ‘pygmee’ kunnen gebruikt worden in een historische of beschrijvende context. Gebruik in dat geval aanhalingstekens."@nl ;
+	culco:suggestedFor
+		wsm:l_179,
+		wsm:l_181 .
+
+#Eskimo
+
+wsm:105_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Eskimo"@nl ;
+	skos:exactMatch wsm:105 ;
+	dcterms:description "De term ‘Eskimo’ (Esquimaux) verwijst naar de verschillende inheemse mensen in de (sub­-)Arctische regio’s in Noord­-Amerika, Groenland en Noordoost­-Siberië. De term is nooit algemeen gebruikt door leden van de gemeenschap om zichzelf in hun eigen taal te beschrijven, omdat ze hun eigen inheemse termen hanteren. Men is het niet eens over de taalkundige oorsprong van het woord; sommigen beschouwen de term als een Franse of Engelse versie van een inheemse term. Vandaag de dag wordt de term beter aanvaard in Alaska dan in Canada en Groenland, waar andere termen de voorkeur hebben en ‘Eskimo’ een pejoratieve betekenis heeft. De term komt nog maar zelden voor in officiëel gebruik. Het is niet eenvoudig om een alternatieve, overkoepelende term te vinden voor alle groepen in het Noordpoolgebied, hoewel ‘Eskimo­-Aleut’ gebruikt wordt om de taalfamilie te beschrijven."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_185 ;
+	culco:hasSuggestion
+		wsm:105_nl_s_01 .
+
+wsm:105_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Gebruik terminologie die de groepen zelf gebruiken en respectvol vinden. Voorbeelden zijn: de Iñupiat mensen van Noord­-Alaska; de Inuit mensen van Canada; de Kalaallit van Groenland; de Yup’ik: bijvoorbeeld de Centraal­-Alaskaanse volken van de Yukon­-Kuskokwim delta, de Kuskokwim rivier en de Bristolbaai in Alaska; de Alutiiq (of Suqpiaq) van het Alaska­-schiereiland en de kust­ en eilandgebieden in Zuid­-Centraal Alaska; Yupighyt: de Inuit van Siberië"@nl ;
+	culco:suggestedFor
+		wsm:l_185 ;
+	culco:hasAltLabelExample
+		wsm:l_186, #Iñupiat mensen van Noord­-Alaska
+		wsm:l_187, #Inuit mensen van Canada
+		wsm:l_188, #Kalaallit van Groenland
+		wsm:l_189, #Yup’ik
+		wsm:l_190, #Alutiiq
+		wsm:l_191, #Suqpiaq
+		wsm:l_192 . #Yupighyt
+
+#Etniciteit
+
+wsm:106_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Etniciteit"@nl ;
+	skos:exactMatch wsm:106 ;
+	dcterms:description "‘Etniciteit’ verwijst naar de gedeelde sociale, culturele of historische ervaringen en praktijken van een groep mensen, bijvoorbeeld taal, religie of kleding, en meestal een nationale of regionale achtergrond. Mensen die deze kenmerken met elkaar delen, worden gezamenlijk omschreven als ‘etnische groep’. Hoewel dit een neutrale categorie lijkt te zijn, wordt het vaak gebruikt voor iemand of iets dat afwijkt van de norm of buitenlands is. Denk bijvoorbeeld aan ‘etnisch eten’ of ‘etnische muziek’. Wanneer het over mensen gaat, wordt de term normaal gesproken geassocieerd met minderheidsgroepen. Iedereen heeft echter een etnische identiteit. Etniciteit wordt soms verward met ras en door velen ten onrechte gebruikt als een alternatieve term, waar de verwijzing naar biologische verschillen omzeild wordt (zie: Ras)."@nl ;
+	dcterms:references
+		wsm:140_nl ;
+	culco:hasContentiousLabel
+		wsm:l_193,
+		wsm:l_194, #etnische groep
+		wsm:l_195 ; #ras
+	culco:hasSuggestion
+		wsm:2_nl_s, #general suggestion
+		wsm:106_nl_s_02 .
+
+wsm:2_nl_s #general suggestion
+	a culco:Suggestion ;
+	rdf:value "De term moet met voorzichtigheid gebruikt worden."@nl ;
+	culco:suggestedFor
+		wsm:l_193, #Etniciteit
+		wsm:l_276 . #Stam
+
+wsm:106_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "De term moet niet verward worden met ras."@nl ;
+	culco:suggestedFor
+		wsm:l_193 .
+
+#Exotisch
+
+wsm:107_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Exotisch"@nl ;
+	skos:exactMatch wsm:107 ;
+	dcterms:description "De term ‘exotisch’ komt van het oude Griekse woord ‘exōtikós’, wat letterlijk ‘van buitenaf’ betekent. In het Nederlands heeft het altijd buitenlands/vreemd betekent. De term is vervlochten geraakt met het concept van de (raciale en seksuele) ‘ander’. De term ‘exotisch’ wordt vaak gebruikt om planten en dieren te beschrijven, maar wordt ook gehanteerd wanneer het over mensen (meestal mensen van kleur) gaat. In dat geval heeft het de connotatie anders te zijn dan de norm, vooral met betrekking tot iemands uiterlijk, maar ook naam. Soms heeft het een sensuele connotatie."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_196 ;
+	culco:hasSuggestion
+		wsm:107_nl_s_01 .
+
+wsm:107_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term is van toepassing wanneer het verwijst naar plant­ en diersoorten, maar wordt over het algemeen betwist als omschrijving van mensen."@nl ;
+	culco:suggestedFor
+		wsm:l_196 .
+
+#Gay
+
+wsm:108_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Gay"@nl ;
+	skos:exactMatch wsm:108 ;
+	dcterms:description "‘Gay’ is een veelgebruikte term om te verwijzen naar niet­heteroseksuele seksualiteit, vooral mannen. ‘Gay’ heeft de voorkeur boven de algemene medische en juridische term ‘homoseksueel’ (zie: Homo). Hoewel ‘gay’ in het Nederlands door mensen wordt gebruikt om zichzelf te beschrijven, wordt de term in de dagelijkse context vaak door anderen gebruikt met een negatieve bedoeling. Ook ‘homo’ wordt gebruikt als een scheldwoord."@nl ;
+	dcterms:references
+		wsm:113_nl ;
+	culco:hasContentiousLabel
+		wsm:l_197,
+		wsm:l_217 ; #Homo
+	culco:hasSuggestion
+		wsm:108_nl_s_01,
+		wsm:3_nl_s . #general suggestion
+
+wsm:108_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term is geschikt wanneer deze op een respectvolle manier gebruikt wordt."@nl ;
+	culco:suggestedFor
+		wsm:l_197 .
+
+wsm:3_nl_s #general suggestion
+	a culco:Suggestion ;
+	rdf:value "Gebruik termen en voornaamwoorden die mensen acceptabel en respectvol vinden om zichzelf te beschrijven."@nl ;
+	culco:suggestedFor
+		wsm:l_197, #Gay
+		wsm:l_217, #Homo
+		wsm:l_270, #Queer
+		wsm:l_279 . #Trans
+
+#Gekleurd
+
+wsm:109_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Gekleurd"@nl ;
+	skos:exactMatch wsm:99 ;
+	dcterms:description "‘Gekleurd’ is een controversiële term waarmee iemand (of een groep mensen) wordt beschreven met een gemengde afkomst: wit Europees enerzijds en niet­-wit anderzijds, bijvoorbeeld mensen van Afrikaanse of Aziatische afkomst. In sommige gevallen wordt de term gebruikt voor Zwarte mensen. ‘Gekleurd’ kent verschillende gebruiksgeschiedenissen en betekenissen over de wereld, maar wordt over het algemeen als beledigend beschouwd. In Zuid­-Afrika beschrijft de term bijvoorbeeld iemand van gemengde afkomst, waaronder Khoisan, Maleis en Wit. In de VS werd de term voorheen vooral gebruikt voor Zwarte mensen of de Zwarte gemeenschap, en is restrictiever dan de vergelijkbare term ‘iemand/mensen van kleur’. In Nederland wordt de term eveneens voor Zwarte mensen of mensen van gemengde afkomst gebruikt. Er bestaan verschillende aan elkaar verbonden varianten op de term, zoals ‘gekleurd’, ‘met een kleurtje’ of ‘met een donkerdere huidskleur’. Het gebruik hiervan grijpt terug op het raciale idee van witheid als norm, en de termen worden steeds meer beschouwd als ongepast en denigrerend. Steeds meer mensen omarmen de Amerikaanse identiteitscategorie ‘iemand/mensen van kleur’ (in het Engels afgekort tot POC). De categorie ‘Zwarte en niet­-Zwarte mensen van kleur’ wordt tegen­woordig ook steeds vaker gebruikt om niet­-witte mensen te omschrijven. Hoewel de termen ‘Zwart’ en ‘mensen van kleur’ voor velen algemeen aanvaardbare termen blijven, is het beter om die termen te gebruiken die mensen zelf gebruiken en respectvol vinden."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_198,
+		wsm:l_199, #Zwart
+		wsm:l_200 ; #Wit
+	culco:hasSuggestion
+		wsm:109_nl_s_01,
+		wsm:0_nl_s, #general suggestion
+		wsm:1_nl_s, #general suggestion
+		wsm:109_nl_s_04 .
+
+
+wsm:109_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "‘Iemand van kleur' of ‘mensen van kleur'"@nl ;
+	culco:suggestedFor
+		wsm:l_198 ;
+	culco:hasSuggestedLabel
+		wsm:l_201, #Iemand van kleur
+		wsm:l_202 . #mensen van kleur
+
+wsm:109_nl_s_04
+	a culco:Suggestion ;
+	rdf:value "‘Zwarte en niet­-zwarte mensen van kleur’ kan gebruikt worden, maar met voorzichtigheid."@nl ;
+	culco:suggestedFor
+		wsm:l_198 ;
+	culco:hasSuggestedLabel
+		wsm:l_199, #? zwart/zwarte
+		wsm:l_203 . #niet­-zwarte mensen van kleur
+
+#Halfbloed
+
+wsm:110_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Halfbloed"@nl ;
+	skos:exactMatch wsm:110 ;
+	dcterms:description "De term ‘halfbloed’ is net als 'volbloed' ontstaan in samenhang met de 18de­- en 19de­-eeuwse ideeën over rassenverschillen. Dit waren  de hoogtijdagen van de raciale wetenschappen, die gebaseerd waren op het idee van het bestaan van biologische verschillen tussen rassen (zie: Ras). Bloed, zo dacht men toen, was de drager van hiërarchische eigenschappen, waarbij het ene soort bloed superieur was aan andere soorten. De term wordt meestal gebruikt voor mensen met een gemengde afkomst, namelijk wit en Europees, en niet­-wit. De term is vergelijkbaar met andere termen (uit deze lijst), zoals ‘mulat’ en ‘mesties’."@nl ;
+	dcterms:references
+		wsm:140_nl ;
+	culco:hasContentiousLabel
+		wsm:l_204,
+		wsm:l_207, #volbloed
+		wsm:l_208, #mulat
+		wsm:l_209 ; #mesties
+	culco:hasSuggestion
+		wsm:110_nl_s_01,
+		wsm:110_nl_s_02 .
+
+wsm:110_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "In de Amerikaanse en Britse context wordt ‘mixed race’ gebruikt in plaats van deze term. Dit is echter niet gebruikelijk in Nederland."@nl ;
+	culco:suggestedFor
+		wsm:l_204,
+		wsm:l_208,
+		wsm:l_209 ;
+	culco:hasSuggestedLabel
+		wsm:l_55 . #en label "mixed race"
+
+wsm:110_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "‘Van gemengde afkomst’ of simpelweg ‘gemengd’ zijn geschiktere termen."@nl ;
+	culco:suggestedFor
+		wsm:l_204,
+		wsm:l_208,
+		wsm:l_209 ;
+	culco:hasSuggestedLabel
+		wsm:l_205, #van gemengde afkomst
+		wsm:l_206 . #gemengd
+
+
+#Handicap
+
+wsm:111_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Handicap"@nl ;
+	skos:exactMatch wsm:102 ;
+	dcterms:description "‘Handicap’ is een overkoepelende term om verschillende vormen van geestelijke of lichamelijke beperkingen te beschrijven. In de afgelopen jaren is de term vooral in West­-Europa en de Verenigde Staten steeds meer vervangen door ‘beperking’. Aan het begin van de twintigste eeuw werd de term ‘handicap' gebruikt om iemands ‘gebrek’ of onvermogen om ‘normaal’ te functioneren aan te duiden. Vanaf de jaren zeventig werden dit concept en daaraan gerelateerde woorden steeds meer bekritiseerd. Activisten voerden aan dat een beperking geen individueel probleem was dat moest worden verholpen, maar dat het de samenleving was die het leven met een beperking tot een probleem maakte. Mensen wilden niet langer aangesproken worden als ‘gehandicapten', maar als ‘mensen met een beperking’."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_210,
+		wsm:l_211 ; #gehandicapten
+	culco:hasSuggestion
+		wsm:111_nl_s_01 .
+
+wsm:111_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Mensen met een beperking"@nl ;
+	culco:suggestedFor
+		wsm:l_210,
+		wsm:l_211 ;
+	culco:hasSuggestedLabel
+		wsm:l_212 .
+
+#Hermafrodiet
+
+wsm:112_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Hermafrodiet"@nl ;
+	skos:exactMatch wsm:112 ;
+	dcterms:description "‘Hermafrodiet’ wordt gezien als een ouderwetse en stigmatiserende term, die mensen pathologiseert die geboren zijn met de geslachtsorganen van beide geslachten (zie artikel Steinbock)"@nl ;
+	culco:hasContentiousLabel
+		wsm:l_213 ;
+	culco:hasSuggestion
+		wsm:112_nl_s_01 .
+
+wsm:112_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De voorkeur gaat uit naar de overkoepelende term ‘intersekse’, bijvoorbeeld ‘intersekse persoon’ of ‘persoon met een intersekse­ conditie'."@nl ;
+	culco:suggestedFor
+		wsm:l_213 ;
+	culco:hasSuggestedLabel
+		wsm:l_214 ; #intersekse
+	culco:hasAltLabelExample
+		wsm:l_215, #intersekse persoon
+		wsm:l_216 . #persoon met een intersekse­ conditie
+
+#Homo
+
+wsm:113_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Homo"@nl ;
+	skos:exactMatch wsm:113 ;
+	dcterms:description "‘Homoseksueel’ is een medische en juridische term waarmee verwezen wordt naar niet­-heteroseksuele seksualiteit. De term als zodanig werd halverwege de 19de eeuw uitgevonden als een abnormale identiteitscategorie om mensen te onderscheiden die seksuele handelingen verrichtten met iemand van hetzelfde geslacht. Homoseksualiteit is, en wordt nog steeds op verschillende plaatsen in de wereld beschouwd als zondig, crimineel of een geestesziekte. De term wordt soms geringschattend of als scheldwoord gebruikt, en dan vooral in de afkorting ‘homo'."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_217,
+		wsm:l_218, #Homoseksueel
+		wsm:l_219 ; #Homoseksualiteit
+	culco:hasSuggestion
+		wsm:113_nl_s_01,
+		wsm:113_nl_s_02 .
+
+wsm:113_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Om stigmatisering van niet­heteroseksuele identiteiten te voorkomen en recht te doen aan de veelheid aan seksuele diversiteit verdient het de voorkeur om van de gemeenschap afgeleide beschrijvingen te gebruiken, zoals ‘lesbisch’, ‘gay’ en ‘biseksueel’."@nl ;
+	culco:suggestedFor
+		wsm:l_217,
+		wsm:l_218,
+		wsm:l_219 ;
+	culco:hasAltLabelExample
+		wsm:l_220, #lesbisch
+		wsm:l_221, #gay
+		wsm:l_222 . #biseksueel
+
+wsm:113_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Kies ook voor cultureel­-specifieke namen als ‘Two­-Spirit’ (zie artikel Steinbock)."@nl ;
+	culco:suggestedFor
+		wsm:l_217,
+		wsm:l_218,
+		wsm:l_219 ;
+	culco:hasAltLabelExample
+		wsm:l_223 . #Two­-Spirit
+
+#Hottentot
+
+wsm:114_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Hottentot"@nl ;
+	skos:exactMatch wsm:114 ;
+	dcterms:description "De term ‘Hottentot’ verwijst naar de Khoikhoi volken in het westen van Zuid­-Afrika. Het is een Nederlandse koloniale term die voor het eerst werd gebruikt in de 17de eeuw en die gebaseerd was op een imitatie van de klank van de taal van de Khoikhoi. ‘Hottentot’ had de connotatie van cultureel achterlijk of primitief, stereotypen die werden gecreëerd in de vroege koloniale periode. In de 19de eeuw werden Khoikhoi mensen met geweld uitgebuit. Ook werden ze tentoongesteld, als illustratie van een primitief type. Eerst als entertainment, maar later in het kader van wetenschappelijke koloniale kennis. Een bekend voorbeeld was de zogenaamde Hottentot Venus, Sarah Baartman, die vanaf 1810­-1815 in Europa werd getoond. Haar stoffelijk overschot werd tot 1974 in een Frans museum tentoongesteld en pas in 2002 teruggebracht naar Zuid­-Afrika."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_224 ;
+	culco:hasSuggestion
+		wsm:114_nl_s_01 .
+
+wsm:114_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Khoisan (volk)"@nl ;
+	culco:suggestedFor
+		wsm:l_224 ;
+	culco:hasSuggestedLabel
+		wsm:l_225 . #Khoisan
+
+#Inboorling
+
+wsm:115_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Inboorling"@nl ;
+	skos:exactMatch wsm:115 ;
+	dcterms:description "‘Inboorling’ wordt vanaf de 13de eeuw in Nederland gebruikt en deelt zijn betekenis –­ iemand geboren in het land ­ met de term ‘Inlander'. Het is echter een overdrijvende vorm ervan, en heeft de connotaties van primitief en wild. In het begin van de 19de eeuw werd de term door sommige mensen gebruikt om alle Indonesiërs te beschrijven, maar later werd het uitsluitend toegepast op zogenaamde stammen in Nederlandse koloniën. In de Koloniale Tentoonstelling van 1883 in Amsterdam werd de term ‘inboorlingen’ bijvoorbeeld gebruikt om volken uit zowel Indonesië als Suriname te beschrijven. In Suriname zelf werd het nooit gebruikt om de inheemse volken te omschrijven. Tegenwoordig wordt de term vooral geassocieerd met mensen die als primitief worden beschouwd."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_226,
+		wsm:l_227 ; #Inlander
+	culco:hasSuggestion
+		wsm:120_nl_s_01,
+		wsm:1_nl_s . #general suggestion
+
+#Indiaan
+
+wsm:116_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Indiaan"@nl ;
+	skos:exactMatch wsm:116 ;
+	dcterms:description "Toen Christopher Columbus in de 16de eeuw aankwam in Amerika, noemde hij de inwoners ‘Índios’ omdat hij dacht dat hij in India was aangekomen. De onjuiste benaming ‘indiaan’ werd al gauw algemeen gebruikt om de inheemse volken van Noord­-Amerika te beschrijven. Er bestaat geen consensus over het gebruik van de term. In de VS is ‘American Indian’ een term die een geschiedenis van verdeeldheid kent, maar desondanks wordt het door individuen en gemeenschappen gebruikt als een vorm van zelfidentificatie. Het blijft een sleutelbegrip voor zowel de Amerikaanse als de Canadese overheid. In de Spaanssprekende landen in Midden­- en Zuid­-Amerika wordt ‘índio’ veelal beschouwd als problematisch en zelden of nooit gebruikt door de inheemse mensen zelf. In Brazilië wordt de term ‘índio’ in mindere mate betwist."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_228 ;
+	culco:hasSuggestion
+		wsm:0_nl_s . #general suggestion
+
+#Indisch
+
+wsm:117_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Indisch"@nl ;
+	skos:exactMatch wsm:118 ;
+	dcterms:description "De term ‘Indisch’ is in de loop van de tijd van betekenis veranderd. Hoewel de term niet altijd gevoelig is, is er vaak verwarring over het gebruik. In de 19de eeuw verwees de term naar alles wat Indonesisch was, zoals Indische huizen, Indische dansen en de Indische bevolking. In de 20ste eeuw begon het te verwijzen naar Indo­-Europese mensen en culturen (zie: Indo) en soms naar Europeanen die lang in Indonesië woonden. Aan het einde van de vorige eeuw werd deze betekenis echter door sommige mensen als te etnisch beschouwd en verworpen. Vandaag de dag verwijst het woord ‘Indisch’ naar alles wat uit de koloniale periode in het voormalige Nederlands­-Indië komt. Indisch wordt vaak verward met Indonesisch (eten, etniciteit en cultuur) vanwege het gebruik van de term in de 19de eeuw."@nl ;
+	dcterms:references
+		wsm:118_nl ;
+	culco:hasContentiousLabel
+		wsm:l_229 ;
+	culco:hasSuggestion
+		wsm:117_nl_s_01 .
+
+wsm:117_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term is geschikt, maar moet niet verward worden met ‘Indonesisch’."@nl ;
+	culco:suggestedFor
+		wsm:l_229 .
+
+#Indo
+
+wsm:118_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Indo"@nl ;
+	skos:exactMatch wsm:119 ;
+	dcterms:description "‘Indo’ is een afkorting van Indo­-Europeaan. De term is ontstaan in het koloniale tijdperk om mensen met een Indonesische en Europese afkomst (niet alleen van Nederlandse afkomst) aan te duiden. De term werd waarschijnlijk voor het eerst gebruikt in de Nederlands taal in 1898. De term werd al gauw impopulair vanwege de etnische en koloniale connotatie, maar is recentelijk weer in gebruik genomen als geuzennaam door jonge mensen met een Indo­-Europese afkomst in Nederland."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_230 ;
+	culco:hasSuggestion
+		wsm:118_nl_s_01 .
+
+wsm:118_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "‘Indo­-Europeaan’ is juist. De term moet niet verward worden met ‘Indonesiër’."@nl ;
+	culco:suggestedFor
+		wsm:l_230 ;
+	culco:hasSuggestedLabel
+		wsm:l_231 .
+
+#Inheems
+
+wsm:119_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Inheems"@nl ;
+	skos:exactMatch wsm:117 ;
+	dcterms:description "‘Inheems’ werd oorspronkelijk gebruikt als beschrijving van flora en fauna. In de laatste paar decennia is de term echter steeds meer verworden tot een juridische categorie die verwijst naar verschillende door Europa gekoloniseerde volken. De term zelf beschrijft een bepaalde groep mensen die de oorspronkelijke bewoners zijn van een bepaalde plek en daar lange tradities hebben ontwikkeld. Tijdens diverse koloniale projecten werd hun land ontnomen, wat vaak leidde tot (culturele) genocide. De term ‘inheems’ is een geëmancipeerde term, deels dankzij de Verklaring over de Rechten van Inheemse Volkeren door de VN in 2007. ‘Inheems’ heeft onder meer betrekking op die mensen die gezien worden als ‘Aboriginals’, ‘First Nations’ en ‘Indianen’."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_232 ;
+	culco:hasSuggestion
+		wsm:119_nl_s_01 ,
+		wsm:0_nl_s . #general suggestion
+
+wsm:119_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term kan gebruikt worden om plant­- en diersoorten te beschrijven."@nl ;
+	culco:suggestedFor
+		wsm:l_232 .
+
+#Inlander
+
+wsm:120_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Inlander"@nl ;
+	dcterms:description "De term ‘inlander’ wordt over het algemeen gebruikt als verwijzing naar inheemse groepen, specifiek naar die in voormalig Nederlands­-Indië. De term werd destijds gebruikt door de Nederlandse overheid als een juridische categorie. Hiermee maakte men een onderscheid tussen de mensen in de kolonie, en richtte de samenleving in volgens een op ras gebaseerd systeem. De term is inmiddels in onbruik geraakt, maar komt nog wel voor in databases."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_233 ;
+	culco:hasSuggestion
+		wsm:120_nl_s_01 ,
+		wsm:1_nl_s . #general suggestion
+
+wsm:120_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term ‘Inlander' is ouderwets, en het gebruik in hedendaagse context wordt dan ook afgeraden."@nl ;
+	culco:suggestedFor
+		wsm:l_233,
+		wsm:l_226 . #Inboorling
+
+wsm:1_nl_s #general suggestion
+	a culco:Suggestion ;
+	rdf:value "De term kan wel gebruikt worden in een historische of beschrijvende context. Gebruik in dat geval aanhalingstekens."@nl ;
+	culco:suggestedFor
+		wsm:l_170, #Bosneger
+		wsm:l_198, #Gekleurd
+		wsm:l_226, #Inboorling
+		wsm:l_233, #Inlander
+		wsm:l_244, #Kaffer
+		wsm:l_245, #Kaukasisch
+		wsm:l_247, #Koppensneller
+		wsm:l_261, #Moor
+		wsm:l_208, #Mulat
+		wsm:l_171 . #Neger
+
+#Islamiet
+
+wsm:121_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Islamiet"@nl ;
+	dcterms:description "Alhoewel ‘islamiet’ inhoudelijk geen onjuiste term is – het betekent namelijk de aanhangers van de islam – geven de meeste moslims de voorkeur aan de benaming ‘moslim’ omdat dit het dichtst bij de Arabische terminologie staat. In het Nederlands wordt ‘islamiet’ bovendien vaak in een negatieve context gebruikt, terwijl dat bij ‘moslim’ in mindere mate het geval is. De term wordt vaak verward met ‘islamist', welke niet als beledigend wordt ervaren. Een islamist is iemand die zich houdt aan het islamisme, een modernistische islamitische beweging."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_234 ;
+	culco:hasSuggestion
+		wsm:121_nl_s_01 .
+
+wsm:121_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Moslim"@nl ;
+	culco:suggestedFor
+		wsm:l_234 ;
+	culco:hasSuggestedLabel
+		wsm:l_235 .
+
+#Jappenkampen
+
+wsm:122_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Jappenkampen"@nl ;
+	skos:exactMatch wsm:120 ;
+	dcterms:description "De term ‘Jappenkampen’ verwijst meestal naar de Japanse kampen in Azië tijdens de Tweede Wereldoorlog, en specifiek naar de kampen in het door Japan, bezette voormalige Nederlands­-Indië. Het woord ‘Jap’ is een pejoratieve afkorting van ‘Japanner’, ofwel een Japans persoon. ‘Jappenkamp’ is ook omstreden bij sommige slachtoffers en hun nazaten, omdat zij het gevoel hebben dat de term geen recht doet aan de wreedheden die in de kampen hebben plaatsgevonden. Om die reden heeft men de term ‘Japans concentratiekamp’ als alternatief gesuggereerd."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_236,
+		wsm:l_237, #Jap
+		wsm:l_238 ; #Jappenkamp
+	culco:hasSuggestion
+		wsm:122_nl_s_01 .
+
+wsm:122_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Er bestaan meerdere alternatieven, waaronder: Japans kamp; Japans interneringskamp; Japans concentratiekamp; Japans kamp voor krijgsgevangenen; Japans kamp voor militaire gevangenen (in Birma en Thailand)"@nl ;
+	culco:suggestedFor
+		wsm:l_236,
+		wsm:l_238 ;
+	culco:hasSuggestedLabel
+		wsm:l_239, #Japans kamp
+		wsm:l_240, #Japans interneringskamp
+		wsm:l_241, #Japans concentratiekamp
+		wsm:l_242, #Japans kamp voor krijgsgevangenen
+		wsm:l_243 . #Japans kamp voor militaire gevangenen (in Birma en Thailand)
+
+#Kaffer
+
+wsm:123_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Kaffer"@nl ;
+	skos:exactMatch wsm:121 ;
+	dcterms:description "De term ‘kaffer’ komt van het Arabische ‘kafir’, dat iemand zonder religie betekent. In Zuid­-Afrika werd de term in de 16de eeuw gebruikt om Zwarte mensen te omschrijven die geen moslim waren en later als verwijzing naar mensen in Zuid­-Afrika die Bantoetalen spraken, voornamelijk tijdens de veroveringsoorlogen van de Oost­-Kaap. In de Afrikaanse en Engelse taal werd het al snel een label voor Zwarte mensen van Afrikaanse afkomst in het algemeen. De term kreeg zijn denigrerende connotatie tijdens de apartheid en wordt tegenwoordig beschouwd als haatzaaiende taal. De uitzondering is een groep mensen in Sri Lanka, die afstammen van Portugese handelaren (of meer algemeen: Europeanen) en tot slaaf gemaakte Bantoevolken."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_244 ;
+	culco:hasSuggestion
+		wsm:1_nl_s, #general suggestion
+		wsm:123_nl_s_02 .
+
+wsm:123_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Gepast indien het verwijst naar de Sri Lankaanse Kaffers, die de term zelf als respectvol ervaren."@nl ;
+	culco:suggestedFor
+		wsm:l_244 .
+
+#Kaukasisch
+
+wsm:124_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Kaukasisch"@nl ;
+	skos:exactMatch wsm:98 ;
+	dcterms:description "De term ‘Kaukasisch’ verwees oorspronkelijk naar de volken uit de Kaukasus, maar werd later in gebruik genomen als een raciale benaming voor witte Europeanen. Dit gebeurde onder invloed van het antropologische werk van J.F. Blumenbach (1752­-1840). In de 20ste eeuw gebruikten leden van de nazipartij de term om hun superioriteit te verklaren. In Nederland zien we de term vooral in museumdatabases maar in andere landen – zoals de VS – komt het vaak voor in het dagelijks taalgebruik. De term krijgt steeds meer kritiek vanwege de raciale oorsprong."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_245 ;
+	culco:hasSuggestion
+		wsm:124_nl_s_01,
+		wsm:1_nl_s, #general suggestion
+		wsm:124_nl_s_03 .
+
+wsm:124_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Als men verwijst naar mensen in de Kaukasus­regio is ‘Kaukasisch’ de correcte term."@nl ;
+	culco:suggestedFor
+		wsm:l_245 ;
+	culco:hasSuggestedLabel
+		wsm:l_245 .
+
+wsm:124_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "Hoewel er discussie over de term ‘wit’ bestaat, is dat nog steeds de meest geschikte term om te gebruiken."@nl ;
+	culco:suggestedFor
+		wsm:l_245 ;
+	culco:hasSuggestedLabel
+		wsm:l_200 . #Wit
+
+#Koelie
+
+wsm:125_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Koelie"@nl ;
+	skos:exactMatch wsm:100 ;
+	dcterms:description "De term ‘koelie’ is waarschijnlijk afgeleid van het Hindi­-woord ‘quli’, dat ‘dagwerker’ betekent. In het Nederlands verwijst het specifiek naar ongeschoolde contractarbeiders uit Azië, die in de jaren 1850 veldarbeid verrichtten in de koloniën Nederlands­-Indië (Indonesië) en later in West­-Indië (Suriname). De term is buiten Nederland ook gebruikt om contractarbeiders in de Britse koloniën in het Caribisch gebied te beschrijven, voornamelijk die uit India. Vanaf het midden van de 20ste eeuw zijn wetenschappers, activisten en diverse belangengemeenschappen het erover eens dat het een beledigende term is. Desondanks wordt het nog steeds gebruikt als een scheldwoord voor mensen van Aziatische afkomst."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_246 ;
+	culco:hasSuggestion
+		wsm:125_nl_s_01 .
+
+wsm:125_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Dit is een denigrerende term, maar kan wel gebruikt worden in een beschrijvende of historische context. Gebruik in dat geval aanhalingstekens."@nl ;
+	culco:suggestedFor
+		wsm:l_246 .
+
+#Koppensneller
+
+wsm:126_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Koppensneller"@nl ;
+	skos:exactMatch wsm:111 ;
+	dcterms:description "Historisch gezien werd de term gebruikt om iemand te omschrijven die deelneemt aan de rituele praktijk van het verkrijgen van trofee­-hoofden, bijvoorbeeld in tijden van oorlog. Dit ritueel werd op veel plaatsen en door vele volken over de hele wereld (inclusief Europeanen) uitgevoerd. In Nederland werd de term voor het eerst gebruikt in de 19de eeuw. Koppensnellen is al lang aanwezig in de populaire cultuur, bijvoorbeeld in boeken en films. Vaak om hiermee de indruk te wekken van primitieve, wilde, wrede en bloed­-dorstige volken uit de jungle. Dit geeft echter een verkeerde voorstelling van de significante rituele rol  die  koppensnellen had voor het goed functioneren van de samenlevingen die deze praktijken uitvoerden. Het gebruik van termen als deze versterkt het idee dat bepaalde mensen in wezen onveranderlijk en ‘primitief’ zijn."@nl ;
+	dcterms:references
+		wsm:137_nl ;
+	culco:hasContentiousLabel
+		wsm:l_247,
+		wsm:l_267 ;
+	culco:hasSuggestion
+		wsm:1_nl_s, #general suggestion
+		wsm:126_nl_s_02 .
+
+wsm:126_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Het is beter om de term te vermijden bij het beschrijven van diverse rituele praktijken. Kies er liever voor om deze praktijken uit te leggen, met gebruik van hun inheemse naam, evenals hun rituele waarde."@nl ;
+	culco:suggestedFor
+		wsm:l_247 .
+
+#Marron
+
+wsm:127_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Marron"@nl ;
+	skos:exactMatch wsm:122 ;
+	dcterms:description "De term ‘Marron’ wordt gebruikt om te verwijzen naar (de nakomelingen van) Afrikanen in Amerika, die aan slavernij ontsnapten en in gebieden gingen wonen die moeilijk bereikbaar waren, zoals het regenwoud. De term komt van het 16de-eeuwse Spaanse woord ‘cimarrón’, dat weggelopen vee betekent. Het wordt om die reden als beledigend ervaren. Tegelijkertijd viert de term het voortdurende verzet tegen kolonialisme en slavernij, en wordt daarom gezien als empowering. Deze verschillende opvattingen maken het gebruik van het woord complex. In Suriname en Nederland bieden sommigen weerstand tegen de term, terwijl die elders, bijvoorbeeld in Jamaica, meer geaccepteerd wordt."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_172 ;
+	culco:hasSuggestion
+		wsm:127_nl_s_01 .
+
+wsm:127_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Over het algemeen is de term gepast, maar in de context van Suriname is het beter om de specifieke namen van de verschillende groepen Marrons te gebruiken: Saamaka, Matawai, Aluku, Kwinti, Paamaka."@nl ;
+	culco:suggestedFor
+		wsm:l_172 ;
+	culco:hasAltLabelExample
+		wsm:l_248, #Saamaka
+		wsm:l_249, #Matawai
+		wsm:l_250, #Aluku
+		wsm:l_251, #Kwinti
+		wsm:l_252 . #Paamaka
+
+#Medicijnman
+
+wsm:128_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Medicijnman"@nl ;
+	skos:exactMatch wsm:123 ;
+	dcterms:description "Deze term wordt gebruikt voor de traditionele of spirituele healers onder inheemse volken over de hele wereld. Deze personen zijn deskundig op het gebied van natuurlijke middelen en hun helende krachten. Traditionele healers zijn zeer gerespecteerde leden in hun gemeenschap. Zij worden geraadpleegd wanneer individuen fysiek of mentaal ziek zijn, maar ook om sociale, culturele of milieukwesties binnen de gemeenschap te genezen. De medicijnman is vertegenwoordigd in talloze films, romans en andere populaire media, vaak op een sensationele en erotiserende manier. Dergelijke voorstellingen ontkennen de complexiteit van de kennis die geassocieerd wordt met healing, net als de belangrijke rol die traditionele healers spelen in veel samenlevingen. In de afgelopen decennia zijn velen de term als pejoratief gaan beschouwen."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_253 ;
+	culco:hasSuggestion
+		wsm:128_nl_s_01,
+		wsm:128_nl_s_02 .
+
+wsm:128_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Traditionele of spirituele healer"@nl ;
+	culco:suggestedFor
+		wsm:l_253 ;
+	culco:hasSuggestedLabel
+		wsm:l_254, #traditionele healer
+		wsm:l_255 . #spirituele healer
+
+wsm:128_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Indien bekend, gebruik de term die door de groep waartoe de healer behoort als respectvol wordt ervaren."@nl ;
+	culco:suggestedFor
+		wsm:l_253 .
+
+#Mohammedaan
+
+wsm:129_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Mohammedaan"@nl ;
+	skos:exactMatch wsm:124 ;
+	dcterms:description "‘Mohammedaan’ werd in het verleden vaak gebruikt. Oorspronkelijk refereerde het aan de aanbidding van de profeet Mohammed. Veel moslims verzetten zich om deze reden tegen het gebruik van de term, omdat de islam de aanbidding van God alleen onderwijst. ‘Mohammedaan’ is voornamelijk te vinden in museumdatabases en niet meer in de dagelijkse taal. De termen ‘moslim’ en ‘islamitisch’ komen tegenwoordig vaker voor."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_256 ;
+	culco:hasSuggestion
+		wsm:129_nl_s_01 .
+
+wsm:129_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Moslim"@nl ;
+	culco:suggestedFor
+		wsm:l_256 ;
+	culco:hasSuggestedLabel
+		wsm:l_257 .
+
+#Mongool
+
+wsm:130_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Mongool"@nl ;
+	skos:exactMatch wsm:125 ;
+	dcterms:description "‘Mongool’ is een ouderwetse en aanstootgevende term die wordt gebruikt als verwijzing naar een zogenaamd raciaal type enerzijds en mensen met de genetische conditie Downsyndroom anderzijds. De term in zijn raciale definitie kwam voort uit de 18de en 19de­-eeuwse studies naar raciale verschillen. Het Mongoloïde of Mongoolse ras werd als overkoepelende term gebruikt voor verschillende inheemse volken in Oost­-Azië, Zuidoost­-Azië en de Arctische regio’s in Noord­-Amerika. De term is ouderwets en wordt in sommige situaties beschouwd als beledigend, zoals dat ook het geval is met de andere zogenaamde rassencategorieën ‘Kaukasisch’ en ‘neger’ (zie: Kaukasisch en Neger). De term wordt ook gebruikt voor mensen met het Downsyndroom, omdat hun gelaatstrekken een gelijkenis zouden vertonen met die van mensen van het zogenaamde Mongoolse ras. Vandaag de dag wordt de term als scheldwoord gebruikt voor mensen die ten onrechte worden beschouwd als achterlijk."@nl ;
+	dcterms:references
+		wsm:124_nl,
+		wsm:133_nl ;
+	culco:hasContentiousLabel
+		wsm:l_258,
+		wsm:l_245, #Kaukasisch
+		wsm:l_171, #Neger
+		wsm:l_259 ; #achterlijk
+	culco:hasSuggestion
+		wsm:130_nl_s_01,
+		wsm:130_nl_s_02,
+		wsm:130_nl_s_03 .
+
+wsm:130_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Wat de eerste definitie betreft; gebruik liever specifieke nationale of culturele termen om mensen te omschrijven."@nl ;
+	culco:suggestedFor
+		wsm:l_258 .
+
+wsm:130_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Wat de tweede definitie betreft; de term is denigrerend. Gebruik ‘iemand met het Downsyndroom’."@nl ;
+	culco:suggestedFor
+		wsm:l_258 ;
+	culco:hasAltLabelExample
+		wsm:l_260 .
+
+wsm:130_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "Het gebruik van ‘Mongool’ of ‘achterlijk’ voor mensen met een beperking is beledigend."@nl ;
+	culco:suggestedFor
+		wsm:l_258,
+		wsm:l_259 .
+
+#Moor
+
+wsm:131_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Moor"@nl ;
+	skos:exactMatch wsm:126 ;
+	dcterms:description "‘Moor’ is een controversiële term waarvan de betekenis in de loop van de tijd is veranderd. Hoewel de term is gebruikt voor verschillende groepen mensen wordt het over het algemeen begrepen als een beschrijving van Moslims van Arabische en Amazigh­-afkomst uit Noord­-Afrika en Zuid­-Europa. Tegelijkertijd wordt gezegd dat de term is afgeleid van een Griekse term, die zwart of verkoold betekent en die sinds de oudheid in Europa wordt gebruikt om Zwarte mensen uit Afrika te beschrijven. In Nederland, evenals elders, wordt de term gebruikt als een denigrerende term voor moslims uit Noord­-Afrika of voor Zwarte mensen."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_261 ;
+	culco:hasSuggestion
+		wsm:131_nl_s_01,
+		wsm:131_nl_s_02,
+		wsm:1_nl_s . #general suggestion
+
+wsm:131_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term is beledigend en het gebruik wordt daarom afgeraden in de hedendaagse context."@nl ;
+	culco:suggestedFor
+		wsm:l_261 .
+
+wsm:131_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Er is geen acceptabel alternatief voor deze term."@nl ;
+	culco:suggestedFor
+		wsm:l_261 .
+
+#Mulat
+
+wsm:132_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Mulat"@nl ;
+	skos:exactMatch wsm:127 ;
+	dcterms:description "Sinds de 17de eeuw verwijst ‘mulat’ naar de eerste generatie nakomelingen van een niet­-witte persoon en een witte persoon. De term is afgeleid van het Latijnse woord ‘mulus’ (muilezel), dat het hybride nageslacht van een paard en een ezel is. Net als de raciale wetenschappen waaruit de term voortkwam, suggereert ‘mulat' een fundamenteel verschil tussen twee menselijke soorten. Dit resulteert, net als bij de muilezel, in een abnormaal nageslacht waarvan verondersteld wordt dat het onvruchtbaar is. Er werd gedacht dat mulatten de ‘verschrikkingen’ van vermenging vertegen­ woordigden (zie: Halfbloed), maar vanwege hun zogenaamd witte bloed vond men dat ze intelligenter waren - ­en vaak aantrekkelijker ­- dan Zwarte mensen. Tegenwoordig komen dergelijke ideeën nog steeds op subtiele manier terug in het dagelijks taalgebruik."@nl ;
+	dcterms:references
+		wsm:110_nl;
+	culco:hasContentiousLabel
+		wsm:l_208 ;
+	culco:hasSuggestion
+		wsm:1_nl_s, #general suggestion
+		wsm:110_nl_s_01, #suggestions for "Halfbloed"
+		wsm:110_nl_s_02 .
+
+
+#Neger
+
+wsm:133_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Neger"@nl ;
+	skos:exactMatch wsm:129 ;
+	dcterms:description "‘Neger’ komt van het Latijnse woord ‘niger’, dat zwart betekent. In het Nederlands werd de term vanaf de 17de eeuw gebruikt om te verwijzen naar Zwarte mensen in en uit (sub­-Sahara) Afrika. Niet veel later werd het een verwijzing naar tot slaaf gemaakte mensen, en werd het geassocieerd met de raciale wetenschappen van de 18de en 19de eeuw (zie: Kaukasisch en Ras). In de 20ste eeuw werd ‘neger’ gebruikt in een raciale typologie waarmee stereotiepe opvattingen gecreëerd werden over Zwarte mensen. Tegelijkertijd functioneerde het juist als onderdeel van de opkomende anti­-koloniale strijd en het toenemende Zwarte bewustzijn. Vandaag de dag wordt de term door zowel Zwarte en andere activisten, academici en anderen als zeer denigrerend beschouwd."@nl ;
+	dcterms:references
+		wsm:124_nl,
+		wsm:140_nl ;
+	culco:hasContentiousLabel
+		wsm:l_171 ;
+	culco:hasSuggestion
+		wsm:133_nl_s_01,
+		wsm:1_nl_s .
+
+wsm:133_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Het gebruik van deze term wordt afgeraden in de hedendaagse context."@nl ;
+	culco:suggestedFor
+		wsm:l_171 .
+
+#Ontdekken
+
+wsm:134_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Ontdekken"@nl ;
+	skos:exactMatch wsm:103 ;
+	dcterms:description "De term ‘ontdekken’ kan op een neutrale manier worden gebruikt, bijvoorbeeld in een zin zoals: ik heb ontdekt (ben erachter gekomen) hoe dit werkt. Wanneer het echter gebruikt wordt om te suggereren dat een plaats niet bestond, niet bekend was bij Europeanen of niet bewoond werd voorafgaand aan de aanwezigheid van Europeanen, is het echter allesbehalve neutraal. Bijvoorbeeld: “Bijna 40 jaar na de ontdekking van ‘Amerika’ in 1492 door Columbus, gaf dit kunstwerk een van de vroegste afbeeldingen weer van het nieuwe continent.” Een tekst als deze is pejoratief, omdat het impliceert dat er voorafgaand aan Columbus’ ‘ontdekking’ geen kunst, mensen noch samenlevingen bestonden op het continent."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_262 ;
+	culco:hasSuggestion
+		wsm:134_nl_s_01 .
+
+
+wsm:134_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Een zinsconstructie als “was de eerste Europeaan die ...” is gepaster."@nl ;
+	culco:suggestedFor
+		wsm:l_262 ;
+	culco:hasUsageExample
+		"“was de eerste Europeaan die ...”"@nl .
+
+#Oriëntaals
+
+wsm:135_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Oriëntaals"@nl ;
+	skos:exactMatch wsm:130 ;
+	dcterms:description "De term ‘Oriëntaals’ komt van het Latijnse woord ‘Oriënt’, het oosten. Oorspronkelijk werd het in Europa gebruikt om mensen of dingen uit Azië mee aan te duiden. De term kreeg steeds meer kritiek te verduren na de publicatie  van Edward Saids baanbrekende werk “Oriëntalisme” in 1978. Dit werk bekritiseerde Euro­Amerikaanse representaties van het (Midden­-)Oosten. De term wordt betwist vanwege de eurocentrische visie op Azië. Het draagt ook bij aan het romantiserende en stereotyperende beeld van Aziatische mensen als mysterieus, exotisch en buitenlands. De term wordt nog steeds veel gebruikt."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_263,
+		wsm:l_196 ; #exotisch
+	culco:hasSuggestion
+		wsm:135_nl_s_01,
+		wsm:135_nl_s_02 .
+
+wsm:135_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Aziatisch"@nl ;
+	culco:suggestedFor
+		wsm:l_263 ;
+	culco:hasSuggestedLabel
+		wsm:l_264 .
+
+wsm:135_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Het is echter beter om de specifieke termen te gebruiken van de landen, talen en culturen van het Aziatische continent en het Midden­-Oosten."@nl ;
+	culco:suggestedFor
+		wsm:l_263 .
+
+#Politionele actie
+
+wsm:136_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Politionele actie"@nl ;
+	skos:exactMatch wsm:131 ;
+	dcterms:description "Met ‘politionele acties’ worden de grootschalige militaire operaties van het Nederlandse leger tussen 1945­-1949 bedoeld, die erop gericht waren om Indonesische Onafhankelijkheid te voorkomen. De toenmalige Nederlandse regering wilde oorlogsterminologie vermijden, omdat zij de operaties zagen als een legitieme onderdrukking van een opstand. Zij gebruikten de term ‘politionele actie’. ‘Politionele actie’ wordt om die reden als een misleidend begrip gezien door velen, waaronder de nazaten van de slachtoffers. Het wordt beschouwd als een eufemistische term, die de structurele inmenging van het leger en de gewelddadigheden verdoezelt en die de slachtoffers reduceert tot rebellen."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_265 ;
+	culco:hasSuggestion
+		wsm:136_nl_s_01,
+		wsm:136_nl_s_02 .
+
+wsm:136_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Er is geen consensus over alternatieve terminologie. In Indonesië worden ‘Agresi Militer Belanda I & II’ gebruikt."@nl ;
+	culco:suggestedFor
+		wsm:l_265 .
+
+wsm:136_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "In Nederland heeft men onder andere ‘Eerste en Tweede Nederlands­ Indonesische oorlogen’ gesuggereerd."@nl ;
+	culco:suggestedFor
+		wsm:l_265 ;
+	culco:hasSuggestedLabel
+		wsm:l_266 .
+
+#Primitief
+
+wsm:137_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Primitief"@nl ;
+	skos:exactMatch wsm:132 ;
+	dcterms:description "‘Primitief’ komt van het Latijnse woord primitivus, dat eerstgeboren of eerste in zijn soort betekent. In Europa werd het een synoniem voor de raciale en temporale ‘ander’ en werd de term toegepast op culturen die beschouwd werden als simpel, onbeschaafd en niet van deze tijd en ‘Europese’ kwaliteiten zoals ‘vooruitgang’ en ‘rationaliteit’ misten. Zo wordt de term nog steeds vaak gebruikt. ‘Primitivisme’ is een stroming in de beeldende kunst. Deze beweging waardeerde culturen en plekken die zij associeerden met de natuurlijke kwaliteit of romantiek van een eenvoudiger manier van leven. Dit in tegenstelling tot het geavanceerdere, geïndustrialiseerde Europa, zo dacht men. Zowel de term ‘primitief’ als ‘Primitivisme' zijn bekritiseerd door verschillende groepen, waaronder wetenschappers."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_267,
+		wsm:l_268 ; #Primitivisme
+	culco:hasSuggestion
+		wsm:137_nl_s_01 .
+
+wsm:137_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "De term kan gebruikt worden in een historische of beschrijvende context. Gebruik in dit geval aanhalingstekens. Bijvoorbeeld: 'Er was een kunstbeweging die ‘primitivisme’ heette'"@nl ;
+	culco:suggestedFor
+		wsm:l_267,
+		wsm:l_268 ;
+	culco:hasUsageExample
+		"'Er was een kunstbeweging die ‘primitivisme’ heette'"@nl .
+
+#Pygmee
+
+wsm:138_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Pygmee"@nl ;
+	skos:exactMatch wsm:133 ;
+	dcterms:description "‘Pygmee’ wordt in de antropologie gebruikt voor verschillende (etnische) groepen uit met name (Equatoriaal) Afrika en Azië (o.a. Nieuw­-Guinea), waarvan de volwassen mannen beschouwd worden als ongewoon klein. Deze verwijzing naar uiterlijke kenmerken, maar ook het feit dat de term gebruikt wordt als kritiek op iemands intellectuele capaciteiten, maakt dat sommigen de term als een belediging zien. Tegelijkertijd hebben sommige inheemse volken de term juist opnieuw opgeëist als neutraal en niet­-problematisch. Dit is bijvoorbeeld het geval in de Democratische Republiek Congo."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_269 ;
+	culco:hasSuggestion
+		wsm:138_nl_s_01,
+		wsm:0_nl_s . #general suggestion
+
+wsm:138_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "‘Pygmee’ is beledigend, en kan beter vermeden worden."@nl ;
+	culco:suggestedFor
+		wsm:l_269 .
+
+#Queer
+
+wsm:139_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Queer"@nl ;
+	skos:exactMatch wsm:134 ;
+	dcterms:description "Vooral sinds de jaren 1980 heeft ‘queer’ gediend als een overkoepelende term voor seksuele interesses en identiteiten die de sociale normen voor seksueel gedrag uitdagen. De term is niet alleen een afkorting voor ‘LGBT’, maar ook het volledige scala aan menselijke seksualiteit, bijvoorbeeld mensen met seksuele fetisjen of diegenen die polyamorie beoefenen. ‘Queer’ is teruggeclaimd als een politieke en seksuele identiteit waar men trots op kan zijn, waarbij men bewust afstand neemt van eerdere etymologische betekenissen als vreemd, dwars of nieuwsgierig. De term wordt echter nog steeds gebruikt als een negatieve benaming voor mensen die worden beschouwd als ‘seksueel afwijkend’."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_270 ;
+	culco:hasSuggestion
+		wsm:139_nl_s_01,
+		wsm:3_nl_s .
+
+wsm:139_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "LGBT"@nl ;
+	culco:suggestedFor
+		wsm:l_270 ;
+	culco:hasSuggestedLabel
+		wsm:l_271 .
+
+#Ras
+
+wsm:140_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Ras"@nl ;
+	skos:exactMatch wsm:135 ;
+	dcterms:description "‘Ras’ is een veelbesproken term die verwijst naar de indeling van mensen op basis van fysieke kenmerken, zoals huidskleur. In raciaal denken wordt de kleur van iemands huid beschouwd als een teken van onvergelijkbare verschillen tussen groepen, met een hiërarchie in aanleg, vaardigheden, zelfs gedrag en ontwikkeling. Volgens 18de­- en 19de­-eeuwse raciale wetenschappers was het mogelijk om mensen in verschillende groepen te verdelen en in een hiërarchie te plaatsen. Deze typologieën versterkten koloniale ideologieën over verschil, met de witte Europeaan aan de top in een raciale hiërarchie (zie: Kaukasisch en Neger). Hoewel ras geen biologisch feit is, heeft het sociale gevolgen, zoals discriminatie, vooroordelen en ongelijkheid. Racisme moet daarom worden begrepen als een vorm van discriminatie en vooroordelen, dat gebaseerd wordt op de veronderstelde superioriteit van de ene groep boven de andere."@nl ;
+	dcterms:references
+		wsm:124_nl,
+		wsm:133_nl ;
+	culco:hasContentiousLabel
+		wsm:l_195 ;
+	culco:hasSuggestion
+		wsm:140_nl_s_01,
+		wsm:140_nl_s_02 .
+
+wsm:140_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Er is geen alternatief voor deze term. Door sommigen wordt de term tussen aanhalingstekens geplaatst om zo de controverse te erkennen."@nl ;
+	culco:suggestedFor
+		wsm:l_195 .
+
+wsm:140_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Racisme kan als term gebruikt worden, omdat het een erkenning is van discriminerende praktijken die gebaseerd zijn op raciaal denken."@nl ;
+	culco:suggestedFor
+		wsm:l_195 .
+
+#Roots
+
+wsm:141_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Roots"@nl ;
+	skos:exactMatch wsm:136 ;
+	dcterms:description "‘Roots’ in de dagelijkse taal is een populaire term geworden om de eigen identiteit te definiëren. De term wordt gebruikt om te verwijzen naar de plaats waar men oorspronkelijk vandaan komt, letterlijk of figuurlijk. ‘Roots’ is vaak gekoppeld aan gevoelens van verlies die verbonden zijn aan (vrijwillige of onvrijwillige) migratie,  en  wordt  vooral  geassocieerd met diasporagemeenschappen. In de afgelopen jaren is de term bekritiseerd vanwege de manier waarop het – vaak op een nostalgische manier ­ verwijst naar een stabiele en vaste identiteit waarnaar mensen zouden kunnen terugkeren. Iemand vragen naar zijn wortels kan voor sommige mensen problematisch zijn, omdat het veronderstelt dat zij er niet bij horen of dat hun wortels als enige factor bepalend zijn voor wie ze zijn. Dit wordt nog verergerd door het feit dat de vraag meestal wordt gesteld aan niet­witte mensen."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_272 ;
+	culco:hasSuggestion
+		wsm:141_nl_s_01,
+		wsm:141_nl_s_02 .
+
+wsm:141_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Over het algemeen wordt de term niet als ongepast beschouwd wanneer mensen het als omschrijving van zichzelf gebruiken. Wanneer de vraag echter gesteld wordt, kunnen sommigen het wel ervaren als respectloos."@nl ;
+	culco:suggestedFor
+		wsm:l_272 .
+
+wsm:141_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Recent hebben wetenschappers het concept van routes gesuggereerd als een betere manier om over de culturele en sociale biografiën van mensen te spreken."@nl ;
+	culco:suggestedFor
+		wsm:l_272 .
+
+#Slaaf
+
+wsm:142_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Slaaf"@nl ;
+	skos:exactMatch wsm:138 ;
+	dcterms:description "De term ‘slaaf’ wordt gebruikt om iemand te beschrijven die het wettelijke eigendom is van een ander en moet gehoorzamen, vaak afgedwongen met geweld. De term zelf verwijst naar verschillende vormen van onvrijheid, met verschillende betekenissen en consequenties door de tijd (en plaats) heen. In de 6de eeuw betekende sklabos (Grieks) bijvoorbeeld een onvrij persoon van Slavische afkomst, terwijl sclavus in het middeleeuwse Latijn juist de meer algemene betekenis had van ‘een persoon die eigendom is van een ander’. Vandaag de dag wordt de term gebruikt voor mensen uit Afrika die door Europeanen gekocht/gevangen genomen werden en vervolgens gedwongen werden om onder onmenselijke omstandigheden op koloniale plantages te werken. Recent wordt de term gebruikt om de slachtoffers van hedendaagse mensenhandel of dwangarbeid te beschrijven. De term ‘slaaf’ wordt steeds meer betwist door activisten, weten­ schappers en het publiek. Men vindt dat het gebruik van de term ‘slaaf’ een categorie normaliseert die niet inherent is aan iemands identiteit. De categorie werd onder geweld en dwang opgelegd, en was dus geen eigen keuze. Bovendien erkent de term ‘slaaf’ iemands menselijkheid niet, maar reduceert diegene tot niets meer dan iemands eigendom."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_273 ;
+	culco:hasSuggestion
+		wsm:142_nl_s_01 .
+
+wsm:142_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "‘Tot slaaf gemaakt’ of ‘mensen in slavernij’ (zie voorbeeld Richard Kofi)."@nl ;
+	culco:suggestedFor
+		wsm:l_273 ;
+	culco:hasSuggestedLabel
+		wsm:l_274,
+		wsm:l_275 .
+
+#Stam
+
+wsm:143_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Stam"@nl ;
+	skos:exactMatch wsm:142 ;
+	dcterms:description "De term ‘stam’ wordt vaak geassocieerd met een zogenaamde niet­ complexe samenleving met een eenvoudige politieke structuur. Hoewel dit feit op zich niet wordt betwist, heeft de term de bijklank van primitief, simpel en wild gekregen. Het wordt voornamelijk geassocieerd met niet­ Europese mensen en culturen. Het lastige aan de term is dat sommige groepen de term juist omarmen, zoals de ‘Native North American Tribal Councils’. ‘Stam’ komt ook voor in de Koran en is daarom altijd een geaccepteerde term geweest in de Arabische wereld. Zelfs dan wordt deze term betwist vanwege de negatieve connotaties. De term is zeer zelden gebruikt om etnische groepen in Europa te beschrijven, zoals bijvoorbeeld het Sami­-volk of (in het verleden) de Keltische volken. In de afgelopen jaren is het positief gebruikt in mode­- en populaire cultuur om te verwijzen naar stijl, bijvoorbeeld ‘fashion tribes’"@nl ;
+	culco:hasContentiousLabel
+		wsm:l_276 ;
+	culco:hasSuggestion
+		wsm:2_nl_s, #general suggestion
+		wsm:0_nl_s, #general suggestion
+		wsm:143_nl_s_03 .
+
+wsm:143_nl_s_03
+	a culco:Suggestion ;
+	rdf:value "Kan gebruikt worden in de context van mode­ en populaire cultuur, maar alleen wanneer daarmee naar de eigen persoon verwezen wordt."@nl ;
+	culco:suggestedFor
+		wsm:l_276 .
+
+
+#Traditioneel
+
+wsm:144_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Traditioneel"@nl ;
+	skos:exactMatch wsm:140 ;
+	dcterms:description "De term ‘traditioneel’ is op zich niet problematisch, maar kan een negatieve connotatie krijgen wanneer het gebruikt wordt in contrast met andere beladen termen zoals ‘modern’ en ‘vooruitgang’. Meerdere academici hebben gesteld dat deze dichotomie ontstond als onderdeel van een Eurocentrisch intellectueel en koloniaal project. Dit versterkte het idee dat niet­-Europese culturen premodern en statisch waren, terwijl Europa modern en progressief zou zijn. Hierdoor werd een hiërarchie van culturen en volken gevestigd, waarin ‘westers’ gelijkgesteld werd aan modern en ‘niet­-westers’ aan traditioneel. Deze scheiding komt tegenwoordig terug in concepten zoals ‘traditionele kunst of cultuur’ en wordt vaak geassocieerd met etnografische musea."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_277 ;
+	culco:hasSuggestion
+		wsm:144_nl_s_01,
+		wsm:144_nl_s_02 .
+
+wsm:144_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Wees zo specifiek mogelijk over tijd, plaats en intentie als je over tradities of over objecten waarvan hun makers vinden dat deze tradities of traditionele stijlen representeren, schrijft. Bijvoorbeeld: 'in de 18de eeuw gebruikten mensen dit, in 2018 gebruiken zij dat...'"@nl ;
+	culco:suggestedFor
+		wsm:l_277 ;
+	culco:hasUsageExample
+		 "'in de 18de eeuw gebruikten mensen dit, in 2018 gebruiken zij dat...'"@nl .
+
+wsm:144_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "In sommige gevallen kan de term vervangen worden door ‘historisch’."@nl ;
+	culco:suggestedFor
+		wsm:l_277 ;
+	culco:hasSuggestedLabel
+		wsm:l_278 .
+
+#Trans
+
+wsm:145_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Trans"@nl ;
+	skos:exactMatch wsm:141 ;
+	dcterms:description "‘Trans’ is een overkoepelende term die wordt gebruikt om transgender of transseksuele seksualiteit te beschrijven. Transgender/transseksueel beschrijft mensen wiens genderidentiteit en ­uitdrukking afwijkt van wat als typerend wordt beschouwd voor het geslacht dat zij bij de geboorte hebben gekregen. Als een overkoepelende term kan ‘transgender’ een verscheidenheid aan genderidentiteiten en ­-uitdrukkingen beschrijven, bijvoorbeeld crossdressing. Sommige mensen geven de voorkeur aan de term ‘transgender’. Het gaat dan met name om mensen die van plan zijn om hun lichaam te veranderen in overeenstemming met hun genderidentiteit, of dit al gedaan hebben."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_279,
+		wsm:l_280 ; #travestiet
+	culco:hasSuggestion
+		wsm:3_nl_s, #general suggestion
+		wsm:145_nl_s_02 .
+
+wsm:145_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "De term ‘travestiet’ moet worden vermeden tenzij iemand zichzelf als zodanig identificeert. Deze term is inmiddels vervangen door de term ‘crossdresser’."@nl ;
+	culco:suggestedFor
+		wsm:l_279,
+		wsm:l_280 ;
+	culco:hasSuggestedLabel
+		wsm:l_281 .
+
+
+#Westers
+
+wsm:146_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Westers"@nl ;
+	skos:exactMatch wsm:143 ;
+	dcterms:description "Het ‘westen’ is een ideologisch, historisch, economisch en geografisch concept waarvan de betekenis in de loop der tijd is veranderd. De term ‘westers’ staat voor een mentale en fysieke scheiding van de wereld waarin mensen, culturen, religies en regio's in een hiërarchie van categorieën zijn ingedeeld en wat de onderlinge verschillen onderstreept. De term wordt vaak gebruikt om de tegenstelling met ‘niet­-westers’ aan te duiden. Andere termen met vergelijkbare connotaties zijn onder andere ‘Derde Wereld’ (zie: Derde Wereld), ontwikkeld/onontwikkeld, etc."@nl ;
+	dcterms:references
+		wsm:103_nl ;
+	culco:hasContentiousLabel
+		wsm:l_282,
+		wsm:l_174 ; # Derde Wereld
+	culco:hasSuggestion
+		wsm:146_nl_s_01 .
+
+wsm:146_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Wees zo specifiek mogelijk wat betreft land, bevolking, etc."@nl ;
+	culco:suggestedFor
+		wsm:l_282 .
+
+#Wit
+
+wsm:147_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Wit"@nl ;
+	skos:exactMatch wsm:144 ;
+	dcterms:description "‘Wit’ is lange tijd gebruikt om een raciale identiteit te beschrijven op basis van huidskleur, meestal voor bepaalde groepen Europeanen en hun emigrantenpopulatie over de hele wereld. De term wordt geassocieerd met de raciale wetenschappen in de 18de en 19de eeuw. ‘Wit’ is een ideologische categorie die onder meer geassocieerd wordt met Europa’s imperiale expansie. De term heeft de connotatie gekregen van vooruitgang, verfijning en ontwikkeld. Sinds het einde van de 20ste eeuw is er echter aanhoudende kritiek op deze sociale constructie van wit­-zijn als norm. Men verzet zich tegen ‘wit’ als identiteitscategorie, die ontstaan is als een rechtvaardiging en bekrachtiging van het discrimineren van niet­witte mensen. In Nederland is er naast de toenemende kritiek op wit­zijn discussie over de vraag of men het woord ‘wit’ of ‘blank’ (zie: Blank) moet gebruiken."@nl ;
+	dcterms:references
+		wsm:100_nl ;
+	culco:hasContentiousLabel
+		wsm:l_200,
+		wsm:l_161 ; #Blank
+	culco:hasSuggestion
+		wsm:147_nl_s_01 .
+
+wsm:147_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Steeds meer mensen zijn het erover eens dat ‘wit’ de voorkeur heeft boven ‘blank’."@nl ;
+	culco:suggestedFor
+		wsm:l_200,
+		wsm:l_161 .
+
+#Zigeuner
+
+wsm:148_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Zigeuner"@nl ;
+	skos:exactMatch wsm:109 ;
+	dcterms:description "De term ‘zigeuner’ wordt meestal gebruikt als verwijzing naar iemand van een reizend volk, met name de Roma. De Roma bestaan uit verschillende groepen. In samenhang met hun rondreizende bestaan en vanwege hun verleden van (gedwongen) migratie, blijft de negatieve stereotypering van de Roma als dieven en zwervers bestaan. De Roma beschouwen de term ‘zigeuner’ als denigrerend en in de jaren 1970 hebben ze daarom gezamenlijk en officieel besloten om zichzelf ‘Roma’ te noemen."@nl ;
+	culco:hasContentiousLabel
+		wsm:l_283 ;
+	culco:hasSuggestion
+		wsm:148_nl_s_01,
+		wsm:148_nl_s_02 .
+
+wsm:148_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Over het algemeen kan ‘Roma’ worden gebruikt."@nl ;
+	culco:suggestedFor
+		wsm:l_283 ;
+	culco:hasSuggestedLabel
+		wsm:l_284 .
+
+wsm:148_nl_s_02
+	a culco:Suggestion ;
+	rdf:value "Bepaalde groepen en subgroepen hebben echter hun eigen voorkeursbenamingen (bijvoorbeeld de Sinti), die in dat geval meer gepast zijn."@nl ;
+	culco:suggestedFor
+		wsm:l_283 ;
+	culco:hasAltLabelExample
+		wsm:l_285 .
+
+#Zwart
+
+wsm:149_nl
+	a culco:ContentiousIssue, bibo:BookSection ;
+	dcterms:title "Zwart"@nl ;
+	skos:exactMatch wsm:94 ;
+	dcterms:description "‘Zwart’ is een identiteitscategorie met verschillende betekenissen in verschillende contexten, maar in het algemeen verwijst het naar mensen van Afrikaanse afkomst. De term is de vroegere raciale categorie ‘neger’ (zie: Neger) gaan vervangen, die nu door velen beschouwd wordt als denigrerend. In Nederland wordt ‘Zwart’ het meest gebruikt om mensen van Afrikaanse of Afro­-Caribische oorsprong te beschrijven. Op deze manier gebeurt dit ook in Groot­-Brittannië. Daar wordt de term echter ook gebruikt als verschillende niet­witte groepen mensen te verenigen, die allen racistisch bejegend worden (ongeacht hun etnische of geografische afkomst). In Nederland is dat in mindere mate het geval. Ook in de Verenigde Staten verwijst de term vooral naar Afro­-Amerikanen: ‘mensen van kleur’ wordt gebruikt als een politieke categorie voor iedereen die niet wit is. Met name door de inspanningen van de Noord­-Amerikaanse Civil Rights en Black Power bewegingen, maar ook door de strijd tegen racisme wereldwijd, is ‘Zwart’ een identiteitscategorie geworden waar veel mensen van Afrikaanse afkomst trots op zijn. Daarmee neemt men afstand van eerdere stereotypen waarmee Zwarte mensen geassocieerd worden."@nl ;
+	dcterms:references
+		wsm:133_nl ;
+	culco:hasContentiousLabel
+		wsm:l_199,
+		wsm:l_171 ;
+	culco:hasSuggestion
+		wsm:149_nl_s_01 .
+
+wsm:149_nl_s_01
+	a culco:Suggestion ;
+	rdf:value "Deze term kan gebruikt worden, maar moet vanwege de vele betekenissen met voorzichtigheid gebruikt worden."@nl ;
+	culco:suggestedFor
+		wsm:l_199 .

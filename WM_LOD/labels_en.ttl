@@ -1,0 +1,731 @@
+@prefix wsm: <http://example.nl/wordsmatter/thesaurus#> . #glossary
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix skosxl: <http://www.w3.org/2008/05/skos-xl#> .
+
+
+#Labels
+
+#aboriginal
+
+wsm:l_01
+	a skosxl:Label ;
+	skosxl:literalForm "Aboriginal"@en .
+
+wsm:l_02
+	a skosxl:Label ;
+	skosxl:literalForm "First Nation people"@en .
+
+wsm:l_02_p
+	a skosxl:Label ;
+	skosxl:literalForm "First Nation peoples"@en .
+
+wsm:l_02_p_01
+	a skosxl:Label ;
+	skosxl:literalForm "First Nations people"@en .
+
+wsm:l_03
+	a skosxl:Label ;
+	skosxl:literalForm "Indigenous"@en .
+
+wsm:l_04
+	a skosxl:Label ;
+	skosxl:literalForm "Aboriginal people"@en .
+
+wsm:l_04_p
+	a skosxl:Label ;
+	skosxl:literalForm "Aboriginal peoples"@en .
+
+wsm:l_04_01
+	a skosxl:Label ;
+	skosxl:literalForm "Aboriginal Australians"@en .
+
+wsm:l_05
+	a skosxl:Label ;
+	skosxl:literalForm "Indigenous people"@en .
+
+wsm:l_05_p
+	a skosxl:Label ;
+	skosxl:literalForm "Indigenous peoples"@en .
+
+wsm:l_06
+	a skosxl:Label ;
+	skosxl:literalForm "Torres Strait Islander peoples"@en .
+
+#allochtoon
+
+wsm:l_07
+	a skosxl:Label ;
+	skosxl:literalForm "Allochtoon"@en .
+
+wsm:l_08
+	a skosxl:Label ;
+	skosxl:literalForm "Moroccan-Dutch"@en .
+
+wsm:l_09
+	a skosxl:Label ;
+	skosxl:literalForm "Surinamese-Dutch"@en .
+
+#barbarian
+
+wsm:l_10
+	a skosxl:Label ;
+	skosxl:literalForm "Barbarian"@en .
+
+#berber
+
+wsm:l_11
+	a skosxl:Label ;
+	skosxl:literalForm "Berber"@en .
+
+wsm:l_12
+	a skosxl:Label ;
+	skosxl:literalForm "Amazigh"@en . #singular
+
+wsm:l_13
+	a skosxl:Label ;
+	skosxl:literalForm "Imazighen"@en . #plural
+
+#black
+
+wsm:l_14
+	a skosxl:Label ;
+	skosxl:literalForm "Black"@en .
+
+#blank
+
+wsm:l_15
+	a skosxl:Label ;
+	skosxl:literalForm "Blank"@nl .
+
+wsm:l_16
+	a skosxl:Label ;
+	skosxl:literalForm "White"@en .
+
+#bombay
+
+wsm:l_17
+	a skosxl:Label ;
+	skosxl:literalForm "Bombay"@en .
+
+wsm:l_18
+	a skosxl:Label ;
+	skosxl:literalForm "Mumbai"@en .
+
+wsm:l_19
+	a skosxl:Label ;
+	skosxl:literalForm "Calcutta"@en .
+
+wsm:l_20
+	a skosxl:Label ;
+	skosxl:literalForm "Madras"@en .
+
+wsm:l_21
+	a skosxl:Label ;
+	skosxl:literalForm "Batavia"@en .
+
+wsm:l_22
+	a skosxl:Label ;
+	skosxl:literalForm "Burma"@en .
+
+wsm:l_23
+	a skosxl:Label ;
+	skosxl:literalForm "Southern Rhodesia"@en .
+
+#bush negro
+
+wsm:l_24
+	a skosxl:Label ;
+	skosxl:literalForm "Bush Negro"@en .
+
+wsm:l_25
+	a skosxl:Label ;
+	skosxl:literalForm "Maroon"@en .
+
+#caucasian
+
+wsm:l_26
+	a skosxl:Label ;
+	skosxl:literalForm "Caucasian"@en .
+
+#colored
+
+wsm:l_27
+	a skosxl:Label ;
+	skosxl:literalForm "Colored"@en .
+
+wsm:l_28
+	a skosxl:Label ;
+	skosxl:literalForm "Person of Color"@en .
+
+wsm:l_28_p
+	a skosxl:Label ;
+	skosxl:literalForm "Persons of Color"@en . #plural
+
+wsm:l_29
+	a skosxl:Label ;
+	skosxl:literalForm "People of Color"@en .
+
+wsm:l_30
+	a skosxl:Label ;
+	skosxl:literalForm "Black and Non-Black person of color"@en .
+
+wsm:l_30_p
+	a skosxl:Label ;
+	skosxl:literalForm "Black and Non-Black persons of color"@en . #plural
+
+wsm:l_31
+	a skosxl:Label ;
+	skosxl:literalForm "Black and Non-Black People of Color"@en .
+
+#coolie
+
+wsm:l_32
+	a skosxl:Label ;
+	skosxl:literalForm "Coolie"@en .
+
+#descent
+
+wsm:l_33
+	a skosxl:Label ;
+	skosxl:literalForm "Descent"@en .
+
+#disabled
+
+wsm:l_34
+	a skosxl:Label ;
+	skosxl:literalForm "Disabled"@en .
+
+wsm:l_35
+	a skosxl:Label ;
+	skosxl:literalForm "Disabled people"@en .
+
+wsm:l_36
+	a skosxl:Label ;
+	skosxl:literalForm "People with disabilities"@en .
+
+wsm:l_37
+	a skosxl:Label ;
+	skosxl:literalForm "Differently abled"@en .
+
+#discover
+
+wsm:l_38
+	a skosxl:Label ;
+	skosxl:literalForm "Discover"@en .
+
+#dwarf
+
+wsm:l_39
+	a skosxl:Label ;
+	skosxl:literalForm "Dwarf"@en .
+
+wsm:l_40
+	a skosxl:Label ;
+	skosxl:literalForm "a person of short stature"@en .
+
+wsm:l_41
+	a skosxl:Label ;
+	skosxl:literalForm "little person"@en .
+
+wsm:l_42
+	a skosxl:Label ;
+	skosxl:literalForm "someone with dwarfism"@en .
+
+#eskimo
+
+wsm:l_43
+	a skosxl:Label ;
+	skosxl:literalForm "Eskimo"@en .
+
+wsm:l_135
+	a skosxl:Label ;
+	skosxl:literalForm "Iñupiat peoples of northern Alaska"@en .
+
+wsm:l_136
+	a skosxl:Label ;
+	skosxl:literalForm "Inuit peoples of Canada"@en .
+
+wsm:l_137
+	a skosxl:Label ;
+	skosxl:literalForm "Kalaallit of Greenland"@en .
+
+wsm:l_138
+	a skosxl:Label ;
+	skosxl:literalForm "Yup’ik"@en .
+
+wsm:l_139
+	a skosxl:Label ;
+	skosxl:literalForm "Alutiiq"@en .
+
+wsm:l_140
+	a skosxl:Label ;
+	skosxl:literalForm "Suqpiaq"@en .
+
+wsm:l_141
+	a skosxl:Label ;
+	skosxl:literalForm "Yupighyt"@en .
+
+#ethnicity
+
+wsm:l_44
+	a skosxl:Label ;
+	skosxl:literalForm "Ethnicity"@en .
+
+wsm:l_45
+	a skosxl:Label ;
+	skosxl:literalForm "ethnic groups"@en .
+
+#exotic
+
+wsm:l_46
+	a skosxl:Label ;
+	skosxl:literalForm "Exotic"@en .
+
+#gay
+
+wsm:l_47
+	a skosxl:Label ;
+	skosxl:literalForm "Gay"@en .
+
+#gupsy
+
+wsm:l_48
+	a skosxl:Label ;
+	skosxl:literalForm "Gypsy"@en .
+
+wsm:l_49
+	a skosxl:Label ;
+	skosxl:literalForm "Roma"@en .
+
+#half-blood
+
+wsm:l_50
+	a skosxl:Label ;
+	skosxl:literalForm "Half-blood"@en .
+
+wsm:l_51
+	a skosxl:Label ;
+	skosxl:literalForm "full blood"@en .
+
+wsm:l_52
+	a skosxl:Label ;
+	skosxl:literalForm "half-breed"@en .
+
+wsm:l_53
+	a skosxl:Label ;
+	skosxl:literalForm "mulatto"@en .
+
+wsm:l_54
+	a skosxl:Label ;
+	skosxl:literalForm "mestizo"@en .
+
+wsm:l_55
+	a skosxl:Label ;
+	skosxl:literalForm "mixed race"@en .
+
+wsm:alt_01
+	a skosxl:Label ;
+	skosxl:literalForm "mixed heritage"@en .
+
+wsm:alt_02
+	a skosxl:Label ;
+	skosxl:literalForm "mixed ethnicity"@en .
+
+wsm:alt_03
+	a skosxl:Label ;
+	skosxl:literalForm "of mixed descent"@en .
+
+#headhunter
+
+wsm:l_56
+	a skosxl:Label ;
+	skosxl:literalForm "Headhunter"@en .
+
+#hermaphrodite
+
+wsm:l_57
+	a skosxl:Label ;
+	skosxl:literalForm "Hermaphrodite"@en .
+
+wsm:l_58
+	a skosxl:Label ;
+	skosxl:literalForm "intersex"@en .
+
+wsm:alt_04
+	a skosxl:Label ;
+	skosxl:literalForm "intersex condition"@en .
+
+wsm:alt_05
+	a skosxl:Label ;
+	skosxl:literalForm "intersex person"@en .
+
+
+#homosexual
+
+wsm:l_59
+	a skosxl:Label ;
+	skosxl:literalForm "Homosexual"@en .
+
+#hottentot
+
+wsm:l_60
+	a skosxl:Label ;
+	skosxl:literalForm "Hottentot"@en .
+
+wsm:l_61
+	a skosxl:Label ;
+	skosxl:literalForm "Khoisan"@en .
+
+#inboorling
+
+#wsm:l_226 in nl labels
+
+#indian
+
+wsm:l_63
+	a skosxl:Label ;
+	skosxl:literalForm "Indian"@en .
+
+#indigenous
+
+wsm:l_64
+	a skosxl:Label ;
+	skosxl:literalForm "Indigenous"@en .
+
+#indisch
+
+#l_229 in nl labels
+
+#indo
+
+wsm:l_66
+	a skosxl:Label ;
+	skosxl:literalForm "Indo"@en .
+
+wsm:l_67
+	a skosxl:Label ;
+	skosxl:literalForm "Indo-European"@en .
+
+#jappenkampen
+
+#l_236 in nl labels
+
+wsm:l_69
+	a skosxl:Label ;
+	skosxl:literalForm "Japanese camp"@en .
+
+wsm:l_70
+	a skosxl:Label ;
+	skosxl:literalForm "Japanese internment camp"@en .
+
+wsm:l_71
+	a skosxl:Label ;
+	skosxl:literalForm "Japanese concentration camp"@en .
+
+wsm:l_72
+	a skosxl:Label ;
+	skosxl:literalForm "Japanese prisoners of war camp"@en .
+
+wsm:l_73
+	a skosxl:Label ;
+	skosxl:literalForm "Japanese military prison camp (in Burma and Thailand)"@en .
+
+#kaffir
+
+wsm:l_74
+	a skosxl:Label ;
+	skosxl:literalForm "Kaffir"@en .
+
+#maroon
+
+wsm:l_75
+	a skosxl:Label ;
+	skosxl:literalForm "Maroon"@en .
+
+
+#medicine_man
+
+wsm:l_76
+	a skosxl:Label ;
+	skosxl:literalForm "Medicine Man"@en .
+
+wsm:l_77
+	a skosxl:Label ;
+	skosxl:literalForm "Traditional healer"@en .
+
+wsm:l_78
+	a skosxl:Label ;
+	skosxl:literalForm "spiritual healer"@en .
+
+#mohammedan
+
+wsm:l_79
+	a skosxl:Label ;
+	skosxl:literalForm "Mohammedan"@en .
+
+wsm:l_80
+	a skosxl:Label ;
+	skosxl:literalForm "Muslim"@en .
+
+#mongoloid
+
+wsm:l_81
+	a skosxl:Label ;
+	skosxl:literalForm "Mongoloid"@en .
+
+wsm:l_68
+	a skosxl:Label ;
+	skosxl:literalForm "retarded"@en .
+
+wsm:alt_06
+	a skosxl:Label ;
+	skosxl:literalForm "someone with Down Syndrome"@en .
+
+#moor
+
+wsm:l_82
+	a skosxl:Label ;
+	skosxl:literalForm "Moor"@en .
+
+#mulatto
+
+wsm:l_83
+	a skosxl:Label ;
+	skosxl:literalForm "Mulatto"@en .
+
+#native
+
+wsm:l_84
+	a skosxl:Label ;
+	skosxl:literalForm "Native"@en .
+
+#negro
+
+wsm:l_85
+	a skosxl:Label ;
+	skosxl:literalForm "Negro"@en .
+
+#oriental
+
+wsm:l_86
+	a skosxl:Label ;
+	skosxl:literalForm "Oriental"@en .
+
+wsm:l_87
+	a skosxl:Label ;
+	skosxl:literalForm "Asian"@en .
+
+#politionel_actie
+
+#wsm:l_88
+#	a skosxl:Label ;
+#	skosxl:literalForm "Politionele actie"@nl .
+
+#l_265 in nl labels
+
+wsm:l_89
+	a skosxl:Label ;
+	skosxl:literalForm "First and Second Dutch-Indonesian Wars"@en .
+
+#primitive
+
+wsm:l_90
+	a skosxl:Label ;
+	skosxl:literalForm "Primitive"@en .
+
+wsm:l_91
+	a skosxl:Label ;
+	skosxl:literalForm "Primitivism"@en .
+
+#pygmy
+
+wsm:l_92
+	a skosxl:Label ;
+	skosxl:literalForm "Pygmy"@en .
+
+#queer
+
+wsm:l_93
+	a skosxl:Label ;
+	skosxl:literalForm "Queer"@en .
+
+wsm:l_94
+	a skosxl:Label ;
+	skosxl:literalForm "LGBT"@en .
+
+#race
+
+wsm:l_95
+	a skosxl:Label ;
+	skosxl:literalForm "Race"@en .
+
+#roots
+
+wsm:l_96
+	a skosxl:Label ;
+	skosxl:literalForm "Roots"@en .
+
+#servant
+
+wsm:l_97
+	a skosxl:Label ;
+	skosxl:literalForm "Servant"@en .
+
+wsm:l_98
+	a skosxl:Label ;
+	skosxl:literalForm "Page"@en .
+
+wsm:l_99
+	a skosxl:Label ;
+	skosxl:literalForm "Footmen"@en .
+
+wsm:l_100
+	a skosxl:Label ;
+	skosxl:literalForm "Baboo"@en .
+
+#slave
+
+wsm:l_101
+	a skosxl:Label ;
+	skosxl:literalForm "Slave"@en .
+
+wsm:l_102
+	a skosxl:Label ;
+	skosxl:literalForm "Enslaved"@en .
+
+wsm:l_103
+	a skosxl:Label ;
+	skosxl:literalForm "enslaved person"@en .
+
+#third_world
+
+wsm:l_104
+	a skosxl:Label ;
+	skosxl:literalForm "Third World"@en .
+
+wsm:l_105
+	a skosxl:Label ;
+	skosxl:literalForm "First World"@en .
+
+wsm:l_106
+	a skosxl:Label ;
+	skosxl:literalForm "Second World"@en .
+
+wsm:l_107
+	a skosxl:Label ;
+	skosxl:literalForm "Developing nations"@en .
+
+wsm:l_108
+	a skosxl:Label ;
+	skosxl:literalForm "low-income countries"@en .
+
+#traditional
+
+wsm:l_109
+	a skosxl:Label ;
+	skosxl:literalForm "Traditional"@en .
+
+wsm:l_110
+	a skosxl:Label ;
+	skosxl:literalForm "historic"@en .
+
+#trans
+
+wsm:l_111
+	a skosxl:Label ;
+	skosxl:literalForm "Trans"@en .
+
+wsm:l_112
+	a skosxl:Label ;
+	skosxl:literalForm "transvestite"@en .
+
+wsm:l_113
+	a skosxl:Label ;
+	skosxl:literalForm "cross-dresser"@en .
+
+#tribe
+
+wsm:l_114
+	a skosxl:Label ;
+	skosxl:literalForm "Tribe"@en .
+
+#western
+
+wsm:l_115
+	a skosxl:Label ;
+	skosxl:literalForm "Western"@en .
+
+# other labels mentioned in the text or examples
+
+wsm:l_116
+	a skosxl:Label ;
+	skosxl:literalForm "Inuit"@en .
+
+wsm:l_117
+	a skosxl:Label ;
+	skosxl:literalForm "Métis"@en .
+
+wsm:l_118
+	a skosxl:Label ;
+	skosxl:literalForm "Boslandcreool"@nl .
+
+wsm:l_119
+	a skosxl:Label ;
+	skosxl:literalForm "Handicap"@en .
+
+wsm:l_120
+	a skosxl:Label ;
+	skosxl:literalForm "lilliputian"@en .
+
+wsm:l_121
+	a skosxl:Label ;
+	skosxl:literalForm "homo"@en .
+
+# l_237, l_238 in nl
+
+wsm:l_124
+	a skosxl:Label ;
+	skosxl:literalForm "Saamaka"@en .
+
+wsm:l_125
+	a skosxl:Label ;
+	skosxl:literalForm "Matawai"@en .
+
+wsm:l_126
+	a skosxl:Label ;
+	skosxl:literalForm "Aluku"@en .
+
+wsm:l_127
+	a skosxl:Label ;
+	skosxl:literalForm "Kwinti"@en .
+
+wsm:l_128
+	a skosxl:Label ;
+	skosxl:literalForm "Paamaka"@en .
+
+wsm:l_129
+	a skosxl:Label ;
+	skosxl:literalForm "Sinti"@en .
+
+wsm:l_130
+	a skosxl:Label ;
+	skosxl:literalForm "lesbian"@en .
+
+wsm:l_131
+	a skosxl:Label ;
+	skosxl:literalForm "gay"@en .
+
+wsm:l_132
+	a skosxl:Label ;
+	skosxl:literalForm "bisexual"@en .
+
+wsm:l_133
+	a skosxl:Label ;
+	skosxl:literalForm "Two-Spirit"@en .
+
+wsm:l_134
+	a skosxl:Label ;
+	skosxl:literalForm "immigrant"@en .
