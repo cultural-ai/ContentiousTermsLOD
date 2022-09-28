@@ -1,6 +1,6 @@
 lemma,query_term,le,sense_definition,sense_examples,synset_definition,total_per_query_term
 politionele actie,politionele actie,0,0,0,0,0
-birma,birma,0,0,1,0,1
+birma,birma,2,0,1,0,3
 exotisch,exotisch,0,0,2,0,2
 exotisch,exotischere,0,0,0,0,0
 exotisch,exotischer,0,0,0,0,0
@@ -13,9 +13,9 @@ lilliputter,lilliputter,1,0,0,0,1
 lilliputter,lilliputters,0,0,0,0,0
 homo,homo,2,2,8,2,14
 homo,homo's,0,1,7,1,9
-mongool,mongool,2,1,0,0,3
+mongool,mongool,3,1,0,0,4
 mongool,mongolen,0,0,0,0,0
-jap,jap,0,0,0,0,0
+jap,jap,1,0,0,0,1
 jap,jappen,0,0,0,0,0
 jap,japs,0,0,0,0,0
 islamiet,islamiet,1,1,0,0,2
@@ -39,8 +39,8 @@ bediende,bedienden,0,0,0,0,0
 hermafrodiet,hermafrodiet,2,0,0,0,2
 hermafrodiet,hermafrodieten,0,0,0,0,0
 inuk,inuk,0,0,0,0,0
-inuk,inuit,0,0,0,0,0
-indiaan,indiaan,0,3,1,3,7
+inuk,inuit,1,0,0,0,1
+indiaan,indiaan,1,3,1,3,8
 indiaan,indianen,0,2,7,2,11
 afkomst,afkomst,4,6,9,6,25
 afkomst,afkomsten,0,0,0,0,0
@@ -51,7 +51,7 @@ blank,blanke,1,6,9,5,21
 blank,blanks,0,0,0,0,0
 blank,blankste,0,0,0,0,0
 blank,blankst,0,0,0,0,0
-bombay,bombay,0,0,0,0,0
+bombay,bombay,1,0,0,0,1
 knecht,knecht,3,4,0,2,9
 knecht,knechten,1,0,2,0,3
 knecht,knechts,0,0,0,0,0
@@ -134,8 +134,8 @@ indisch,indisch,0,4,2,3,9
 indisch,indischer,0,0,0,0,0
 indisch,indische,0,1,6,1,8
 indisch,indischere,0,0,0,0,0
-berber,berber,1,0,0,0,1
-berber,berbers,0,0,0,0,0
+berber,berber,2,0,0,0,2
+berber,berbers,1,0,0,0,1
 pygmee,pygmee,2,0,0,0,2
 pygmee,pygmeeën,0,0,1,0,1
 gekleurd,gekleurd,0,3,4,3,10
@@ -147,7 +147,7 @@ gekleurd,gekleurdere,0,0,0,0,0
 gekleurd,gekleurder,0,0,0,0,0
 roots,roots,0,0,0,0,0
 kaukasisch,kaukasisch,0,0,0,0,0
-kaukasisch,kaukasische,0,0,0,0,0
+kaukasisch,kaukasische,1,0,0,0,1
 kaukasisch,kaukasischere,0,0,0,0,0
 kaukasisch,kaukasischer,0,0,0,0,0
 achterlijk,achterlijk,0,0,0,0,0
@@ -175,26 +175,26 @@ travestiet,travestieten,0,0,0,0,0
 barbaar,barbaar,4,0,1,0,5
 barbaar,barbaren,0,0,2,0,2
 derde wereld,derde wereld,0,1,4,1,6
-slaaf,slaaf,4,2,5,3,14
-slaaf,slaven,1,4,2,4,11
+slaaf,slaaf,5,2,5,3,15
+slaaf,slaven,2,4,2,4,12
 primitivisme,primitivisme,0,0,0,0,0
 primitivisme,primitivismen,0,0,0,0,0
-eskimo,eskimo,0,0,2,1,3
+eskimo,eskimo,2,0,2,1,5
 eskimo,eskimo's,0,0,2,1,3
 page,page,2,0,0,0,2
 page,pages,0,0,0,0,0
 zuid-rhodesië,zuid-rhodesië,0,0,0,0,0
 inboorling,inboorling,2,0,0,0,2
 inboorling,inboorlingen,0,0,1,0,1
-hottentot,hottentot,0,0,0,0,0
+hottentot,hottentot,1,0,0,0,1
 hottentot,hottentotten,0,0,0,0,0
-calcutta,calcutta,0,0,1,0,1
+calcutta,calcutta,1,0,1,0,2
 indo,indo,0,1,0,1,2
 indo,indo's,0,0,0,0,0
 mohammedaan,mohammedaan,1,2,0,1,4
 mohammedaan,mohammedanen,0,1,0,1,2
-madras,madras,0,0,0,0,0
-moor,moor,3,0,0,0,3
+madras,madras,1,0,0,0,1
+moor,moor,5,0,0,0,5
 moor,moren,0,0,1,0,1
 gehandicapte,gehandicapte,1,3,3,3,10
 gehandicapte,gehandicapten,0,2,10,1,13
