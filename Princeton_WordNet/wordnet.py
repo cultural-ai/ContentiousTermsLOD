@@ -1394,7 +1394,7 @@ class WordNetCorpusReader(CorpusReader):
 
             # parse out the definitions and examples from the gloss
             columns_str, gloss = data_file_line.strip().split("|")
-
+            # Added by AN
             # if there are definition and examples in one string
             if len(re.findall(r"; \"",gloss)) > 0:
                 definition = gloss.split('; "')[0].rstrip(';')
