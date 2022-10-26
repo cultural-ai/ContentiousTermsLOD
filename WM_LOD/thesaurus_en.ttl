@@ -1,4 +1,4 @@
-@prefix wsm: <http://w3id.org/culco/wordsmatter/thesaurus#> . #glossary
+@prefix wsm: <http://w3id.org/culco/wordsmatter/thesaurus_en#> . #glossary
 @prefix culco: <http://w3id.org/culco/ontology#> . #glossary schema #W3C ID
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
@@ -11,27 +11,11 @@
 
 #labels are in a separate file
 
-
-culco:ContentiousIssue a rdfs:Class .
-culco:Suggestion a rdfs:Class .
-
-culco:hasSuggestion
-	a rdf:Property .
-
-culco:hasContentiousLabel
-	a rdf:Property .
-
-culco:hasSuggestedLabel
-	a rdf:Property .
-
-culco:suggestedFor
-	a rdf:property .
-
-culco:hasAltLabelExample
-	a rdf:Property .
-
-culco:hasUsageExample
-	a rdf:Property .
+wsm:
+	a culco:ContentiousIssueScheme ;
+	dcterms:title "RDF representation of the English label contentious issues from the Words Matter publication"@en.
+	dcterms:contributor "TBD"@en ;
+	dcterms:licence "TBD"@en ;
 
 #Aboriginal
 
