@@ -1,5 +1,13 @@
+# Contientious issue schema definitions
+
+culco:ContentiousIssueSchema a rdfs:Class .
 culco:ContentiousIssue a rdfs:Class .
 culco:Suggestion a rdfs:Class .
+
+culco:inScheme
+	a rdf:Property ;
+	rdfs:range ContentiousIssueSchema ;
+	rdfs:domain  culco:ContentiousIssue;
 
 culco:hasSuggestion
 	a rdf:Property .
