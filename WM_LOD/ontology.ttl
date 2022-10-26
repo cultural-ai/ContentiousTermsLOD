@@ -1,0 +1,20 @@
+culco:ContentiousIssue a rdfs:Class .
+culco:Suggestion a rdfs:Class .
+
+culco:hasSuggestion
+	a rdf:Property .
+
+culco:hasContentiousLabel
+	a rdf:Property .
+
+culco:hasSuggestedLabel
+	a rdf:Property .
+
+culco:suggestedFor
+	a rdf:property .
+
+culco:hasAltLabelExample
+	a rdf:Property .
+
+culco:hasUsageExample
+	a rdf:Property .
