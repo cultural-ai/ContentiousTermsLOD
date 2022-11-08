@@ -1,0 +1,51 @@
+label_uri,literal,lang,query_terms,aat,wikidata,princeton_wordnet,odwn
+l_07,Allochtoon,en,allochtoon',none,Q2008347,none,none
+l_11,Berber,en,berber'; 'berbers',300016593,Q45315,09850317-n; 08483500-n,none
+l_22,Burma,en,burma',none,Q836,08715390-n,none
+l_27,Colored,en,colored'; 'coloreds',none,Q5149038,00242832-s,none
+l_34,Disabled,en,disabled'; 'disableds',300025921,Q15978181,07946288-n; 01019283-s,none
+l_45,ethnic groups,en,ethnic groups',300191997,Q41710,07967382-n,none
+l_51,full blood,en,full blood',none,none,04924003-n,none
+l_47,Gay,en,gay'; 'gayer'; 'gayest'; 'gays',300055188; 300400507,Q592,10182913-n; 01201937-s,none
+l_48,Gypsy,en,gypsy'; 'gypsys',300404070,Q8060,10154186-n,none
+l_57,Hermaphrodite,en,hermaphrodite'; 'hermaphrodites',300386060,Q303479,10172080-n,none
+l_63,Indian,en,indian'; 'indians',300017437,none,02928066-a,none
+l_120,lilliputian,en,lilliputian'; 'lilliputians',none,none,none,none
+l_76,Medicine Man,en,medicine man'; 'medicine men',300218522,Q266750,10626439-n,none
+l_53,mulatto,en,mulatto'; 'mulattoes'; 'mulattos',none,Q191923,09638454-n,none
+l_90,Primitive,en,primitive'; 'primitives',none,none,00413432-s; 09627462-n,none
+l_91,Primitivism,en,primitivism',none,Q848365,04003110-n,none
+l_95,Race,en,race'; 'races',300256475,Q848365,07967982-n,none
+l_96,Roots,en,roots',none,none,14065412-n,none
+l_97,Servant,en,servant'; 'servants',300025874,Q54128,10582154-n,none
+l_101,Slave,en,slave'; 'slaves',300230899,Q12773225,10609325-n,none
+l_23,Southern Rhodesia,en,southern rhodesia',none,Q750583,09167101-n,none
+l_109,Traditional,en,traditional'; 'traditionals',52954,none,none,none
+l_114,Tribe,en,tribe'; 'tribes',300049946,Q133311,07969695-n,none
+l_115,Western,en,western'; 'westerns',none,Q160381,00825089-a,none
+l_16,White,en,white'; 'whiter'; 'whitest'; 'whites',none,Q235155,00243180-a,none
+l_142,Aboriginal,nl,aboriginal'; 'aboriginals',300379660,Q103817; Q12060728; Q170355,,none
+l_167,Batavia,nl,batavia',none,Q1199713,none,none
+l_15,Blank,nl,blank'; 'blankere'; 'blanker'; 'blanke'; 'blanks'; 'blankste'; 'blankst',none,Q235155,none,none
+l_179,Dwerg,nl,dwerg'; 'dwergen',300236748,Q2419953,none,dwerg-n-1
+l_185,Eskimo,nl,"eskimo'; ""eskimo's""",300017447,Q131242,none,Eskimo-n-2
+l_211,gehandicapten,nl,gehandicapte'; 'gehandicapten',300025921,Q15978181,none,none
+l_198,Gekleurd,nl,gekleurd'; 'gekleurdste'; 'gekleurdst'; 'gekleurds'; 'gekleurde'; 'gekleurdere'; 'gekleurder',none,none,none,none
+l_204,Halfbloed,nl,halfbloed'; 'halfbloeden',none,none,none,halfbloed-n-1
+l_210,Handicap,nl,handicap'; 'handicaps',none,Q12131,none,handicap-n-1
+l_213,Hermafrodiet,nl,hermafrodiet'; 'hermafrodieten',300386060,Q303479,none,hermafrodiet-n-2
+l_219,Homoseksualiteit,nl,homoseksualiteit',300055188,Q6636,none,homoseksualiteit-n-2
+l_224,Hottentot,nl,hottentot'; 'hottentotten',none ,Q219252,none,none
+l_229,Indisch,nl,indisch'; 'indischer'; 'indische'; 'indischere',300418042,none,none,none
+l_287,Inuit,nl,inuk'; 'inuit',300017455,Q189975,none,none
+l_234,Islamiet,nl,islamiet'; 'islamieten',none ,Q47740,none,islamiet-n-1
+l_237,Jap,nl,jap'; 'jappen'; 'japs',none ,Q161652,none,Jap-n-1
+l_244,Kaffer,nl,kaffer'; 'kaffers',none ,Q1285250,none,kaffer-n-2
+l_156,knecht,nl,knecht'; 'knechten'; 'knechts',none ,none,none,eng-30-10308938-n; eng-30-10292192-n
+l_180,lilliputter,nl,lilliputter'; 'lilliputters',none ,Q2419953,none,lilliputter-n-1
+l_263,Oriëntaals,nl,oriëntaals'; 'oriëntaalste'; 'oriëntaalsere'; 'oriëntaal'; 'oriëntale'; 'oriëntalere'; 'oriëntaalse'; 'oriëntaalst'; 'oriëntaler'; 'oriëntaalser',none ,none,none,none
+l_265,Politionele actie,nl,politionele actie',none ,Q278039,none,none
+l_195,Ras,nl,ras'; 'rasser'; 'raste'; 'rasse'; 'rassere'; 'rast'; 'rassen',none ,Q3254959,none,ras-n-3
+l_273,Slaaf,nl,slaaf'; 'slaven',300230899,Q12773225,none,slaaf-n-1
+l_276,Stam,nl,stam'; 'stammen',300049946,Q133311,none,stam-n-2
+l_207,volbloed,nl,volbloed'; 'volbloeden',none,none,none,none
