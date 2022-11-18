@@ -250,7 +250,7 @@ wsm:97
 		wsm:l_24, #Bush Negro
 		wsm:l_85, #negro
 		wsm:l_25, #Maroon
-		wsm:l_118 ; #Boslandcreool
+		wsm:l_173 ; #Boslandcreool
 	culco:hasSuggestion
 		wsm:97_s_01,
 		wsm:97_s_02 .
