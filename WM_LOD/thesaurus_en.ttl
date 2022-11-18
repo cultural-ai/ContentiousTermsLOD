@@ -189,7 +189,7 @@ wsm:95
 	dcterms:references
 		wsm:144;
 	culco:hasContentiousLabel
-		wsm:l_15, #Blank
+		wsm:l_161, #Blank
 		wsm:l_16, #White
 		wsm:l_14 ;  #Black
 	culco:hasSuggestion
@@ -200,7 +200,7 @@ wsm:95_s_01
 	a culco:Suggestion ;
 	rdf:value "White"@en ;
 	culco:suggestedFor
-		wsm:l_15 ;
+		wsm:l_161 ;
 	culco:hasSuggestedLabel
 		wsm:l_16 .
 
@@ -208,7 +208,7 @@ wsm:95_s_01
 wsm:95_s_02
 	a culco:Suggestion ;
 	culco:suggestedFor
-		wsm:l_15 ;
+		wsm:l_161 ;
 	rdf:value "The term White is increasingly used, especially by activists and academics."@en ;
 	culco:hasSuggestedLabel
 		wsm:l_16 .
@@ -313,7 +313,7 @@ wsm:99
 	dcterms:description "“Colored” is a controversial term normally used to describe a person or a group of people with mixed White European and non-White, for example, someone of African or Asian, ancestry. In some cases the term is also used to describe a Black person. The term has different histories of use and meanings within different parts of the world, but is generally regarded as derogatory today. Within South Africa, for example, the term describes someone of mixed ancestry, including Khoisan, Malay, and White. Within the USA the term was used historically to refer primarily to a Black person or the Black community, and is more restrictive than the similar term “person(s)/people of color”. In the Netherlands, the term is used similarly to describe a Black person, or someone of mixed ancestry, with several interrelated Dutch language terms for these identity categories such as: colored (gekleurd), having a bit of color (met een kleurtje) or with a darker skin colour (met een donkerdere huidskleur). The use of these terms harkens back to a racialised idea of whiteness as the norm. These different Dutch terms are all increasingly regarded as inappropriate and derogatory. There is growing acceptance by many for the use of the American identity category “person(s) of color” or “people of color”, abbreviated POC. There is also the more recently emerging group category to more broadly describe non-White people, which is “Black and Non-Black People of Color”. While the terms “Black”, and “person(s) of color” remain generally acceptable terms for many, using the terms that the persons themselves find respectful and acceptable is advised."@en ;
 	culco:hasContentiousLabel
 		wsm:l_27, #Colored
-		wsm:l_15, #Blank
+		wsm:l_161, #Blank
 		wsm:l_16  ; #White
 	culco:hasSuggestion
 		wsm:99_s_01,
@@ -1443,4 +1443,4 @@ wsm:144_s_01 #not really a suggestion here; and it refers to 'blank' as well
 	rdf:value "“White” is increasingly used as an alternative for “Blank”."@en ;
 	culco:suggestedFor
 		wsm:l_16,
-		wsm:l_15 .
+		wsm:l_161 .

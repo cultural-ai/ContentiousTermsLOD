@@ -96,9 +96,7 @@ wsm:l_14
 
 #blank
 
-wsm:l_15
-	a skosxl:Label ;
-	skosxl:literalForm "Blank"@nl .
+# l_15 is replaced with l_161
 
 wsm:l_16
 	a skosxl:Label ;
