@@ -775,7 +775,7 @@ wsm:120_nl
 	dcterms:title "Inlander"@nl ;
 	dcterms:description "De term ‘inlander’ wordt over het algemeen gebruikt als verwijzing naar inheemse groepen, specifiek naar die in voormalig Nederlands­-Indië. De term werd destijds gebruikt door de Nederlandse overheid als een juridische categorie. Hiermee maakte men een onderscheid tussen de mensen in de kolonie, en richtte de samenleving in volgens een op ras gebaseerd systeem. De term is inmiddels in onbruik geraakt, maar komt nog wel voor in databases."@nl ;
 	culco:hasContentiousLabel
-		wsm:l_233 ;
+		wsm:l_227 ;
 	culco:hasSuggestion
 		wsm:120_nl_s_01 ,
 		wsm:1_nl_s . #general suggestion
@@ -784,7 +784,7 @@ wsm:120_nl_s_01
 	a culco:Suggestion ;
 	rdf:value "De term ‘Inlander' is ouderwets, en het gebruik in hedendaagse context wordt dan ook afgeraden."@nl ;
 	culco:suggestedFor
-		wsm:l_233,
+		wsm:l_227,
 		wsm:l_226 . #Inboorling
 
 wsm:1_nl_s #general suggestion
@@ -794,7 +794,7 @@ wsm:1_nl_s #general suggestion
 		wsm:l_170, #Bosneger
 		wsm:l_198, #Gekleurd
 		wsm:l_226, #Inboorling
-		wsm:l_233, #Inlander
+		wsm:l_227, #Inlander
 		wsm:l_244, #Kaffer
 		wsm:l_245, #Kaukasisch
 		wsm:l_247, #Koppensneller

@@ -376,9 +376,7 @@ wsm:l_232
 	a skosxl:Label ;
 	skosxl:literalForm "Inheems"@nl .
 
-wsm:l_233
-	a skosxl:Label ;
-	skosxl:literalForm "Inlander"@nl .
+#wsm:l_233 is replaced with l_227
 
 wsm:l_234
 	a skosxl:Label ;
