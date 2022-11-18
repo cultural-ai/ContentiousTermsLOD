@@ -378,7 +378,7 @@ wsm:104_nl
 	culco:hasContentiousLabel
 		wsm:l_179,
 		wsm:l_180, #lilliputter
-		wsm:l_181 ; #pygmee
+		wsm:l_269 ; #pygmee
 	culco:hasSuggestion
 		wsm:104_nl_s_01,
 		wsm:104_nl_s_02 .
@@ -398,7 +398,7 @@ wsm:104_nl_s_02
 	rdf:value "‘Dwerg’ en ‘pygmee’ kunnen gebruikt worden in een historische of beschrijvende context. Gebruik in dat geval aanhalingstekens."@nl ;
 	culco:suggestedFor
 		wsm:l_179,
-		wsm:l_181 .
+		wsm:l_269 .
 
 #Eskimo
 

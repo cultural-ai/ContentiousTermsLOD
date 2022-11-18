@@ -168,9 +168,7 @@ wsm:l_180
 	a skosxl:Label ;
 	skosxl:literalForm "lilliputter"@nl .
 
-wsm:l_181
-	a skosxl:Label ;
-	skosxl:literalForm "pygmee"@nl .
+# wsm:l_181 is replaced with l_269
 
 wsm:l_182
 	a skosxl:Label ;
