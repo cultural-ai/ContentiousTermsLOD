@@ -593,7 +593,7 @@ wsm:110
 		wsm:l_50,
 		wsm:l_51, #full blood
 		wsm:l_52, #half-breed
-		wsm:l_53, #mulatto
+		wsm:l_83, #mulatto
 		wsm:l_54 ; #mestizo
 	culco:hasSuggestion
 		wsm:110_s_01,

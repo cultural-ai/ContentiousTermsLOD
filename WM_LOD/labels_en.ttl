@@ -314,9 +314,7 @@ wsm:l_52
 	a skosxl:Label ;
 	skosxl:literalForm "half-breed"@en .
 
-wsm:l_53
-	a skosxl:Label ;
-	skosxl:literalForm "mulatto"@en .
+#wsm:l_53 replaced with l_83
 
 wsm:l_54
 	a skosxl:Label ;
