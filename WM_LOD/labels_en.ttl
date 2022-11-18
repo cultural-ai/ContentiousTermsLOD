@@ -441,9 +441,7 @@ wsm:l_74
 
 #maroon
 
-wsm:l_75
-	a skosxl:Label ;
-	skosxl:literalForm "Maroon"@en .
+# l_25
 
 
 #medicine_man

@@ -863,7 +863,7 @@ wsm:122
 	dcterms:title "Maroon"@en ;
 	dcterms:description "The term “Maroon” is used to refer to Africans (and their descendants) who escaped from slavery in the Americas, and settled in the inaccessible, interior/mountainous regions. The term itself derives from the 16th-century Spanish word “cimarrón,” meaning runaway cattle and is, thus, regarded by some as derogatory. Simultaneously, however, the term is used as one of empowerment as the Maroons have been celebrated as a symbol for the continuous resistance to colonialism. These differing views add some complexity to the use of the term. While in Suriname the term is accepted by some and not by others, in Jamaica, for example, there is more unanimity about the positive use of the term."@en ;
 	culco:hasContentiousLabel
-		wsm:l_75 ;
+		wsm:l_25 ;
 	culco:hasSuggestion
 		wsm:122_s_01,
 		wsm:122_s_02 .
@@ -872,13 +872,13 @@ wsm:122_s_01
 	a culco:Suggestion ;
 	rdf:value "Generally acceptable to use the term."@en ;
 	culco:suggestedFor
-		wsm:l_75 .
+		wsm:l_25 .
 
 wsm:122_s_02
 	a culco:Suggestion ;
 	rdf:value "In the context of Suriname, however, it is better to use the specific names for each Maroon group: such as Saamaka, Matawai, Aluku, Kwinti, Paamaka."@en ;
 	culco:suggestedFor
-		wsm:l_75 ;
+		wsm:l_25 ;
 	culco:hasAltLabelExample
 		wsm:l_124, #Saamaka
 		wsm:l_125, #Matawai
