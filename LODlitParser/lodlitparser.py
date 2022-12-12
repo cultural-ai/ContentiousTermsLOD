@@ -148,11 +148,11 @@ def aat(aat_uri:list, lang:str) -> dict:
             
             if 'altLabels' in result:
                 altLabels = result['altLabels']['value'].split('#')
-            if 'scopeNote' in results:
+            if 'scopeNote' in result:
                 scopeNote = result['scopeNote']['value']
-            if 'prefLabel_comment' in results:
+            if 'prefLabel_comment' in result:
                 prefLabel_comment = result['prefLabel_comment']['value']
-            if 'altLabel_comment' in results:
+            if 'altLabel_comment' in result:
                 altLabel_comment = result['altLabel_comment']['value']
 
             result_dict[uri]['lang'] = lang
