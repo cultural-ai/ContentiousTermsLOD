@@ -14,17 +14,6 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from nltk.corpus import wordnet as wn
 
 def main():
-    
-    # odwn: importing synset_glosses
-    path_synset_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
-    with open(path_synset_glosses,'r') as jf:
-        synset_glosses = json.load(jf)
-        
-    # nmvw: importing thesaurus
-    path_to_nmvw = 'https://github.com/cultural-ai/wordsmatter/raw/main/NMVW/nmvw_thesaurus.json.zip'
-    nmvw_raw = requests.get(path_to_nmvw).content
-    nmvw_zip = ZipFile(BytesIO(nmvw_raw))
-    nmvw_json = json.loads(nmvw_zip.read(nmvw_zip.infolist()[0]).decode())
 
 # Princeton WordNet (version 3.1)
 
@@ -55,9 +44,29 @@ def pwn(synsets:list) -> dict:
 
 # OpenDutch Wordnet
 
+def odwn(synsets:list, path_odwn:str) -> dict:
+    '''
+    Getting lemmata, sense definitions, synset definitions, examples of ODWN synsets
+    synsets: list of synset IDs (str)
+    path_odwn: str path to the directory with OpenDutchWordnet (not including the module itself)
+    '''
+    # importing ODWN
+    sys.path.insert(0,path_odwn)
+    from OpenDutchWordnet import Wn_grid_parser
+    # creating an instance
+    instance = Wn_grid_parser(Wn_grid_parser.odwn)
+
+    # importing synset_glosses
+    path_synset_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
+    
+    with open(path_synset_glosses,'r') as jf:
+        synset_glosses = json.load(jf)
+
+return None
+
 ####################
 
-# Wereldculturen Thesaurus
+# Wereldculturen Thesaurus NMVW
 
 def nmvw(term_ids:list) -> dict:
     '''
@@ -70,6 +79,12 @@ def nmvw(term_ids:list) -> dict:
                                                'scheme': ''}}
     '''
     
+    # nmvw: importing thesaurus
+    path_to_nmvw = 'https://github.com/cultural-ai/wordsmatter/raw/main/NMVW/nmvw_thesaurus.json.zip'
+    nmvw_raw = requests.get(path_to_nmvw).content
+    nmvw_zip = ZipFile(BytesIO(nmvw_raw))
+    nmvw_json = json.loads(nmvw_zip.read(nmvw_zip.infolist()[0]).decode())
+
     results_nmvw = {}
     
     for term_id in term_ids:
