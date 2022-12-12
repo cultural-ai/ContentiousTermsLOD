@@ -25,9 +25,6 @@ def main():
     nmvw_raw = requests.get(path_to_nmvw).content
     nmvw_zip = ZipFile(BytesIO(nmvw_raw))
     nmvw_json = json.loads(nmvw_zip.read(nmvw_zip.infolist()[0]).decode())
-    
-if __name__ == "__main__":
-    main()
 
 # Princeton WordNet (version 3.1)
 
@@ -211,3 +208,6 @@ def wd(qids:list,lang:str,user_agent:str) -> dict:
         literals = d.json() # claims per request
 
     return literals['entities']
+
+if __name__ == "__main__":
+    main()
