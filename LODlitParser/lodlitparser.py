@@ -14,6 +14,8 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from nltk.corpus import wordnet as wn
 
 def main():
+    print("Download wordnet31 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (there are issues with importing wordnet31 from nltk.corpus")
+    print("Download OpenDutchWordnet from 'https://github.com/cultural-ai/OpenDutchWordnet', pass the path to odwn")
 
 def pwn(synsets:list) -> dict:
     '''
