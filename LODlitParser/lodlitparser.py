@@ -15,8 +15,6 @@ from nltk.corpus import wordnet as wn
 
 def main():
 
-# Princeton WordNet (version 3.1)
-
 def pwn(synsets:list) -> dict:
     '''
     Getting lemmata, definition, examples of a synset
@@ -62,7 +60,7 @@ def odwn(synsets:list, path_odwn:str) -> dict:
     with open(path_synset_glosses,'r') as jf:
         synset_glosses = json.load(jf)
 
-return None
+    return None
 
 ####################
 
