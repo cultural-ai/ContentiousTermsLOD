@@ -1,28 +1,59 @@
-# Contientious Issue Schema definitions
+@prefix culco: <https://github.com/cultural-ai/wordsmatter/culco#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <https://www.w3.org/2000/01/rdf-schema> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix vann: <http://purl.org/vocab/vann/> .
+#@prefix wsm: <https://github.com/cultural-ai/wordsmatter/glossary#> .
 
-culco:ContentiousIssueSchema a rdfs:Class .
-culco:ContentiousIssue a rdfs:Class .
-culco:Suggestion a rdfs:Class .
+culco:ConceptScheme a rdfs:Class ;
+dcterms:title "Concept Scheme for Words Matter Knowledge Graph"@en .
 
 culco:inScheme
 	a rdf:Property ;
-	rdfs:range culco:ContentiousIssueSchema ;
-	rdfs:domain culco:ContentiousIssue .
+	rdfs:range culco:ConceptScheme ;
+	rdfs:domain culco:ContentiousIssue . # here anything can be a domain?
+
+<https://github.com/cultural-ai/wordsmatter/culco#>
+a culco:ConceptScheme ;
+dcterms:title "Words Matter Knowledge Graph" ;
+dcterms:creator "Authors" ; #URIs?
+dcterms:license <https://creativecommons.org/licenses/by-sa/4.0/> ;
+vann:preferredNamespacePrefix "culco"@en ;
+vann:preferredNamespaceURI <https://github.com/cultural-ai/wordsmatter/culco#> ;
+rdfs:seeAlso "link to Words Matter" ;
+dcterms:rightsHolder "Wereldculturen Museum" .
+# other metadata
+
+
+culco:ContentiousIssue a rdfs:Class ;
+					   culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> ;
+					   rdfs:label "Contentious Issue"@en ;
+					   rdfs:comment "Represents a discussion about a term. In a broader sense, the discussion may have various formats and types (a textual publication, a social media post, a multimedia file, a verbal conversation etc.). A term can be a word or a phrase that causes a discussion. In the case of Words Matter, the discussion is the glossary entry, which takes one page and includes a title (a contentious term, explanations about the term's usage, and suggestions)" .
+
+culco:Suggestion a rdfs:Class ;
+				 culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
+
 
 culco:hasSuggestion
-	a rdf:Property .
+	a rdf:Property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
 
 culco:hasContentiousLabel
-	a rdf:Property .
+	a rdf:Property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
 
 culco:hasSuggestedLabel
-	a rdf:Property .
+	a rdf:Property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
 
 culco:suggestedFor
-	a rdf:property .
+	a rdf:property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
 
 culco:hasAltLabelExample
-	a rdf:Property .
+	a rdf:Property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
 
 culco:hasUsageExample
-	a rdf:Property .
+	a rdf:Property ;
+	culco:inScheme <https://github.com/cultural-ai/wordsmatter/culco#> .
