@@ -44,27 +44,43 @@ def pwn(synsets:list) -> dict:
 
 # OpenDutch Wordnet
 
-def odwn(synsets:list, path_odwn:str) -> dict:
+def odwn(le_ids:list, path_odwn:str) -> dict:
     '''
-    Getting lemmata, sense definitions, synset definitions, examples of ODWN synsets
-    synsets: list of synset IDs (str)
-    path_odwn: str path to the directory with OpenDutchWordnet (not including the module itself)
+    Getting Lemma, sense definitions, examples, synset ID, synset definitions of ODWN Lexical Entries
+    le_ids: list of Lexical Entries IDs (str)
+    path_odwn: str path to the directory with OpenDutchWordnet (not including the module itself, for example 'user/Downloads')
+    Returns a dict: {'le_id': {'lemma': '',
+                                'sense_def': '',
+                                'examples': [],
+                                'synset_ID': '',
+                                'synset_def': []}
     '''
     # importing ODWN
     sys.path.insert(0,path_odwn)
     from OpenDutchWordnet import Wn_grid_parser
     # creating an instance
     instance = Wn_grid_parser(Wn_grid_parser.odwn)
-
-    # importing synset_glosses
-    path_synset_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
     
-    with open(path_synset_glosses,'r') as jf:
-        synset_glosses = json.load(jf)
+    # importing all synset definitions
+    path_to_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
+    synset_glosses = requests.get(path_to_glosses).json()
+    
+    results_odwn = {}
 
-    return None
+    for le_id in le_ids:
+        le = instance.les_find_le(le_id)
+        synset_id = le.get_synset_id()
 
-####################
+        sense_def = le.get_definition()
+        if sense_def == '':
+            sense_def = None
+
+        results_odwn[le_id] = {'lemma': le.get_lemma(),
+                                'sense_def': sense_def,
+                                'examples': le.get_sense_example(),
+                                'synset_ID': synset_id,
+                                'synset_def': synset_glosses.get(synset_id)}
+    return results_odwn
 
 # Wereldculturen Thesaurus NMVW
 
