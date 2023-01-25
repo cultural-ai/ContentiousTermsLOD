@@ -14,6 +14,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from nltk.corpus import wordnet as wn
 
 def main():
+    #change path
     print("Download wordnet31 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (there are issues with importing wordnet31 from nltk.corpus")
     print("Download OpenDutchWordnet from 'https://github.com/cultural-ai/OpenDutchWordnet', pass the path to odwn")
 
@@ -182,7 +183,7 @@ def aat(aat_uri:list, lang:str) -> dict:
 
 # Wikidata
 
-def wd(qids:list,lang:str,user_agent:str) -> dict:
+def wd(qids:list,lang:str,user_agent:str) -> list:
     
     """
     Requesting labels, aliases, descriptions of Wikidata entities
@@ -190,13 +191,15 @@ def wd(qids:list,lang:str,user_agent:str) -> dict:
     lang: str with language code; for example, 'en' or 'nl';
     (see language codes in Wikidata: https://www.wikidata.org/w/api.php?action=help&modules=wbgetentities)
     user_agent: str with user-agent's info; required by Wikidata (see: https://meta.wikimedia.org/wiki/User-Agent_policy)
-    Returns a dict: {'QID': {'type': '',
+    Returns a list of dicts: [{'QID': {'type': '',
                      'id': 'QID',
                      'labels': {'lang': {'language': 'lang', 'value': ''}},
                      'descriptions': {'lang': {'language': 'lang','value': ''}},
-                     'aliases': {'lang': [{'language': 'lang', 'value': ''}
+                     'aliases': {'lang': [{'language': 'lang', 'value': ''}]
     """
     
+    wd_results = []
+
     # 'wbgetentities' constant params
     url = "https://www.wikidata.org/w/api.php"
     params = {"action":"wbgetentities",
@@ -236,9 +239,104 @@ def wd(qids:list,lang:str,user_agent:str) -> dict:
 
         # sending a request
         d = requests.get(url,params=params,headers=headers)
-        literals = d.json() # claims per request
+        literals = d.json()
 
-    return literals['entities']
+        for qid, value in literals['entities'].items():
+            wd_results.append({qid:value})
+
+    return wd_results
+
+def get_literals(resource:str) -> str:
+    '''
+    Getting literal values of related matches
+    resource: str name of the resource 'aat', 'wikidata', 'pwn', 'odwn', 'nmvw' 
+    path_odwn: str path to the directory with OpenDutchWordnet (not including the module itself, for example 'user/Downloads')
+    Saves json files with literal values:
+    aat: 'aat_rm_en.json','aat_rm_nl.json'
+    wikidata: 'wikidata_rm_en.json','wikidata_rm_nl.json'
+    pwn: 'pwn_rm.json'
+    odwn: 'odwn_rm.json'
+    nmvw: 'nmvw_rm.json'
+    
+    '''
+    
+    # importing related matches
+    path_to_rm = 'https://github.com/cultural-ai/wordsmatter/raw/main/rm.json'
+    related_matches = requests.get(path_to_rm).json()
+
+    if resource == 'aat':
+        # AAT in EN
+        aat_en = [v['related_matches']['aat'][0] for v in related_matches.values() if v['lang'] == 'en' \
+                  and 'None' not in v['related_matches']['aat']]
+        aat_en_results = aat(aat_en,'en')
+        with open('aat_rm_en.json', 'w') as jf:
+            json.dump(aat_en_results, jf)
+        print("AAT EN is saved")
+
+        # AAT in NL
+        aat_nl = [v['related_matches']['aat'][0] for v in related_matches.values() if v['lang'] == 'nl' \
+                  and 'None' not in v['related_matches']['aat']]
+        aat_nl_results = aat(aat_nl,'nl')
+        with open('aat_rm_nl.json', 'w') as jf:
+            json.dump(aat_nl_results, jf)
+        print("AAT NL is saved")
+    
+    if resource == 'wikidata':
+        user_agent = input("Enter your user agent details for Wikidata:")
+        
+        # Wikidata in EN
+        wikidata_en = [v['related_matches']['wikidata'][0] for v in related_matches.values() if v['lang'] == 'en' \
+                  and 'None' not in v['related_matches']['wikidata']]
+        wikidata_en_results = wd(wikidata_en,'en',user_agent)
+        with open('wikidata_rm_en.json', 'w') as jf:
+            json.dump(wikidata_en_results, jf)
+        print("Wikidata EN is saved")
+
+        # Wikidata in NL
+        wikidata_nl = [v['related_matches']['wikidata'][0] for v in related_matches.values() if v['lang'] == 'nl' \
+                  and 'None' not in v['related_matches']['wikidata']]
+        wikidata_nl_results = wd(wikidata_nl,'nl',user_agent)
+        with open('wikidata_rm_nl.json', 'w') as jf:
+            json.dump(wikidata_nl_results, jf)
+        print("Wikidata NL is saved")
+        
+    if resource == 'pwn':
+        # PWN
+        pwn_synsets = []
+
+        for v in related_matches.values():
+            if v['lang'] == 'en' and 'None' not in v['related_matches']['pwn']:
+                pwn_synsets.extend(v['related_matches']['pwn'])
+
+        pwn_results = pwn(pwn_synsets)
+        with open('pwn_rm.json', 'w') as jf:
+            json.dump(pwn_results, jf)
+        print("PWN is saved")
+        
+    if resource == 'odwn':
+        path_odwn = input("Path to your local OpenDutchWordNet directory:")
+        #6 ODWN
+        odwn_synsets = []
+
+        for v in related_matches.values():
+            if v['lang'] == 'nl' and 'None' not in v['related_matches']['odwn']:
+                odwn_synsets.extend(v['related_matches']['odwn'])
+
+        odwn_results = odwn(odwn_synsets,path_odwn)
+        with open('odwn_rm.json', 'w') as jf:
+            json.dump(odwn_results, jf)
+        print("ODWN is saved")
+        
+    if resource == 'nmvw':
+        #7 NMVW
+        nmvw_handles = [v['related_matches']['nmvw'][0] for v in related_matches.values() if v['lang'] == 'nl' \
+                  and 'None' not in v['related_matches']['nmvw']]
+        nmvw_results = nmvw(nmvw_handles)
+        with open('nmvw_rm.json', 'w') as jf:
+            json.dump(nmvw_results, jf)
+        print("NMVW is saved")
+    
+    return ("All files are saved")
 
 if __name__ == "__main__":
     main()
