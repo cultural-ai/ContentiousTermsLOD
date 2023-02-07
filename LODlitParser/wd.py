@@ -5,6 +5,10 @@ import requests
 import time
 import re
 
+def main():
+    if __name__ == "__main__":
+        main()
+
 def get_search_hits(search_term:str,lang:str,user_agent:str,filter_by_keywords=[],filter_by_statements=[],stemming=False) -> dict:
     """
     Getting search hits of a term in Wikidata
