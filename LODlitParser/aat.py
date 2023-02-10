@@ -81,19 +81,21 @@ def sparql(aat_uri:list, lang:str) -> dict:
     return result_dict
 
 
-def _get_entity_info(entity_id:str, lang:str) -> dict:
+def _get_entity_info(entity_id:str, lang:str, aat_gzip:dict) -> dict:
     '''
+    This function is used for 'find_term_in_literals'
     Getting the values of prefLabel (str), altLabel (list), prefLabel_comment (str), altLabel_comment(list), and scopeNote (str)
     by entity ID in AAT
     entity_id: str, entity ID in AAT (for example, '300189559')
     lang: str, 'en' or 'nl'; language of entities info
-    Returns a dict
+    aat_gzip: dict, ungzipped json file with search results (ungzips in the main function)
+    Returns a dict {'entity': '',
+					 'scopeNote': '',
+					 'prefLabel_comment': '',
+					 'prefLabel': '',
+					 'altLabel': [],
+					 'altLabel_comment': []}
     '''
-
-    # importing the search results in gzip
-    # change the path
-    with gzip.open(f"/Users/anesterov/reps/LODlit/AAT/gzip_aat_subgraph_{lang}.json", 'r') as gzip_json:
-    	aat_gzip = json.loads(gzip_json.read().decode('utf-8'))
 
     results = {}
     results['entity'] = entity_id
@@ -135,3 +137,77 @@ def _get_entity_info(entity_id:str, lang:str) -> dict:
             results['altLabel_comment'] = altLabel_comment_list
                         
     return results
+
+def find_term_in_literals(query_term:str, lang:str) -> list:
+    '''
+    Finding query terms in the literal values of properties:
+    prefLabel, altLabel, rdfs comment (for prefLabel and altLabel), and scopeNote
+    query_term: str, for example 'term'
+    ang: str, 'en' or 'nl'; language of the literals in which the query term is searched
+    Returns a list of dicts with an AAT entity URI and the property name in the literal value of which the term was found
+    '''
+
+    # reading the gzip json file with aat search results
+    # change the path to GitHub
+    with gzip.open(f"/Users/anesterov/reps/LODlit/AAT/gzip_aat_subgraph_{lang}.json", 'r') as gzip_json:
+    	aat_gzip = json.loads(gzip_json.read().decode('utf-8'))
+    
+    list_of_results = []
+    
+    for triple in aat_gzip["results"]["bindings"]:
+        
+        if triple['Object']['type'] == 'literal' \
+        and len(re.findall(f'\\b{query_term}\\b',triple['Object']['value'],re.IGNORECASE)) > 0:
+            
+            results_per_hit = {}
+            results_per_hit['query_term'] = query_term
+            results_per_hit['aat_uri'] = ''
+            
+            # if a term found in scopeNote
+                    
+            if 'rdf-syntax' in triple['Predicate']['value']:
+                results_per_hit['found_in'] = 'scopeNote'
+                for triple_t in aat_gzip["results"]["bindings"]:
+                    if triple_t['Object']['value'] == triple['Subject']['value']:
+                        # getting entity URI
+                        entity = triple_t['Subject']['value'].split('/')[-1]
+                        
+            # if a term found in pref or alt labels
+            
+            if 'literalForm' in triple['Predicate']['value']:
+                for triple_t in aat_gzip["results"]["bindings"]:
+                    if triple_t['Object']['value'] == triple['Subject']['value']:
+                        # getting entity URI
+                        entity = triple_t['Subject']['value'].split('/')[-1]
+                        # altLabel or prefLabel 
+                        if 'altLabel' in triple_t['Predicate']['value']:
+                            results_per_hit['found_in'] = 'altLabel'
+                        if 'prefLabel' in triple_t['Predicate']['value']:
+                            results_per_hit['found_in'] = 'prefLabel'
+                        
+            # if a term found in rdfs comment
+            
+            if 'comment' in triple['Predicate']['value']:
+                for triple_t in aat_gzip["results"]["bindings"]:
+                    if triple_t['Object']['value'] == triple['Subject']['value']:
+                        # getting entity URI
+                        entity = triple_t['Subject']['value'].split('/')[-1]
+                        # comment to altLabel or prefLabel
+                        if 'altLabel' in triple_t['Predicate']['value']:
+                            results_per_hit['found_in'] = 'altLabel_comment'
+                        if 'prefLabel' in triple_t['Predicate']['value']:
+                            results_per_hit['found_in'] = 'prefLabel_comment'
+            
+            results_per_hit['aat_uri'] = entity
+            
+            entity_info = _get_entity_info(entity, lang, aat_gzip)
+            
+            results_per_hit['prefLabel'] = entity_info['prefLabel']
+            results_per_hit['prefLabel_comment'] = entity_info['prefLabel_comment']
+            results_per_hit['altLabel'] = entity_info['altLabel']
+            results_per_hit['altLabel_comment'] = entity_info['altLabel_comment']
+            results_per_hit['scopeNote'] = entity_info['scopeNote']
+            
+            list_of_results.append(results_per_hit)
+            
+    return list_of_results
