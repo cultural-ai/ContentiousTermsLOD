@@ -1,6 +1,7 @@
 # lodlitparser
-# install NLTK, download wordnet31 ('https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip');
-# put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (there are issues with importing wordnet31 from nltk.corpus)
+# install NLTK
+# Important! download wordnet31 ('https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip');
+# put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (it is not possible to import wordnet31 from nltk.corpus; See explanations on the WordNet website (retrieved on 10.02.2023): https://wordnet.princeton.edu/download/current-version; "WordNet 3.1 DATABASE FILES ONLY. You can download the WordNet 3.1 database files. Note that this is not a full package as those above, nor does it contain any code for running WordNet. However, you can replace the files in the database directory of your 3.0 local installation with these files and the WordNet interface will run, returning entries from the 3.1 database. This is simply a compressed tar file of the WordNet 3.1 database files."
 # download OpenDutchWordnet from 'https://github.com/cultural-ai/OpenDutchWordnet'
 
 import json
@@ -14,34 +15,8 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from nltk.corpus import wordnet as wn
 
 def main():
-    #change path
-    print("Download wordnet31 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (there are issues with importing wordnet31 from nltk.corpus")
+    print("Install NLTK and download wordnet. Download wordnet31 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora'")
     print("Download OpenDutchWordnet from 'https://github.com/cultural-ai/OpenDutchWordnet', pass the path to odwn")
-
-def pwn(synsets:list) -> dict:
-    '''
-    Getting lemmata, definition, examples of a synset
-    synsets: a list of synsets IDs (str)
-    Return a dict: {'synset_id': {'lemmata': '',
-                                   'definition': '',
-                                   'examples': []}
-    Requires NLTK, wordnet corpus version 3.1
-    '''
-    
-    results_pwn = {}
-    
-    for s in synsets:
-        synset = wn.synset(s)
-        lemmata = [l.name() for l in synset.lemmas()]
-        definition = synset.definition()
-        examples = synset.examples()
-        
-        # writing results 
-        results_pwn[s] = {'lemmata': lemmata,
-                         'definition': definition,
-                         'examples': examples}
-        
-    return results_pwn
 
 # OpenDutch Wordnet
 
@@ -109,77 +84,6 @@ def nmvw(term_ids:list) -> dict:
         results_nmvw[handle] = nmvw_json.get(handle)
         
     return results_nmvw
-
-# Getty AAT
-
-def aat(aat_uri:list, lang:str) -> dict:
-    '''
-    Querying prefLabel, altLabel, scopeNote, rdfs comments of concepts in AAT;
-    Sends SPARQL queries to the AAT endpoint via SPARQLwrapper 
-    aat_uri: list of AAT concepts IDs (str) ['ID']
-    lang: str 'en' or 'nl'
-    Returns a dict with query results: {'ID':{'lang':'en',
-                                              'prefLabel':'',
-                                              'altLabels':[],
-                                              'scopeNote':'',
-                                              'prefLabel_comment':'',
-                                              'altLabel_comment':''}
-    '''
-    
-    sparql = SPARQLWrapper("http://vocab.getty.edu/sparql")
-    
-    if lang == 'en':
-        lang_code = '300388277'
-    if lang == 'nl':
-        lang_code = '300388256'
-        
-    result_dict = {}
-        
-    for uri in aat_uri:
-        
-        result_dict[uri] = {}
-        
-        query_string = '''SELECT ?prefLabel (GROUP_CONCAT(?altLabel;SEPARATOR="#") AS ?altLabels)
-        ?scopeNote ?prefLabel_comment ?altLabel_comment
-        WHERE {aat:''' + uri + ''' xl:prefLabel ?pL .?pL dcterms:language aat:''' + lang_code + ''';
-        xl:literalForm ?prefLabel .
-        OPTIONAL {?pL rdfs:comment ?prefLabel_comment . }
-        OPTIONAL {aat:''' + uri + ''' xl:altLabel ?aL .
-        ?aL dcterms:language aat:''' + lang_code + ''';
-        xl:literalForm ?altLabel . 
-        OPTIONAL { ?aL rdfs:comment ?altLabel_comment . }}
-        OPTIONAL {aat:''' + uri + ''' skos:scopeNote / dcterms:language aat:'''+ lang_code + ''';
-        skos:scopeNote / rdf:value ?scopeNote . }}
-        GROUP BY ?prefLabel ?scopeNote ?prefLabel_comment ?altLabel_comment'''
-        
-        sparql.setQuery(query_string)
-        sparql.setReturnFormat(JSON)
-        results = sparql.query().convert()
-        
-        altLabels = []
-        scopeNote = None
-        prefLabel_comment = None
-        altLabel_comment = None
-        
-        for result in results['results']['bindings']:
-            
-            if 'altLabels' in result:
-                altLabels = result['altLabels']['value'].split('#')
-            if 'scopeNote' in result:
-                scopeNote = result['scopeNote']['value']
-            if 'prefLabel_comment' in result:
-                prefLabel_comment = result['prefLabel_comment']['value']
-            if 'altLabel_comment' in result:
-                altLabel_comment = result['altLabel_comment']['value']
-
-            result_dict[uri]['lang'] = lang
-            result_dict[uri]['prefLabel'] = result['prefLabel']['value']
-            result_dict[uri]['altLabels'] = altLabels
-            result_dict[uri]['prefLabel_comment'] = prefLabel_comment
-            result_dict[uri]['altLabel_comment'] = altLabel_comment
-            result_dict[uri]['scopeNote'] = scopeNote
-        
-    return result_dict
 
 if __name__ == "__main__":
     main()
