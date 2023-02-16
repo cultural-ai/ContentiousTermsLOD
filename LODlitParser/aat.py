@@ -1,11 +1,15 @@
+# Getty AAT
+# A module to parse query results (json) from Getty Art&Archiechture Thesaurus
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
+
 import json
 import gzip
 import re
 import csv
 from SPARQLWrapper import SPARQLWrapper, JSON
-
-# Getty AAT
-# A module to parse query results (json) from Getty Art&Archiechture Thesaurus
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
 def main():
 	if __name__ == "__main__":
@@ -211,3 +215,58 @@ def find_term_in_literals(query_term:str, lang:str) -> list:
             list_of_results.append(results_per_hit)
             
     return list_of_results
+
+def get_bows(path_to_results:str, lang:str) -> dict:
+    '''
+    Getting bag of words (BoW) from the AAT search results for every search term
+    path_to_results: str, a path to the search results (in json format)
+    lang: str, 'en' or 'nl'
+    Returns a dict with BoWs per hit per term: {term:[{aat_URI:['token1','token2','token3']}]}
+    '''
+    
+    wnl = WordNetLemmatizer()
+    all_bows = {}
+   
+    with open(path_to_results,'r') as jf:
+        search_results = json.load(jf)
+
+    for query_term, results in search_results.items():
+
+        list_by_term = []
+
+        for hit in results:
+            q_bag = {}
+            literals = []
+            
+            if hit["prefLabel"] != "":
+                literals.append(hit["prefLabel"]) 
+            if hit["prefLabel_comment"] != "":
+                literals.append(hit["prefLabel_comment"])
+            if hit["scopeNote"] != "":
+                literals.append(hit["scopeNote"])
+            # altLabel and altLabel comments are lists
+            if hit["altLabel"] != []:
+                literals.extend(hit["altLabel"])
+            if hit["altLabel_comment"] != "":
+                literals.extend(hit["altLabel_comment"])
+
+            bow = []
+            for lit in literals:
+                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
+                           .replace(',','').lower().split(' '))
+
+            # checking lang for stopwords
+            if lang == 'en':
+                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('english') \
+                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+            if lang == 'nl':
+                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('dutch') \
+                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+
+            q_bag[hit["aat_uri"]] = bag_unique
+
+            list_by_term.append(q_bag)
+
+        all_bows[query_term] = list_by_term
+
+    return all_bows

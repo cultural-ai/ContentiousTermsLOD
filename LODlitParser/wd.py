@@ -1,5 +1,9 @@
 # Wikidata module
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
 
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 import json
 import requests
 import time
@@ -535,3 +539,66 @@ def filter_proper_names(dataset_path:str, lang:str, path:'') -> str:
         json.dump(results_clean, jf)
                 
     return f"File is saved. {n_filtered} entities are filtered out."
+
+
+def get_bows(path_to_results:str, lang:str) -> dict:
+    '''
+    Getting bag of words (BoW) from the Wikidata search results for every search term
+    path_to_results: str, a path to the search results (in json format)
+    lang: str, 'en' or 'nl'
+    Returns a dict with BoWs per hit per term: {term:[{QID:['token1','token2','token3']}]}
+    '''
+    wnl = WordNetLemmatizer()
+    
+    all_bows = {}
+   
+    with open(path_to_results,'r') as jf:
+        search_results = json.load(jf)
+    
+    for query_term, results in search_results.items():
+        list_by_term = []
+
+        for hit in results:
+            q_bag = {}
+            literals = []
+            
+            literals.append(hit["prefLabel"]) # adding prefLabel
+
+            if hit["found_in"] == "prefLabel" or hit["found_in"] == "aliases":
+                literals.extend(hit["instance_of"])
+                literals.extend(hit["subclass_of"])
+
+            if hit["aliases"] != None:
+                literals.extend(hit["aliases"]) # adding aliases
+
+            # adding descriptions
+            # descriptions can be str or list
+            # None doesn't add
+            if type(hit["description"]) == str:
+                literals.append(hit["description"])
+                
+            if type(hit["description"]) == list:
+                literals.extend(hit["description"])
+
+            bow = []
+            for lit in literals:
+                # prefLabel, instance_of, subclass_of can be None
+                if lit != None:
+                    bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
+                           .replace(',','').lower().split(' '))
+            
+            # checking lang for stopwords
+            if lang == 'en':
+                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('english') \
+                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+            if lang == 'nl':
+                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('dutch') \
+                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+                
+            q_bag[hit["QID"]] = bag_unique
+
+            list_by_term.append(q_bag)
+
+        all_bows[query_term] = list_by_term
+        
+    return all_bows

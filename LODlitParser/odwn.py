@@ -1,10 +1,14 @@
 # Open Dutch WordNet parser
 # Download OpenDutchWordnet from "https://github.com/cultural-ai/OpenDutchWordnet"
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
 
 import sys
 import json
 import csv
 import re
+import nltk
+from nltk.corpus import stopwords
+from nltk.stem import WordNetLemmatizer
 
 def _set_odwn(path_odwn:str):
     """
@@ -172,3 +176,56 @@ def find_terms(query_terms:list, path_odwn:str) -> dict:
         results[query_term] = results_per_term
 
     return results
+
+def get_bows(path_to_results:str) -> dict:
+    '''
+    Getting bag of words (BoW) from the Open Dutch Wordnet search results for every search term
+    path_to_results: str, a path to the search results (in json format)
+    Returns a dict with BoWs per hit per term: {term:[{synset_id/le_id:['token1','token2','token3']}]}
+    '''
+    wnl = WordNetLemmatizer()
+
+    all_bows = {}
+   
+    with open(path_to_results,'r') as jf:
+        search_results = json.load(jf)
+
+    for query_term, results in search_results.items():
+
+        list_by_term = []
+
+        for hit in results:
+
+            q_bag = {}
+            literals = []
+
+            if hit["found_in"] == "synset_definitions":
+                literals.extend(hit["synonyms"])
+                literals.extend(hit["synset_definitions"])
+            else:
+                literals.append(hit["le_written_form"])
+                literals.extend(hit["sense_examples"])
+                literals.extend(hit["synonyms"])
+                literals.extend(hit["synset_definitions"])
+                if hit["sense_definition"] != "":
+                    literals.append(hit["sense_definition"])
+
+            bow = []
+            for lit in literals:
+                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
+                           .replace(',','').lower().split(' '))
+
+            bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('dutch') \
+                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+
+            # if there's no synset ID, using LE ID as key
+            if hit["synset_id"] != "":
+                q_bag[hit["synset_id"]] = bag_unique
+            else:
+                q_bag[hit["le_id"]] = bag_unique
+
+            list_by_term.append(q_bag)
+
+        all_bows[query_term] = list_by_term
+
+    return all_bows
