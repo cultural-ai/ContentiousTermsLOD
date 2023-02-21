@@ -3,7 +3,7 @@
 # install NLTK
 # Important! download wordnet31 ('https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip');
 # put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (it is not possible to import wordnet31 from nltk.corpus; See explanations on the WordNet website (retrieved on 10.02.2023): https://wordnet.princeton.edu/download/current-version; "WordNet 3.1 DATABASE FILES ONLY. You can download the WordNet 3.1 database files. Note that this is not a full package as those above, nor does it contain any code for running WordNet. However, you can replace the files in the database directory of your 3.0 local installation with these files and the WordNet interface will run, returning entries from the 3.1 database. This is simply a compressed tar file of the WordNet 3.1 database files."
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords');
 
 import json
 import re
@@ -137,16 +137,70 @@ def get_bows(path_to_results:str) -> dict:
 
             bow = []
             for lit in literals:
-                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
+                # some lemmas have '_'
+                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('_',' ').replace('/',' ')\
                            .replace(',','').lower().split(' '))
 
-            bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('english') \
-                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+            bag_filtered = [wnl.lemmatize(w) for w in bow if w not in stopwords.words('english') \
+                                    and re.search('(\W|\d)',w) == None and w != '']
 
-            q_bag[hit["synset_id"]] = bag_unique
+            q_bag[hit["synset_id"]] = bag_filtered
 
             list_by_term.append(q_bag)
 
         all_bows[query_term] = list_by_term
 
     return all_bows
+
+
+def get_lit_related_matches_bow() -> dict:
+    '''
+    Generates dict with BoWs by query terms and their related matches in PWN
+    reads the file with PWN BoWs: pwn31_bows.json
+    the info about which PWN synset is a related match to the query term is taken from https://github.com/cultural-ai/wordsmatter/blob/main/related_matches/rm.csv
+    Returns a dict with BoWs by term: {term:['token1','token2','token3']}
+    This dict doesn't store info about synsets IDs bc one term can have one or more related match synsets;
+    in these cases, BoWs of each synsets are merged
+    '''
+    
+    results = {}
+    
+    # loading related matches
+    # change path
+    with open('/Users/anesterov/reps/wordsmatter/related_matches/rm.json','r') as jf:
+        rm = json.load(jf)
+    
+    # change path
+    with open('/Users/anesterov/reps/LODlit/PWN/pwn31_bows.json','r') as jf:
+        pwn_bows = json.load(jf)
+
+    # getting a list of all PWN synsets of related matches
+    pwn_synsets = []
+    for values in rm.values():
+        if values["lang"] == "en" and values["related_matches"]["pwn"][0] != 'None':
+            pwn_synsets.extend(values["related_matches"]["pwn"])
+
+    related_matches_pwn = list(set(pwn_synsets))
+
+    # getting BoWs for each synset 
+    related_matches_pwn_synsets_bows = {}
+    for s_rm in related_matches_pwn:
+        for hits in pwn_bows.values():
+            for hit in hits:
+                for s, bow in hit.items():
+                    if s == s_rm:
+                        related_matches_pwn_synsets_bows[s_rm] = bow
+
+    # shaping resulting dict: BoWs per term
+    for values in rm.values():
+        if values["lang"] == "en":
+            rm_synsets = values["related_matches"]["pwn"]
+            if rm_synsets[0] != "None":
+                for term in values["query_terms"]:
+                    synsets_bow = []
+                    for s in rm_synsets:
+                        if s in related_matches_pwn_synsets_bows.keys():
+                            synsets_bow.extend(related_matches_pwn_synsets_bows[s])
+                            results[term] = synsets_bow
+
+    return results

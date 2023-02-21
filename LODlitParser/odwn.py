@@ -1,6 +1,6 @@
 # Open Dutch WordNet parser
 # Download OpenDutchWordnet from "https://github.com/cultural-ai/OpenDutchWordnet"
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords'); install simplelemma
 
 import sys
 import json
@@ -9,6 +9,7 @@ import re
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import simplemma
 
 def _set_odwn(path_odwn:str):
     """
@@ -215,17 +216,73 @@ def get_bows(path_to_results:str) -> dict:
                 bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
                            .replace(',','').lower().split(' '))
 
-            bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('dutch') \
-                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+            # lemmatizer can output uppercase lemmas
+            bag_filtered = [simplemma.lemmatize(w,lang='nl').lower() for w in bow if w not in stopwords.words('dutch') \
+                                    and re.search('(\W|\d)',w) == None and w != '']
 
             # if there's no synset ID, using LE ID as key
             if hit["synset_id"] != "":
-                q_bag[hit["synset_id"]] = bag_unique
+                q_bag[hit["synset_id"]] = bag_filtered
             else:
-                q_bag[hit["le_id"]] = bag_unique
+                q_bag[hit["le_id"]] = bag_filtered
 
             list_by_term.append(q_bag)
 
         all_bows[query_term] = list_by_term
 
     return all_bows
+
+
+def get_lit_related_matches_bow() -> dict:
+    '''
+    Generates dict with BoWs by query terms and their related matches in ODWN
+    reads two json files: (1) odwn_bows.json (ODWN BoWs), (2) related_matches_odwn.json (related matches for every term in ODWN)
+    Returns a dict with BoWs by term: {term:['token1','token2','token3']}
+    This dict doesn't store info about synsets IDs or LE IDs bc one term can have one or more related matches;
+    in these cases, BoWs of each synsets and LEs are merged
+    '''
+    
+    results = {}
+    
+    # loading related matches
+    # change path
+    with open('/Users/anesterov/reps/LODlit/bg/related_matches_odwn.json','r') as jf:
+        rm = json.load(jf)
+    
+    # change path
+    with open('/Users/anesterov/reps/LODlit/ODWN/odwn_bows.json','r') as jf:
+        odwn_bows = json.load(jf)
+        
+    # getting a list of all ODWN LE IDs and synset IDs of related matches
+    odwn_les_synsets = []
+    for values in rm.values():
+        if values["odwn_le"][0] != 'None':
+            odwn_les_synsets.extend(values["odwn_le"])
+        if values["odwn_synsets"] != '':
+            odwn_les_synsets.extend(values["odwn_synsets"])
+
+    related_matches_odwn = list(set(odwn_les_synsets))
+            
+    # getting BoWs for each LE or synset
+    related_matches_odwn_bows = {}
+    for odwn_id in related_matches_odwn:
+        for hits in odwn_bows.values():
+            for hit in hits:
+                for le, bow in hit.items():
+                    if le == odwn_id:
+                        related_matches_odwn_bows[le] = bow
+                        
+    # shaping resulting dict: terms with related matches and BoWs
+    for values in rm.values():
+        rm_ids = []
+        rm_ids.extend(values["odwn_le"])
+        rm_ids.extend(values["odwn_synsets"])
+        if rm_ids != []:
+            for term in values["query_terms"]:
+                bow = []
+                for i in rm_ids:
+                    if i in related_matches_odwn_bows.keys():
+                        bow.extend(related_matches_odwn_bows[i])
+                        results[term] = bow
+    
+    return results

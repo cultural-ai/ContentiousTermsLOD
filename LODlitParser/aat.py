@@ -10,6 +10,7 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
+import simplemma
 
 def main():
 	if __name__ == "__main__":
@@ -257,16 +258,89 @@ def get_bows(path_to_results:str, lang:str) -> dict:
 
             # checking lang for stopwords
             if lang == 'en':
-                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('english') \
-                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+                bag_filtered = [wnl.lemmatize(w) for w in bow if w not in stopwords.words('english') \
+                                    and re.search('(\W|\d)',w) == None and w != '']
             if lang == 'nl':
-                bag_unique = [wnl.lemmatize(w) for w in set(bow) if w not in stopwords.words('dutch') \
-                                    and re.search('(\W|\d)',w) == None and w != hit["query_term"] and w != '']
+                bag_filtered = [simplemma.lemmatize(w,lang='nl') for w in bow if w not in stopwords.words('dutch') \
+                                    and re.search('(\W|\d)',w) == None and w != '']
 
-            q_bag[hit["aat_uri"]] = bag_unique
+            q_bag[hit["aat_uri"]] = bag_filtered
 
             list_by_term.append(q_bag)
 
         all_bows[query_term] = list_by_term
 
     return all_bows
+
+def get_lit_related_matches_bow(lang:str) -> dict:
+    '''
+    Generates dict with BoWs by query terms and their related matches in AAT
+    reads files with AAT BoWs: aat_bows_en.json (EN), aat_bows_nl.json (NL)
+    the info about which AAT concept is a related match to the query term is taken from https://github.com/cultural-ai/wordsmatter/blob/main/related_matches/rm.csv
+    lang: str, 'en' or 'nl'
+    Returns a dict with BoWs by term: {term:{concept_uri:['token1','token2','token3']}}
+    '''
+    
+    results = {}
+    
+    # loading related matches
+    # change path
+    with open('/Users/anesterov/reps/wordsmatter/related_matches/rm.json','r') as jf:
+        rm = json.load(jf)
+    
+    # checking lang
+    if lang == "en":
+        # change path
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
+            aat_bows = json.load(jf)
+        
+        # getting a list of all AAT URIs of related matches
+        related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
+                                if values["lang"] == "en" and values["related_matches"]["aat"][0] != 'None']))    
+        
+        # getting BoWs for AAT concept URIs 
+        related_matches_aat_uri_bows = {}
+        for uri_rm in related_matches_aat:
+            for hits in aat_bows.values():
+                for hit in hits:
+                    for uri, bow in hit.items():
+                        if uri == uri_rm:
+                            related_matches_aat_uri_bows[uri_rm] = bow
+                            
+        # shaping resulting dict: terms with related matches and BoWs
+        for values in rm.values():
+            if values["lang"] == "en":
+                rm_aat = values["related_matches"]["aat"][0]
+                if rm_aat != "None":
+                    for term in values["query_terms"]:
+                        if rm_aat in related_matches_aat_uri_bows.keys():
+                            results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
+            
+    if lang == "nl":
+        # change path
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
+            aat_bows = json.load(jf)
+            
+        # getting a list of all AAT URIs of related matches
+        related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
+                                if values["lang"] == "nl" and values["related_matches"]["aat"][0] != 'None']))    
+        
+        # getting BoWs for AAT concept URIs 
+        related_matches_aat_uri_bows = {}
+        for uri_rm in related_matches_aat:
+            for hits in aat_bows.values():
+                for hit in hits:
+                    for uri, bow in hit.items():
+                        if uri == uri_rm:
+                            related_matches_aat_uri_bows[uri_rm] = bow
+                            
+        # shaping resulting dict: terms with related matches and BoWs
+        for values in rm.values():
+            if values["lang"] == "nl":
+                rm_aat = values["related_matches"]["aat"][0]
+                if rm_aat != "None":
+                    for term in values["query_terms"]:
+                        if rm_aat in related_matches_aat_uri_bows.keys():
+                            results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
+            
+    return results
