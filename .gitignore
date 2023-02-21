@@ -3,3 +3,5 @@
 **/*.pyc
 **/*-checkpoint.ipynb
 !**/
+.DS_Store
+LODlitParser/.DS_Store
