@@ -1,6 +1,6 @@
 # Getty AAT
 # A module to parse query results (json) from Getty Art&Archiechture Thesaurus
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords')
+# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords'); install simplelemma
 
 import json
 import gzip
