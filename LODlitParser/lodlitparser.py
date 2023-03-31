@@ -15,8 +15,8 @@ from SPARQLWrapper import SPARQLWrapper, JSON
 from nltk.corpus import wordnet as wn
 
 def main():
-    print("Install NLTK and download wordnet. Download wordnet31 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora'")
-    print("Download OpenDutchWordnet from 'https://github.com/cultural-ai/OpenDutchWordnet', pass the path to odwn")
+    if __name__ == "__main__":
+        main()
 
 # OpenDutch Wordnet
 
@@ -85,5 +85,3 @@ def nmvw(term_ids:list) -> dict:
         
     return results_nmvw
 
-if __name__ == "__main__":
-    main()
