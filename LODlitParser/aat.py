@@ -11,6 +11,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import simplemma
+import bows
 
 def main():
 	if __name__ == "__main__":
@@ -217,7 +218,7 @@ def find_term_in_literals(query_term:str, lang:str) -> list:
             
     return list_of_results
 
-def get_bows(path_to_results:str, lang:str) -> dict:
+def get_bows_old(path_to_results:str, lang:str) -> dict:
     '''
     Getting bag of words (BoW) from the AAT search results for every search term
     path_to_results: str, a path to the search results (in json format)
@@ -272,12 +273,102 @@ def get_bows(path_to_results:str, lang:str) -> dict:
 
     return all_bows
 
-def get_lit_related_matches_bow(lang:str) -> dict:
+def get_bows_tf_idf(path_to_results:str, lang:str, scopeNote_tf_idf:True) -> dict:
+    '''
+    Getting bag of words (BoW) from the AAT search results for every search term
+    path_to_results: str, a path to the search results (in json format)
+    lang: str, 'en' or 'nl'
+    scopeNote_tf_idf: bool, getting only top 10 tokens from scopeNotes based on their TF-IDF scores
+    Returns a dict with BoWs per hit per term: {term:[{aat_URI:['token1','token2','token3']}]}
+    '''
+    
+    all_bows = {}
+   
+    with open(path_to_results,'r') as jf:
+        search_results = json.load(jf)
+
+    ### ### ###
+    # for TF-IDF weighting, calculate DF: get all unique tokens, all docs, N docs
+    if scopeNote_tf_idf == True:
+        
+        all_scopeNotes = []
+        all_tokens = []
+            
+        for value in search_results.values():
+            for hit in value:
+                if hit["scopeNote"] != "" and hit["scopeNote"] not in all_scopeNotes:
+                    scopeNote_bow = bows.make_bows([hit["scopeNote"]],lang,merge_bows=True)
+                    all_scopeNotes.append(scopeNote_bow)
+        
+                    # collecting all unique tokens
+                    for token in scopeNote_bow:
+                        if token not in all_tokens:
+                            all_tokens.append(token)
+
+        n_docs = len(all_scopeNotes)
+
+        # making a dict with document frequency (DF) scores for every unique token
+        doc_freq = {}
+        for token in all_tokens:
+            token_count = 0
+            for bow in all_scopeNotes:
+                if token in bow:
+                    token_count += 1
+            doc_freq[token] = token_count
+
+    ### ### ###
+
+    for query_term, results in search_results.items():
+
+        list_by_term = []
+
+        for hit in results:
+            q_bag = {}
+            literals = []
+
+            if scopeNote_tf_idf == True and hit["scopeNote"] != "":
+
+                bow =[]
+                no_scope_note = []
+            
+                no_scope_note.append(hit["prefLabel"])
+                no_scope_note.append(hit["prefLabel_comment"])
+                no_scope_note.extend(hit["altLabel"])
+                no_scope_note.extend(hit["altLabel_comment"])
+
+                no_scope_note_bow = bows.make_bows(no_scope_note,lang,merge_bows=True)
+
+                scope_note_bow = bows.make_bows([hit["scopeNote"]],lang,merge_bows=True)
+                scope_note_bow_tfidf = get_top_tokens_tfidf(scope_note_bow,doc_freq,n_docs)
+
+                bow.extend(no_scope_note_bow)
+                bow.extend(scope_note_bow_tfidf)
+
+            else:
+                literals.append(hit["prefLabel"])
+                literals.append(hit["prefLabel_comment"])
+                literals.extend(hit["altLabel"])
+                literals.extend(hit["altLabel_comment"])
+                literals.append(hit["scopeNote"])
+
+                bow = bows.make_bows(literals,lang,merge_bows=True)
+
+            q_bag[hit["aat_uri"]] = bow
+
+            list_by_term.append(q_bag)
+
+        all_bows[query_term] = list_by_term
+
+    return all_bows
+
+
+def get_lit_related_matches_bow(lang:str, path:str) -> dict:
     '''
     Generates dict with BoWs by query terms and their related matches in AAT
     reads files with AAT BoWs: aat_bows_en.json (EN), aat_bows_nl.json (NL)
     the info about which AAT concept is a related match to the query term is taken from https://github.com/cultural-ai/wordsmatter/blob/main/related_matches/rm.csv
     lang: str, 'en' or 'nl'
+    path: str, path to the file with aat bows (could be bows with all tokens or weighted TF-IDF tokens), for example "AAT/aat_bows_en.json"
     Returns a dict with BoWs by term: {term:{concept_uri:['token1','token2','token3']}}
     '''
     
@@ -290,8 +381,7 @@ def get_lit_related_matches_bow(lang:str) -> dict:
     
     # checking lang
     if lang == "en":
-        # change path
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
+        with open(path,'r') as jf:
             aat_bows = json.load(jf)
         
         # getting a list of all AAT URIs of related matches
@@ -317,8 +407,7 @@ def get_lit_related_matches_bow(lang:str) -> dict:
                             results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
             
     if lang == "nl":
-        # change path
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
+        with open(path,'r') as jf:
             aat_bows = json.load(jf)
             
         # getting a list of all AAT URIs of related matches
