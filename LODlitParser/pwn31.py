@@ -12,6 +12,8 @@ from nltk.corpus import wordnet as wn
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import warnings
+import pandas as pd
+import bows
 
 def main():
 
@@ -132,19 +134,12 @@ def get_bows(path_to_results:str) -> dict:
     
             if hit["definition"] != "":
                 literals.append(hit["definition"])
-            if hit["examples"] != []:
-                literals.extend(hit["examples"])
+        
+            literals.extend(hit["examples"])
 
-            bow = []
-            for lit in literals:
-                # some lemmas have '_'
-                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('_',' ').replace('/',' ')\
-                           .replace(',','').lower().split(' '))
+            bow = bows.make_bows(literals,"en",merge_bows=True)
 
-            bag_filtered = [wnl.lemmatize(w) for w in bow if w not in stopwords.words('english') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
-
-            q_bag[hit["synset_id"]] = bag_filtered
+            q_bag[hit["synset_id"]] = bow
 
             list_by_term.append(q_bag)
 
@@ -204,3 +199,61 @@ def get_lit_related_matches_bow() -> dict:
                             results[term] = synsets_bow
 
     return results
+
+def get_cs():
+    '''
+    Calculating three cosine similarity scores between PWN search results and background info;
+    the similarity scores are based on (1) only related matches, (2) only WM text, and (3) extended bows with related matches and WM text
+    Returns a pandas data frame with columns:
+    query_term, hit_id, bow, cs_rm, cs_wm, cs_rm_wm
+    '''
+
+    nlp = bows._load_spacy_nlp("en")
+
+    # load bckground info
+    # change path
+    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
+        bg_info = json.load(jf)
+
+    pwn_df = pd.DataFrame(columns=['term','hit_id','pwn_bow','cs_rm','cs_wm','cs_rm_wm'])
+
+    # load pwn search results
+    with open('/Users/anesterov/reps/LODlit/PWN/pwn31_bows.json','r') as jf:
+            pwn_bows = json.load(jf)
+
+    for term, hits in pwn_bows.items():
+
+        bg_rm = bows._collect_bg(term,"en",bg_info,bg_bow="rm")
+        bg_wm = bows._collect_bg(term,"en",bg_info,bg_bow="wm")
+        bg_rm_wm = bows._collect_bg(term,"en",bg_info,bg_bow="joint")
+
+        # if there are search results
+        if len(hits) > 0:
+            for hit in hits:
+                for i, bow in hit.items():
+                    # making a set
+                    pwn_bow = list(set(bow))
+
+                    if len(pwn_bow) > 0:
+                        # calculate cs
+                        cs_rm = bows.calculate_cs(bg_rm,pwn_bow,nlp)
+                        cs_wm = bows.calculate_cs(bg_wm,pwn_bow,nlp)
+                        cs_rm_wm = bows.calculate_cs(bg_rm_wm,pwn_bow,nlp)
+                        
+                        pwn_df.loc[len(pwn_df)] = [term,i,pwn_bow,cs_rm,cs_wm,cs_rm_wm]
+                    
+                    # if there are no tokens, all cs = None
+                    else:
+                        pwn_df.loc[len(pwn_df)] = [term,i,pwn_bow,None,None,None]
+
+        # if there are no search results in PWN, cs = None
+        else:
+            pwn_df.loc[len(pwn_df)] = [term,None,None,None,None,None]
+
+    return pwn_df
+
+
+
+
+
+

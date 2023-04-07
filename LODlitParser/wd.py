@@ -12,6 +12,7 @@ import time
 import re
 import gzip
 import warnings
+import bows
 
 def main():
     if __name__ == "__main__":
@@ -553,7 +554,6 @@ def get_bows(path_to_results:str, lang:str) -> dict:
     Returns a dict with BoWs per hit per term: {term:[{QID:['token1','token2','token3']}]}
     '''
     wnl = WordNetLemmatizer()
-    
     all_bows = {}
    
     with open(path_to_results,'r') as jf:
@@ -566,7 +566,8 @@ def get_bows(path_to_results:str, lang:str) -> dict:
             q_bag = {}
             literals = []
             
-            literals.append(hit["prefLabel"]) # adding prefLabel
+            if hit["prefLabel"] != None:
+                literals.append(hit["prefLabel"]) # adding prefLabel
 
             if hit["found_in"] == "prefLabel" or hit["found_in"] == "aliases":
                 literals.extend(hit["instance_of"])
@@ -583,23 +584,10 @@ def get_bows(path_to_results:str, lang:str) -> dict:
                 
             if type(hit["description"]) == list:
                 literals.extend(hit["description"])
-
-            bow = []
-            for lit in literals:
-                # prefLabel, instance_of, subclass_of can be None
-                if lit != None:
-                    bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
-                           .replace(',','').lower().split(' '))
-            
-            # checking lang for stopwords and lemmatization
-            if lang == 'en':
-                bag_filtered = [wnl.lemmatize(w) for w in bow if w not in stopwords.words('english') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
-            if lang == 'nl':
-                bag_filtered = [simplemma.lemmatize(w,lang='nl') for w in bow if w not in stopwords.words('dutch') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
+            #print(literals)    
+            bow = bows.make_bows(literals,lang,merge_bows=True)
                 
-            q_bag[hit["QID"]] = bag_filtered
+            q_bag[hit["QID"]] = bow
 
             list_by_term.append(q_bag)
 
@@ -680,4 +668,3 @@ def get_lit_related_matches_bow(lang:str) -> dict:
                             results[term] = {"QID":rm_wd,"bow":related_matches_wd_qid_bows[rm_wd]}
             
     return results
-

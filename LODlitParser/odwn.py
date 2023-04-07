@@ -10,6 +10,7 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import simplemma
+import bows
 
 def _set_odwn(path_odwn:str):
     """
@@ -211,20 +212,13 @@ def get_bows(path_to_results:str) -> dict:
                 if hit["sense_definition"] != "":
                     literals.append(hit["sense_definition"])
 
-            bow = []
-            for lit in literals:
-                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
-                           .replace(',','').lower().split(' '))
-
-            # lemmatizer can output uppercase lemmas
-            bag_filtered = [simplemma.lemmatize(w,lang='nl').lower() for w in bow if w not in stopwords.words('dutch') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
+            bow = bows.make_bows(literals,"nl",merge_bows=True)
 
             # if there's no synset ID, using LE ID as key
             if hit["synset_id"] != "":
-                q_bag[hit["synset_id"]] = bag_filtered
+                q_bag[hit["synset_id"]] = bow
             else:
-                q_bag[hit["le_id"]] = bag_filtered
+                q_bag[hit["le_id"]] = bow
 
             list_by_term.append(q_bag)
 

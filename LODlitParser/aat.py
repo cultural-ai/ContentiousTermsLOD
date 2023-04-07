@@ -11,6 +11,8 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import simplemma
+import pandas as pd
+import requests
 import bows
 
 def main():
@@ -218,7 +220,7 @@ def find_term_in_literals(query_term:str, lang:str) -> list:
             
     return list_of_results
 
-def get_bows_old(path_to_results:str, lang:str) -> dict:
+def get_bows(path_to_results:str, lang:str) -> dict:
     '''
     Getting bag of words (BoW) from the AAT search results for every search term
     path_to_results: str, a path to the search results (in json format)
@@ -240,118 +242,13 @@ def get_bows_old(path_to_results:str, lang:str) -> dict:
             q_bag = {}
             literals = []
             
-            if hit["prefLabel"] != "":
-                literals.append(hit["prefLabel"]) 
-            if hit["prefLabel_comment"] != "":
-                literals.append(hit["prefLabel_comment"])
-            if hit["scopeNote"] != "":
-                literals.append(hit["scopeNote"])
-            # altLabel and altLabel comments are lists
-            if hit["altLabel"] != []:
-                literals.extend(hit["altLabel"])
-            if hit["altLabel_comment"] != "":
-                literals.extend(hit["altLabel_comment"])
+            literals.append(hit["prefLabel"])
+            literals.append(hit["prefLabel_comment"])
+            literals.append(hit["scopeNote"])
+            literals.extend(hit["altLabel"])
+            literals.extend(hit["altLabel_comment"])
 
-            bow = []
-            for lit in literals:
-                bow.extend(lit.replace('(','').replace(')','').replace('-',' ').replace('/',' ')\
-                           .replace(',','').lower().split(' '))
-
-            # checking lang for stopwords
-            if lang == 'en':
-                bag_filtered = [wnl.lemmatize(w) for w in bow if w not in stopwords.words('english') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
-            if lang == 'nl':
-                bag_filtered = [simplemma.lemmatize(w,lang='nl') for w in bow if w not in stopwords.words('dutch') \
-                                    and re.search('(\W|\d)',w) == None and w != '']
-
-            q_bag[hit["aat_uri"]] = bag_filtered
-
-            list_by_term.append(q_bag)
-
-        all_bows[query_term] = list_by_term
-
-    return all_bows
-
-def get_bows_tf_idf(path_to_results:str, lang:str, scopeNote_tf_idf:True) -> dict:
-    '''
-    Getting bag of words (BoW) from the AAT search results for every search term
-    path_to_results: str, a path to the search results (in json format)
-    lang: str, 'en' or 'nl'
-    scopeNote_tf_idf: bool, getting only top 10 tokens from scopeNotes based on their TF-IDF scores
-    Returns a dict with BoWs per hit per term: {term:[{aat_URI:['token1','token2','token3']}]}
-    '''
-    
-    all_bows = {}
-   
-    with open(path_to_results,'r') as jf:
-        search_results = json.load(jf)
-
-    ### ### ###
-    # for TF-IDF weighting, calculate DF: get all unique tokens, all docs, N docs
-    if scopeNote_tf_idf == True:
-        
-        all_scopeNotes = []
-        all_tokens = []
-            
-        for value in search_results.values():
-            for hit in value:
-                if hit["scopeNote"] != "" and hit["scopeNote"] not in all_scopeNotes:
-                    scopeNote_bow = bows.make_bows([hit["scopeNote"]],lang,merge_bows=True)
-                    all_scopeNotes.append(scopeNote_bow)
-        
-                    # collecting all unique tokens
-                    for token in scopeNote_bow:
-                        if token not in all_tokens:
-                            all_tokens.append(token)
-
-        n_docs = len(all_scopeNotes)
-
-        # making a dict with document frequency (DF) scores for every unique token
-        doc_freq = {}
-        for token in all_tokens:
-            token_count = 0
-            for bow in all_scopeNotes:
-                if token in bow:
-                    token_count += 1
-            doc_freq[token] = token_count
-
-    ### ### ###
-
-    for query_term, results in search_results.items():
-
-        list_by_term = []
-
-        for hit in results:
-            q_bag = {}
-            literals = []
-
-            if scopeNote_tf_idf == True and hit["scopeNote"] != "":
-
-                bow =[]
-                no_scope_note = []
-            
-                no_scope_note.append(hit["prefLabel"])
-                no_scope_note.append(hit["prefLabel_comment"])
-                no_scope_note.extend(hit["altLabel"])
-                no_scope_note.extend(hit["altLabel_comment"])
-
-                no_scope_note_bow = bows.make_bows(no_scope_note,lang,merge_bows=True)
-
-                scope_note_bow = bows.make_bows([hit["scopeNote"]],lang,merge_bows=True)
-                scope_note_bow_tfidf = get_top_tokens_tfidf(scope_note_bow,doc_freq,n_docs)
-
-                bow.extend(no_scope_note_bow)
-                bow.extend(scope_note_bow_tfidf)
-
-            else:
-                literals.append(hit["prefLabel"])
-                literals.append(hit["prefLabel_comment"])
-                literals.extend(hit["altLabel"])
-                literals.extend(hit["altLabel_comment"])
-                literals.append(hit["scopeNote"])
-
-                bow = bows.make_bows(literals,lang,merge_bows=True)
+            bow = bows.make_bows(literals,lang,merge_bows=True)
 
             q_bag[hit["aat_uri"]] = bow
 
@@ -362,29 +259,29 @@ def get_bows_tf_idf(path_to_results:str, lang:str, scopeNote_tf_idf:True) -> dic
     return all_bows
 
 
-def get_lit_related_matches_bow(lang:str, path:str) -> dict:
+def get_lit_related_matches_bow(lang:str) -> dict:
     '''
     Generates dict with BoWs by query terms and their related matches in AAT
     reads files with AAT BoWs: aat_bows_en.json (EN), aat_bows_nl.json (NL)
     the info about which AAT concept is a related match to the query term is taken from https://github.com/cultural-ai/wordsmatter/blob/main/related_matches/rm.csv
     lang: str, 'en' or 'nl'
-    path: str, path to the file with aat bows (could be bows with all tokens or weighted TF-IDF tokens), for example "AAT/aat_bows_en.json"
     Returns a dict with BoWs by term: {term:{concept_uri:['token1','token2','token3']}}
     '''
     
     results = {}
     
-    # loading related matches
-    # change path
-    with open('/Users/anesterov/reps/wordsmatter/related_matches/rm.json','r') as jf:
-        rm = json.load(jf)
+    # loading related matches from GitHub
+    path_rm = "https://github.com/cultural-ai/wordsmatter/raw/main/related_matches/rm.json"
+    rm = requests.get(path_rm).json()
     
     # checking lang
     if lang == "en":
-        with open(path,'r') as jf:
+        # change path
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
             aat_bows = json.load(jf)
         
         # getting a list of all AAT URIs of related matches
+        # terms with no related matches won't be included in the file
         related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
                                 if values["lang"] == "en" and values["related_matches"]["aat"][0] != 'None']))    
         
@@ -407,7 +304,8 @@ def get_lit_related_matches_bow(lang:str, path:str) -> dict:
                             results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
             
     if lang == "nl":
-        with open(path,'r') as jf:
+        # change path
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
             aat_bows = json.load(jf)
             
         # getting a list of all AAT URIs of related matches
@@ -433,3 +331,66 @@ def get_lit_related_matches_bow(lang:str, path:str) -> dict:
                             results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
             
     return results
+
+
+def get_cs(lang:str):
+    '''
+    Calculating three cosine similarity scores between AAT search results and background info;
+    the similarity scores are based on (1) only related matches, (2) only WM text, and (3) extended bows with related matches and WM text
+    lang:str, language of bows, "en" or "nl"
+    Returns a pandas data frame with columns:
+    query_term, aat_URI, bow, cs_rm, cs_wm, cs_rm_wm
+    '''
+
+    nlp = bows._load_spacy_nlp(lang)
+
+    # load bckground info
+    # change path
+    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
+        bg_info = json.load(jf)
+
+    aat_df = pd.DataFrame(columns=['term','URI','aat_bow','cs_rm','cs_wm','cs_rm_wm'])
+
+    # check lang and load appropriate file
+
+    if lang == "en":
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
+            aat_bows = json.load(jf)
+
+    if lang == "nl":
+        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
+            aat_bows = json.load(jf)
+
+    for term, hits in aat_bows.items():
+
+        bg_rm = bows._collect_bg(term,lang,bg_info,bg_bow="rm")
+        bg_wm = bows._collect_bg(term,lang,bg_info,bg_bow="wm")
+        bg_rm_wm = bows._collect_bg(term,lang,bg_info,bg_bow="joint")
+          
+        # if there are search results
+        if len(hits) > 0:
+            for hit in hits:
+                for i, bow in hit.items():
+                    # making a set
+                    aat_bow = list(set(bow))
+                    
+                    if len(aat_bow) > 0:
+                        # calculate cs
+                        cs_rm = bows.calculate_cs(bg_rm,aat_bow,nlp)
+                        cs_wm = bows.calculate_cs(bg_wm,aat_bow,nlp)
+                        cs_rm_wm = bows.calculate_cs(bg_rm_wm,aat_bow,nlp)
+                        
+                        aat_df.loc[len(aat_df)] = [term,i,aat_bow,cs_rm,cs_wm,cs_rm_wm]
+                    
+                    # if there are no tokens, all cs = None
+                    else:
+                        aat_df.loc[len(aat_df)] = [term,i,aat_bow,None,None,None]
+
+        # if there are no search results in AAT, cs = None
+        else:
+            aat_df.loc[len(aat_df)] = [term,None,None,None,None,None]
+
+    return aat_df
+
+
+
