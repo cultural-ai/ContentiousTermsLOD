@@ -42,7 +42,6 @@ def find_term(query_term:str) -> list:
         warnings.warn("This module is created to parse WordNet 3.1. Your version is different. Download version 3.1 from 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip' and put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora'. Import wordnet again and check your version with .get_version()")
 
     search_results = []
-
     # searching in lemmata
     # getting synset_id, lemmata (synonyms), definition, examples
     for synset in wn.synsets(query_term):
@@ -58,8 +57,10 @@ def find_term(query_term:str) -> list:
                 result_dict['found_in'] = 'lemmata'
                 search_results.append(result_dict)
 
-    # searching in all definitions
+    # searching in all synsets
     for synset in list(wn.all_synsets()):
+
+        # searching in definitions
         if len(re.findall(f'\\b{query_term}\\b',synset.definition(),re.IGNORECASE)) > 0:
             result_dict = {}
             result_dict['query_term'] = query_term
@@ -70,17 +71,17 @@ def find_term(query_term:str) -> list:
             result_dict['found_in'] = 'definition'
             search_results.append(result_dict)
 
-    # searching in all examples
-    for example in synset.examples():
-        if len(re.findall(f'\\b{query_term}\\b',example,re.IGNORECASE)) > 0:
-            result_dict = {}
-            result_dict['query_term'] = query_term
-            result_dict['synset_id'] = synset.name()
-            result_dict['lemmata'] = [l.name() for l in synset.lemmas()]
-            result_dict['definition'] = synset.definition()
-            result_dict['examples'] = synset.examples()
-            result_dict['found_in'] = 'examples'
-            search_results.append(result_dict)
+        # searching in examples
+        for example in synset.examples():
+            if len(re.findall(f'\\b{query_term}\\b',example,re.IGNORECASE)) > 0:
+                result_dict = {}
+                result_dict['query_term'] = query_term
+                result_dict['synset_id'] = synset.name()
+                result_dict['lemmata'] = [l.name() for l in synset.lemmas()]
+                result_dict['definition'] = synset.definition()
+                result_dict['examples'] = synset.examples()
+                result_dict['found_in'] = 'examples'
+                search_results.append(result_dict)
 
     return search_results
 
