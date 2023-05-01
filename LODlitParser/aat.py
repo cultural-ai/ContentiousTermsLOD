@@ -349,7 +349,7 @@ def get_cs(lang:str):
     with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
         bg_info = json.load(jf)
 
-    aat_df = pd.DataFrame(columns=['term','URI','aat_bow','cs_rm','cs_wm','cs_rm_wm'])
+    aat_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
 
     # check lang and load appropriate file
 

@@ -215,9 +215,9 @@ def get_cs():
     with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
         bg_info = json.load(jf)
 
-    pwn_df = pd.DataFrame(columns=['term','hit_id','pwn_bow','cs_rm','cs_wm','cs_rm_wm'])
+    pwn_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
 
-    # load pwn search results
+    # load all pwn bows
     with open('/Users/anesterov/reps/LODlit/PWN/pwn31_bows.json','r') as jf:
             pwn_bows = json.load(jf)
 

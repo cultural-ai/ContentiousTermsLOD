@@ -10,6 +10,7 @@ import json
 import requests
 import time
 import re
+import pandas as pd
 import gzip
 import warnings
 import bows
@@ -668,3 +669,123 @@ def get_lit_related_matches_bow(lang:str) -> dict:
                             results[term] = {"QID":rm_wd,"bow":related_matches_wd_qid_bows[rm_wd]}
             
     return results
+
+def get_cs(lang:str):
+    '''
+    Calculating three cosine similarity scores between Wikidata search results and background info;
+    the similarity scores are based on (1) only related matches, (2) only WM text, and (3) extended bows with related matches and WM text
+    lang:str, language of bows, "en" or "nl"
+    Returns a pandas data frame with columns:
+    query_term, QID, bow, cs_rm, cs_wm, cs_rm_wm
+    '''
+
+    nlp = bows._load_spacy_nlp(lang)
+
+    # load bckground info
+    # change path
+    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
+        bg_info = json.load(jf)
+
+    wikidata_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
+
+    # check lang and load appropriate file
+
+    if lang == "en":
+        # change path
+        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_en.json", 'r') as gzip_json:
+            wikidata_bows = json.loads(gzip_json.read().decode('utf-8'))
+
+    if lang == "nl":
+        # change path
+        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_nl.json", 'r') as gzip_json:
+            wikidata_bows = json.loads(gzip_json.read().decode('utf-8'))
+
+    for term, hits in wikidata_bows.items():
+
+        bg_rm = bows._collect_bg(term,lang,bg_info,bg_bow="rm")
+        bg_wm = bows._collect_bg(term,lang,bg_info,bg_bow="wm")
+        bg_rm_wm = bows._collect_bg(term,lang,bg_info,bg_bow="joint")
+          
+        # if there are search results
+        if len(hits) > 0:
+            for hit in hits:
+                for i, bow in hit.items():
+                    # making a set
+                    wd_bow = list(set(bow))
+                    
+                    if len(wd_bow) > 0:
+                        # calculate cs
+                        cs_rm = bows.calculate_cs(bg_rm,wd_bow,nlp)
+                        cs_wm = bows.calculate_cs(bg_wm,wd_bow,nlp)
+                        cs_rm_wm = bows.calculate_cs(bg_rm_wm,wd_bow,nlp)
+                        
+                        wikidata_df.loc[len(wikidata_df)] = [term,i,wd_bow,cs_rm,cs_wm,cs_rm_wm]
+                    
+                    # if there are no tokens, all cs = None
+                    else:
+                        wikidata_df.loc[len(wikidata_df)] = [term,i,wd_bow,None,None,None]
+
+        # if there are no search results in Wikidata, cs = None
+        else:
+            wikidata_df.loc[len(wikidata_df)] = [term,None,None,None,None,None]
+
+    return wikidata_df
+
+
+def get_n_hits_by_properties(path_to_results:str, lang:str, group_by_lemma=False):
+    '''
+    Getting N of hits of query terms by properties in Wikidata
+    with optional grouping by lemmas
+    path_to_results: str, path to a json file with results (query results or annotated entities)
+    lang: str, language of results, "en" or "nl"
+    group_by_lemma: bool, if group N hits by lemma, default False (count by query term)
+    Requires the file with query terms "query_terms.json"
+    Returns a pandas dataframe
+    '''
+    # importing query terms with lemmas
+    with open('/Users/anesterov/reps/LODlit/query_terms.json','r') as jf:
+        query_terms = json.load(jf)
+    
+    with open(path_to_results,'r') as jf:
+        wd_results = json.load(jf)
+        
+    n_occurences_by_query_term = pd.DataFrame(columns=["lemma","query_term","lang","wd_prefLabel","wd_aliases","wd_descr","wd_qt_total"])
+
+    for term, hits in wd_results.items():
+        # property counters
+        pref = 0
+        alias = 0
+        descr = 0
+        
+        for hit in hits:
+            if hit["found_in"] == "prefLabel":
+                pref += 1
+            if hit["found_in"] == "aliases":
+                alias += 1
+            if hit["found_in"] == "description":
+                descr += 1
+        
+        total_count_by_qt = pref + alias + descr
+                
+        # getting lemma of a query term
+        for l, wordforms in query_terms[lang].items():
+                if term in wordforms:
+                    lemma = l
+        
+        data = [lemma,term,lang,pref,alias,descr,total_count_by_qt]
+        n_occurences_by_query_term.loc[len(n_occurences_by_query_term)] = data
+        
+        results_to_return = n_occurences_by_query_term
+                
+    if group_by_lemma == True:
+        
+        n_occurences_by_lemma = pd.DataFrame(columns=["lemma","lang","wd_prefLabel","wd_aliases","wd_descr","wd_lemma_total"])
+        
+        for group in n_occurences_by_query_term.groupby('lemma'):
+            row = [group[0],lang,sum(group[1]['wd_prefLabel']),sum(group[1]['wd_aliases']),\
+              sum(group[1]['wd_descr']),sum(group[1]['wd_qt_total'])]
+            n_occurences_by_lemma.loc[len(n_occurences_by_lemma)] = row
+            
+        results_to_return = n_occurences_by_lemma
+        
+    return results_to_return

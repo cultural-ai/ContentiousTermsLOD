@@ -2,6 +2,7 @@
 
 import re
 import math
+import pandas as pd
 import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
@@ -235,3 +236,26 @@ def _vectorize_bows(bow_1:list, bow_2:list) -> int:
     cos_sim = c / float((sum(v1) * sum(v2)) ** 0.5)
     
     return cos_sim
+
+
+def get_top_10_per_term(cs_table_path:str, metric:str):
+    '''
+    Getting top-10 results (max 10) (entities) for every query term based on a metric
+    cs_table_path: str, path to the csv table with cosine similarity scores
+    metric: str, shch metric to take to get top-10
+        options for metric: (1) "cs_rm" -- only related matches, (2) "cs_wm" -- only WM text, and (3) "cs_rm_wm" -- extended bows with related matches and WM text
+    Returns a pandas data frame (a subset of cs_table) with ranked results per term
+    '''
+
+    top_10 = pd.DataFrame()
+    cs_table = pd.read_csv(cs_table_path)
+
+    # dropping duplicates (taking only unique entities for top-10)
+    
+    cs_table.drop_duplicates(subset=["term","hit_id"], inplace=True)
+
+    for group in cs_table.groupby("term"):
+        top_10 = top_10.append(group[1].sort_values(by=metric, ascending=False)[0:10])
+
+    return top_10
+
