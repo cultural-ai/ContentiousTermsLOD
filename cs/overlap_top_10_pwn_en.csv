@@ -2,6 +2,7 @@ term,overlap
 aboriginal,1.0
 baboo,1.0
 barbarian,1.0
+barbarians,1.0
 berber,1.0
 berbers,1.0
 black,0.5
@@ -13,20 +14,22 @@ calcutta,1.0
 caucasian,1.0
 colored,0.4
 coolie,1.0
-descent,0.5
+descent,0.6
 developing nations,1.0
 disabled,1.0
-discover,0.3
+discover,0.5
 dwarf,0.8
 dwarfs,1.0
 eskimo,1.0
 eskimos,1.0
-ethnic group,1.0
+ethnic group,0.9
 ethnic groups,1.0
 ethnicity,1.0
 exotic,1.0
+first world,1.0
 footman,1.0
-gay,1.0
+footmen,1.0
+gay,0.9
 gypsies,1.0
 gypsy,1.0
 half-breed,1.0
@@ -34,13 +37,13 @@ handicap,1.0
 handicaps,1.0
 headhunter,1.0
 hermaphrodite,1.0
-homo,1.0
+homo,0.9
 homosexual,0.8
 homosexuals,1.0
 hottentot,1.0
 immigrant,1.0
-immigrants,1.0
-indian,0.7
+immigrants,0.6
+indian,0.9
 indians,0.8
 indigenous,0.8
 indo,0.6
@@ -51,6 +54,7 @@ madras,1.0
 maroon,0.9
 medicine man,1.0
 mestizo,1.0
+mestizos,1.0
 metis,1.0
 mohammedan,1.0
 mongoloid,1.0
@@ -58,29 +62,33 @@ moor,1.0
 moors,1.0
 mulatto,1.0
 native,0.2
-natives,1.0
+natives,0.9
 negro,1.0
-oriental,1.0
-page,0.7
-pages,0.8
-primitive,0.5
+negroes,1.0
+oriental,0.9
+page,0.6
+pages,0.6
+primitive,0.6
 primitivism,1.0
 pygmy,1.0
 queer,1.0
 race,0.8
-races,0.8
+races,0.9
 retarded,1.0
 roots,0.2
-servant,0.7
-servants,1.0
-slave,0.8
-slaves,0.8
+second world,1.0
+servant,0.8
+servants,0.9
+slave,0.7
+slaves,0.9
+third world,1.0
 traditional,0.7
 trans,1.0
 transvestite,1.0
-tribe,0.9
-tribes,0.9
+tribe,0.6
+tribes,0.6
 western,0.4
-white,0.5
+westerns,1.0
+white,0.4
 whiter,1.0
-whites,1.0
+whites,0.9

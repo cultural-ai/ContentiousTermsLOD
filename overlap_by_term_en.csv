@@ -1,137 +1,137 @@
 ,term,overlap_wd,overlap_aat,pwn_overlap
 0,aboriginal,0.2,0.5,1.0
-1,aboriginals,0.7,1.0,
-2,allochtoon,1.0,,
-3,baboo,0.6,,1.0
+1,aboriginals,0.7,1.0,0.0
+2,allochtoon,1.0,0.0,0.0
+3,baboo,0.6,0.0,1.0
 4,barbarian,0.5,1.0,1.0
-5,barbarians,0.5,,
-6,batavia,0.1,1.0,
+5,barbarians,0.5,0.0,1.0
+6,batavia,0.1,1.0,0.0
 7,berber,0.0,0.1,1.0
 8,berbers,0.4,1.0,1.0
 9,black,0.1,0.3,0.5
-10,blacker,0.4,,
-11,blackest,1.0,,1.0
+10,blacker,0.4,0.0,0.0
+11,blackest,1.0,0.0,1.0
 12,blacks,0.5,1.0,1.0
 13,bombay,0.3,1.0,1.0
 14,burma,0.1,0.9,0.7
-15,bush negro,1.0,,
+15,bush negro,1.0,0.0,0.0
 16,calcutta,0.4,1.0,1.0
 17,caucasian,0.2,1.0,1.0
-18,caucasians,0.9,,
+18,caucasians,0.9,0.0,0.0
 19,colored,0.2,0.2,0.4
-20,coolie,0.8,,1.0
-21,coolies,0.6,,
-22,descent,0.5,0.9,0.5
-23,developing nation,1.0,,
+20,coolie,0.8,0.0,1.0
+21,coolies,0.6,0.0,0.0
+22,descent,0.5,0.9,0.6
+23,developing nation,1.0,0.0,0.0
 24,developing nations,0.7,1.0,1.0
 25,disabled,0.8,0.8,1.0
-26,discover,0.0,1.0,0.3
+26,discover,0.0,1.0,0.5
 27,dwarf,0.3,0.9,0.8
 28,dwarfs,0.5,1.0,1.0
-29,dwarves,0.8,1.0,
+29,dwarves,0.8,1.0,0.0
 30,eskimo,0.3,0.6,1.0
 31,eskimos,0.7,1.0,1.0
-32,ethnic group,0.3,0.6,1.0
+32,ethnic group,0.3,0.6,0.9
 33,ethnic groups,0.5,0.7,1.0
-34,ethnicities,0.8,,
+34,ethnicities,0.8,0.0,0.0
 35,ethnicity,0.3,1.0,1.0
 36,exotic,0.1,0.8,1.0
-37,exotics,1.0,,
-38,first world,0.2,1.0,
-39,footman,0.6,,1.0
-40,footmen,1.0,1.0,
-41,full blood,1.0,,
-42,gay,0.4,1.0,1.0
-43,gayer,0.8,,
-44,gayest,1.0,,
-45,gays,0.6,,
+37,exotics,1.0,0.0,0.0
+38,first world,0.2,1.0,1.0
+39,footman,0.6,0.0,1.0
+40,footmen,1.0,1.0,1.0
+41,full blood,1.0,0.0,0.0
+42,gay,0.4,1.0,0.9
+43,gayer,0.8,0.0,0.0
+44,gayest,1.0,0.0,0.0
+45,gays,0.6,0.0,0.0
 46,gypsies,0.6,1.0,1.0
 47,gypsy,0.3,1.0,1.0
-48,gypsys,1.0,,
-49,half-blood,0.0,,
-50,half-breed,0.5,,1.0
-51,half-breeds,1.0,,
+48,gypsys,1.0,0.0,0.0
+49,half-blood,0.0,0.0,0.0
+50,half-breed,0.5,0.0,1.0
+51,half-breeds,1.0,0.0,0.0
 52,handicap,0.7,1.0,1.0
 53,handicaps,0.9,1.0,1.0
-54,headhunter,0.4,,1.0
-55,headhunters,0.7,,
+54,headhunter,0.4,0.0,1.0
+55,headhunters,0.7,0.0,0.0
 56,hermaphrodite,0.7,1.0,1.0
-57,hermaphrodites,1.0,1.0,
-58,homo,0.7,0.8,1.0
-59,homos,1.0,,
+57,hermaphrodites,1.0,1.0,0.0
+58,homo,0.7,0.8,0.9
+59,homos,1.0,0.0,0.0
 60,homosexual,0.5,1.0,0.8
 61,homosexuals,0.9,1.0,1.0
 62,hottentot,1.0,1.0,1.0
-63,hottentots,0.9,1.0,
+63,hottentots,0.9,1.0,0.0
 64,immigrant,0.0,1.0,1.0
-65,immigrants,0.0,0.9,1.0
-66,indian,0.7,0.7,0.7
+65,immigrants,0.0,0.9,0.6
+66,indian,0.7,0.7,0.9
 67,indians,0.5,0.4,0.8
 68,indigenous,0.5,0.5,0.8
 69,indo,0.2,0.5,0.6
-70,indos,1.0,,
+70,indos,1.0,0.0,0.0
 71,inuit,0.3,0.9,1.0
-72,inuits,1.0,,
+72,inuits,1.0,0.0,0.0
 73,kaffir,0.8,1.0,1.0
-74,kaffirs,1.0,,
-75,lilliputian,1.0,,1.0
-76,lilliputians,1.0,,
-77,low-income countries,1.0,,
-78,low-income country,1.0,,
+74,kaffirs,1.0,0.0,0.0
+75,lilliputian,1.0,0.0,1.0
+76,lilliputians,1.0,0.0,0.0
+77,low-income countries,1.0,0.0,0.0
+78,low-income country,1.0,0.0,0.0
 79,madras,0.0,1.0,1.0
 80,maroon,0.5,1.0,0.9
-81,maroons,1.0,,
-82,medicine man,0.6,,1.0
-83,medicine men,0.9,1.0,
+81,maroons,1.0,0.0,0.0
+82,medicine man,0.6,0.0,1.0
+83,medicine men,0.9,1.0,0.0
 84,mestizo,0.7,1.0,1.0
-85,mestizos,0.9,,
+85,mestizos,0.9,0.0,1.0
 86,metis,0.6,1.0,1.0
 87,mohammedan,0.9,1.0,1.0
-88,mohammedans,1.0,,
+88,mohammedans,1.0,0.0,0.0
 89,mongoloid,1.0,1.0,1.0
 90,moor,0.1,1.0,1.0
 91,moors,0.3,1.0,1.0
-92,mulatto,0.7,,1.0
-93,mulattoes,1.0,,
-94,mulattos,1.0,1.0,
-95,métis,0.4,1.0,
+92,mulatto,0.7,0.0,1.0
+93,mulattoes,1.0,0.0,0.0
+94,mulattos,1.0,1.0,0.0
+95,métis,0.4,1.0,0.0
 96,native,0.1,0.4,0.2
-97,natives,0.7,1.0,1.0
+97,natives,0.7,1.0,0.9
 98,negro,0.3,1.0,1.0
-99,negroes,0.7,,
-100,negros,0.3,,
-101,oriental,0.2,0.8,1.0
-102,orientals,0.8,1.0,
-103,page,0.1,0.6,0.7
-104,pages,0.1,0.4,0.8
-105,primitive,0.5,0.9,0.5
-106,primitives,0.6,,
+99,negroes,0.7,0.0,1.0
+100,negros,0.3,0.0,0.0
+101,oriental,0.2,0.8,0.9
+102,orientals,0.8,1.0,0.0
+103,page,0.1,0.6,0.6
+104,pages,0.1,0.4,0.6
+105,primitive,0.5,0.9,0.6
+106,primitives,0.6,0.0,0.0
 107,primitivism,0.8,1.0,1.0
 108,pygmy,0.6,0.7,1.0
 109,queer,0.7,1.0,1.0
-110,queerer,1.0,,
-111,queerest,1.0,,
-112,queers,0.9,,
+110,queerer,1.0,0.0,0.0
+111,queerest,1.0,0.0,0.0
+112,queers,0.9,0.0,0.0
 113,race,0.6,0.9,0.8
-114,races,0.6,0.9,0.8
+114,races,0.6,0.9,0.9
 115,retarded,0.5,1.0,1.0
 116,roots,0.0,0.1,0.2
-117,second world,0.2,1.0,
-118,servant,0.2,1.0,0.7
-119,servants,0.4,0.8,1.0
-120,slave,0.1,1.0,0.8
-121,slaves,0.3,0.8,0.8
-122,southern rhodesia,0.1,,
-123,third world,0.4,1.0,
+117,second world,0.2,1.0,1.0
+118,servant,0.2,1.0,0.8
+119,servants,0.4,0.8,0.9
+120,slave,0.1,1.0,0.7
+121,slaves,0.3,0.8,0.9
+122,southern rhodesia,0.1,0.0,0.0
+123,third world,0.4,1.0,1.0
 124,traditional,0.0,0.3,0.7
 125,trans,0.7,1.0,1.0
 126,transvestite,0.8,1.0,1.0
-127,transvestites,1.0,,
-128,tribe,0.3,0.4,0.9
-129,tribes,0.1,0.2,0.9
+127,transvestites,1.0,0.0,0.0
+128,tribe,0.3,0.4,0.6
+129,tribes,0.1,0.2,0.6
 130,western,0.0,0.0,0.4
-131,westerns,0.6,1.0,
-132,white,0.2,0.2,0.5
+131,westerns,0.6,1.0,1.0
+132,white,0.2,0.2,0.4
 133,whiter,0.9,1.0,1.0
-134,whites,0.5,1.0,1.0
-135,whitest,1.0,,
+134,whites,0.5,1.0,0.9
+135,whitest,1.0,0.0,0.0
