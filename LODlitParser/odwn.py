@@ -333,15 +333,3 @@ def get_cs():
             odwn_df.loc[len(odwn_df)] = [term,None,None,None,None,None]
 
     return odwn_df
-
-
-
-
-
-
-
-
-
-
-
-
