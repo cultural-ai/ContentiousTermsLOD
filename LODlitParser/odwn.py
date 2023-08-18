@@ -364,17 +364,3 @@ def get_pragmatics_by_synset_id(ids:list, path_odwn:str) -> dict:
         pragmatics[i] = pragmatics_per_le
 
     return pragmatics
-
-def get_pragmatics_by_sense_id(sense_id:str, lemma:str, path_odwn:str) -> dict:
-
-    # importing ODWN
-    instance = _set_odwn(path_odwn)
-
-    pragmatics = {}
-
-    for le in instance.lemma_get_generator(lemma,ignore_case=True):
-        if le.get_sense_id() == sense_id:
-            pragmatics[le.get_id()] = le.get_pragmatics()
-
-    return pragmatics
-
