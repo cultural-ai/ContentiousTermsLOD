@@ -333,3 +333,48 @@ def get_cs():
             odwn_df.loc[len(odwn_df)] = [term,None,None,None,None,None]
 
     return odwn_df
+
+def get_pragmatics_by_synset_id(ids:list, path_odwn:str) -> dict:
+    '''
+    Get pragmatic values of lemmas by synset IDs
+    ids: list, synset ids, for example ["temperatuur-n-4", "temperatuur-n-3"]
+    path_odwn: str, path to the directory with OpenDutchWordnet (not including the module itself, for example "user/Downloads")
+    Returns dict: {'synset_id': [{'le_id': 'lemma_id',
+                       'pragmatics': {'register': None,
+                        'geography': None,
+                        'chronology': None,
+                        'connotation': None,
+                        'domain': None}}]}
+    '''
+    # importing ODWN
+    instance = _set_odwn(path_odwn)
+
+    pragmatics = {}
+
+    for i in ids:
+
+        pragmatics_per_le = []
+
+        for le in instance.les_all_les_of_one_synset(i):
+            dict_per_le = {}
+            dict_per_le["le_id"] = le.get_id()
+            dict_per_le["pragmatics"] = le.get_pragmatics()
+            pragmatics_per_le.append(dict_per_le)
+
+        pragmatics[i] = pragmatics_per_le
+
+    return pragmatics
+
+def get_pragmatics_by_sense_id(sense_id:str, lemma:str, path_odwn:str) -> dict:
+
+    # importing ODWN
+    instance = _set_odwn(path_odwn)
+
+    pragmatics = {}
+
+    for le in instance.lemma_get_generator(lemma,ignore_case=True):
+        if le.get_sense_id() == sense_id:
+            pragmatics[le.get_id()] = le.get_pragmatics()
+
+    return pragmatics
+
