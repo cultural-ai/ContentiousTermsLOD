@@ -1,0 +1,25 @@
+aat historic flag
+
+SELECT DISTINCT ?concept
+
+WHERE {
+
+?concept skos:inScheme aat: ;
+        xl:prefLabel|xl:altLabel ?label.
+
+?label gvp:historicFlag ?flag .
+  
+}
+
+SELECT DISTINCT ?concept ?flag
+
+WHERE {
+
+?concept skos:inScheme aat: ;
+        xl:prefLabel|xl:altLabel ?label.
+
+?label gvp:termKind ?flag .
+  
+FILTER (regex(str(?flag), "AvoidUse") || regex(str(?flag), "Pejorative") || regex(str(?flag), "Deprecated") || regex(str(?flag), "JargonOrSlang"))
+  
+}

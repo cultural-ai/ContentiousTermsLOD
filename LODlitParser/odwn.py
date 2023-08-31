@@ -334,12 +334,13 @@ def get_cs():
 
     return odwn_df
 
-def get_pragmatics_by_synset_id(ids:list, path_odwn:str) -> dict:
+def get_pragmatics(ids:list, path_odwn:str, by="synset_id") -> dict:
     '''
-    Get pragmatic values of lemmas by synset IDs
-    ids: list, synset ids, for example ["temperatuur-n-4", "temperatuur-n-3"]
+    Get pragmatic values of lemmas by synset IDs or sense IDs
+    ids: list, synset ids or sense_ids, for example ["temperatuur-n-4", "temperatuur-n-3"]
     path_odwn: str, path to the directory with OpenDutchWordnet (not including the module itself, for example "user/Downloads")
-    Returns dict: {'synset_id': [{'le_id': 'lemma_id',
+    by: str, how to get pragmatics: by "synset_id" or "sense_id", default is "synset_id"
+    Returns dict: {'id': [{'le_id': 'lemma_id',
                        'pragmatics': {'register': None,
                         'geography': None,
                         'chronology': None,
@@ -355,11 +356,22 @@ def get_pragmatics_by_synset_id(ids:list, path_odwn:str) -> dict:
 
         pragmatics_per_le = []
 
-        for le in instance.les_all_les_of_one_synset(i):
-            dict_per_le = {}
-            dict_per_le["le_id"] = le.get_id()
-            dict_per_le["pragmatics"] = le.get_pragmatics()
-            pragmatics_per_le.append(dict_per_le)
+        if by == "synset_id":
+
+            for le in instance.les_all_les_of_one_synset(i):
+                dict_per_le = {}
+                dict_per_le["le_id"] = le.get_id()
+                dict_per_le["pragmatics"] = le.get_pragmatics()
+                pragmatics_per_le.append(dict_per_le)
+
+        if by == "sense_id":
+
+            for le in instance.les_get_generator():
+                if le.get_sense_id() == i:
+                    dict_per_le = {}
+                    dict_per_le["le_id"] = le.get_id()
+                    dict_per_le["pragmatics"] = le.get_pragmatics()
+                    pragmatics_per_le.append(dict_per_le)
 
         pragmatics[i] = pragmatics_per_le
 
