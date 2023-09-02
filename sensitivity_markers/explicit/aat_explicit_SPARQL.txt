@@ -1,25 +1,29 @@
-aat historic flag
+# historic flag
 
 SELECT DISTINCT ?concept
 
-WHERE {
+WHERE { VALUES ?lang {aat:300388277 aat:300388256}
 
 ?concept skos:inScheme aat: ;
         xl:prefLabel|xl:altLabel ?label.
 
-?label gvp:historicFlag ?flag .
+?label gvp:historicFlag ?flag ;
+       dcterms:language ?lang .
   
 }
+
+# term Kind
 
 SELECT DISTINCT ?concept ?flag
 
-WHERE {
+WHERE { VALUES ?lang {aat:300388277 aat:300388256}
 
 ?concept skos:inScheme aat: ;
         xl:prefLabel|xl:altLabel ?label.
 
-?label gvp:termKind ?flag .
+?label gvp:termKind ?flag ;
+       dcterms:language ?lang .
   
 FILTER (regex(str(?flag), "AvoidUse") || regex(str(?flag), "Pejorative") || regex(str(?flag), "Deprecated") || regex(str(?flag), "JargonOrSlang"))
-  
-}
+       
+      }

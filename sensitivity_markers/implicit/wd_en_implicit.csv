@@ -1,4 +1,4 @@
-,resource,en,lemma,entity_id,property,value,implicit_marker,level
+,resource,lang,lemma,entity_id,property,value,implicit_marker,level
 0,wikidata,en,immigrant,Q1532765,description,derogatory term mostly referring to Mexican illegal immigrants to the USA,derogatory term,1
 1,wikidata,en,immigrant,Q8072681,description,slang term used by Italian American mobsters to refer to newer immigrant Italian mobsters,slang term,1
 2,wikidata,en,barbarian,Q134313,description,person perceived to be either uncivilized or primitive based on stereotypes,stereotypes,3

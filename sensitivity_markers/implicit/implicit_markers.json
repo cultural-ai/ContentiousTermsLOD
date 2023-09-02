@@ -43,7 +43,6 @@
 
 	"nl": ["negatieve bijklank",
 		"(\\bgebruik\b).*(\\bspecifiek\\w*\\b)|(\\bspecifiek\\w*\\b).*(\\bgebruik\\b)",
-		"(\\bgebruik\\w*\\b).*(\\bterm\\w*\\b)|(\\bterm\\w*\\b).*(\\bgebruik\\w*\\b)",
 		"verouderde benaming",
 		"noemen zichzelf",
 		"(\\bzichzelf\\b).*(\\b(aan)?duiden\\b)|(\\b(aan)?duiden\\b).*(\\bzichzelf\\b)"]},
