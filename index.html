@@ -19,6 +19,7 @@ Released under the MIT license: http://jsbin.mit-license.org
 <style id="jsbin-css">
 
 h1{
+  margin-top:15px;
   margin-left:15px
 }
 
@@ -63,7 +64,15 @@ h6 {
   z-index: 1;
 }
 
-.orcid_link {
+.authors {
+  margin-left:25px;
+  margin-bottom: 25px;
+  font-size:12pt;
+  font-weight: lighter;
+  color: #C0C0C0;
+}
+
+.author_link {
   text-decoration-style: dashed;
   font-size:12pt;
   font-weight: lighter;
@@ -76,9 +85,9 @@ h6 {
 <body>
 <h1>How Culturally Sensitive Terms are Used in Linked Open Data</h1>
 <h2>Online Appendix to the research paper</h2>
-<h3 class="orcid_link">by <a class="orcid_link" href="https://orcid.org/0000-0001-9697-101X">Andrei Nesterov</a>,
-  <a class="orcid_link" href="https://orcid.org/0000-0002-6865-0021">Laura Hollink</a>,
-  <a class="orcid_link" href="https://orcid.org/0000-0002-7748-4715">Jacco van Osenbruggen</a></h3>
+<div class="authors">by <a class="author_link" href="https://orcid.org/0000-0001-9697-101X">Andrei Nesterov</a>,
+  <a class="author_link" href="https://orcid.org/0000-0002-6865-0021">Laura Hollink</a>,
+  <a class="author_link" href="https://orcid.org/0000-0002-7748-4715">Jacco van Osenbruggen</a></div>
 
 <!-- WIKIDATA -->
 <div class="plot_box1">
@@ -111,7 +120,7 @@ h6 {
       <div id="9322703b-f610-4012-93fb-fdef20239906" class="plotly-graph-div" style="height:1230px; width:520px;"></div>
     </div>
   </div>
-
+  <br>
 
   <!-- subset -->
   <h3>Set 2</h3>
@@ -134,6 +143,7 @@ h6 {
        <div id="6665283b-4e83-43d3-838d-9453568bf8b3" class="plotly-graph-div" style="height:1230px; width:520px;"></div>
     </div>
   </div>
+  <br>
 
   <!-- rm -->
   <h3>Set 3</h3>
@@ -148,9 +158,6 @@ h6 {
     </div>
   </div>
   <br>
-
-  <br>
-
 
 </div>
 </div>
@@ -183,6 +190,7 @@ h6 {
       <div id="fa014285-e1d1-419f-9f2f-69bb023a51d7" class="plotly-graph-div" style="height:1230px; width:540px;"></div>
     </div>
   </div>
+  <br>
 
   <h3>Set 2</h3>
   <div class="row">
@@ -236,6 +244,7 @@ h6 {
       <div id="0f347c1a-cba8-4dbd-9562-80cf93441720" class="plotly-graph-div" style="height:1230px; width:540px;"></div>
     </div>
   </div>
+  <br>
 
   <h3>Set 2</h3>
     <div class="row">
@@ -256,7 +265,6 @@ h6 {
   </div>
   <br>
 
-
 </div>
 </div>
 <!-- // PWN -->
@@ -276,6 +284,7 @@ h6 {
       <div id="f7bf47d9-c625-4cd7-a910-19c14341920d" class="plotly-graph-div" style="height:1230px; width:540px;"></div>
     </div>
   </div>
+  <br>
 
     <h3>Set 2</h3>
   <div class="row">
@@ -295,7 +304,6 @@ h6 {
     </div>
   </div>
   <br>
-
 
 </div>
 </div>
@@ -385,7 +393,7 @@ if (document.getElementById("2468350c-ba47-4ee9-828b-2b3b7139139c"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 1. Wikidata EN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 9. Wikidata EN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -467,7 +475,7 @@ if (document.getElementById("4ff8728f-7c37-4de9-b343-f386e1c10ad1"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 2. Wikidata NL, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 10. Wikidata NL, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -549,7 +557,7 @@ if (document.getElementById("2e001f43-3a9f-4343-a68c-55c9107e3da1"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 3. Wikidata EN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 5. Wikidata EN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":590,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -629,7 +637,7 @@ if (document.getElementById("d919b697-5ff0-48ab-8036-e37f9cfa55b0"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 4. Wikidata EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 6. Wikidata EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":590,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -709,7 +717,7 @@ if (document.getElementById("6ad60630-afb8-4602-bc8d-6bdc0aa5b208"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 5. Wikidata NL, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 7. Wikidata NL, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":590,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -789,7 +797,7 @@ if (document.getElementById("6665283b-4e83-43d3-838d-9453568bf8b3"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 6. Wikidata NL, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 8. Wikidata NL, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":590,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -870,7 +878,7 @@ if (document.getElementById("722a829c-fd47-463f-89ff-59daa81c4f92"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 7. Wikidata EN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 1. Wikidata EN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true});}
@@ -950,7 +958,7 @@ if (document.getElementById("6d4c76ba-c118-4d88-ace1-2aeb4b9f355e"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 8. Wikidata EN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 2. Wikidata EN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true});}
@@ -1030,7 +1038,7 @@ if (document.getElementById("aa56f995-25b2-45d5-b6be-16bc188b925a"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 9. Wikidata NL, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 3. Wikidata NL, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true});}
@@ -1110,7 +1118,7 @@ if (document.getElementById("9322703b-f610-4012-93fb-fdef20239906"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 10. Wikidata NL, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 4. Wikidata NL, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true});}
@@ -1186,7 +1194,7 @@ if (document.getElementById("2ca6d40c-fb5d-47e4-b41f-1138fb57835b"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 11. AAT EN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 19. AAT EN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -1262,7 +1270,7 @@ if (document.getElementById("c9708189-bc2e-4af9-a494-3c2cbed73ffe"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 12. AAT NL, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 20. AAT NL, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1338,7 +1346,7 @@ if (document.getElementById("cf1a31d4-c017-4856-89bb-7f7774fc2218"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 13. PWN. Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 25. PWN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1414,13 +1422,11 @@ if (document.getElementById("eb4eb0f6-91f7-4073-82e8-604f84f726aa"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 14. ODWN. Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 30. ODWN, Set 3, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
   //
-
-
 
 
 if (document.getElementById("7c9ad17f-a08c-43f9-bc09-e97293087ad9"))
@@ -1499,7 +1505,7 @@ if (document.getElementById("7c9ad17f-a08c-43f9-bc09-e97293087ad9"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 15. AAT EN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 11. AAT EN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1580,7 +1586,7 @@ if (document.getElementById("e87c902a-ca23-41c2-b12f-2097d15b5679"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 16. AAT EN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 12. AAT EN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1661,7 +1667,7 @@ if (document.getElementById("52983cc6-7a75-456d-a3de-ce96cc507cba"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 17. AAT NL, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 13. AAT NL, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1742,7 +1748,7 @@ if (document.getElementById("fa014285-e1d1-419f-9f2f-69bb023a51d7"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 18. AAT NL, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 14. AAT NL, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
                         {"responsive": true})};
@@ -1818,7 +1824,7 @@ if (document.getElementById("1445ffed-9c1c-448e-9837-575dc282518f"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 19. PWN. Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 21. PWN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -1894,7 +1900,7 @@ if (document.getElementById("0f347c1a-cba8-4dbd-9562-80cf93441720"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 20. PWN. Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 22. PWN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -1973,7 +1979,7 @@ if (document.getElementById("ff0758fc-904f-4c18-a5d9-7bffe9edb8fb")) {          
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 21. ODWN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 26. ODWN, Set 1, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2052,7 +2058,7 @@ if (document.getElementById("f7bf47d9-c625-4cd7-a910-19c14341920d"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 22. ODWN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 27. ODWN, Set 1, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2135,7 +2141,7 @@ if (document.getElementById("244fd210-28c5-4773-91ee-51a5a50ac7b2"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 23. AAT EN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 15. AAT EN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2216,7 +2222,7 @@ if (document.getElementById("726217a5-4da0-4f45-8638-15aee4d6894f"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 24. AAT EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 16. AAT EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
  {"responsive": true})};
@@ -2297,7 +2303,7 @@ if (document.getElementById("071ca273-b222-4124-a225-161ac6994a8c"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 25. AAT EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 17. AAT EN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2378,7 +2384,7 @@ if (document.getElementById("8af95496-86a0-4718-89ae-c2fa1000ebb6"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 26. AAT NL, Set 2 proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 18. AAT NL, Set 2 proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2453,7 +2459,7 @@ if (document.getElementById("861568e8-512b-4fa0-a661-0bae01656061"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 27. PWN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 23. PWN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2528,7 +2534,7 @@ if (document.getElementById("b1e869b2-bc1e-410e-a18b-f232dfc8e818"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 28. PWN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 24. PWN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2606,7 +2612,7 @@ if (document.getElementById("00fd9904-8203-45c2-939f-bfde0ee6543a"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 29. ODWN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 28. ODWN, Set 2, absolute","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
@@ -2684,7 +2690,7 @@ if (document.getElementById("9f950572-ddde-4ea1-bfb0-5a60fb3cfdfa"))
 "zerolinecolor":"white","zerolinewidth":2}}},
 "title":{"font":{"size":14},
 "pad":{"t":-55},
-"text":"Figure 30. ODWN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
+"text":"Figure 29. ODWN, Set 2, proportional","x":0,"y":1,"yanchor":"top","yref":"paper"},
 "width":540,"xaxis":{"showgrid":false,"visible":false},
 "yaxis":{"showgrid":false,"visible":true}},
 {"responsive": true})};
