@@ -10,6 +10,9 @@ dependencies = [
 	'lxml==4.9.3'
  ]
 
+[LODlit.urls]
+"GitHub" = "https://github.com/cultural-ai/LODlit/LODlit_package"
+
 [metadata]
 name = "LODlit"
 version = "1.0.0"
