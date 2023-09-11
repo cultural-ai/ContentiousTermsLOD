@@ -1,11 +1,12 @@
 # Open Dutch WordNet parser
-# Download OpenDutchWordnet from "https://github.com/cultural-ai/OpenDutchWordnet"
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords'); install simplelemma
+# Download Open Dutch WordNet from "https://github.com/cultural-ai/OpenDutchWordnet"
+# requires lxml: pip install lxml
 
 import sys
 import json
 import csv
 import re
+import requests
 import pandas as pd
 import nltk
 from nltk.corpus import stopwords
@@ -42,12 +43,9 @@ def get_le_info(le_ids:list, path_odwn:str) -> dict:
     # importing ODWN
     instance = _set_odwn(path_odwn)
     
-    # change later
-    # importing all synset definitions from GitHub
-    # path_to_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
-    # synset_glosses = requests.get(path_to_glosses).json()
-    with open("/Users/anesterov/reps/LODlit/ODWN/odwn_synset_glosses.json","r") as jf:
-        synset_glosses = json.load(jf)
+    # load all glosses
+    path_to_glosses = "https://github.com/cultural-ai/LODlit/raw/main/ODWN/odwn_synset_glosses.json"
+    synset_glosses = requests.get(path_to_glosses).json()
     
     results_odwn = {}
 
@@ -66,12 +64,18 @@ def get_le_info(le_ids:list, path_odwn:str) -> dict:
                                 "synset_def": synset_glosses.get(synset_id)}
     return results_odwn
 
-def _shape_search_results(instance:"wn_grid_parser.Wn_grid_parser",query_term:str,le:"le.Le",all_synset_definitions:dict,found_in:str,example="") -> dict:
+def _shape_search_results(instance,query_term:str,le,all_synset_definitions:dict,found_in:str,example="") -> dict:
     
     """
+    instance: class wn_grid_parser.Wn_grid_parser
+    query_term: str
+    le: class le.Le
+    all_synset_definitions: dict, parses "https://github.com/cultural-ai/LODlit/raw/main/ODWN/odwn_synset_glosses.json" 
+    found_in: str
+    example: str, default is ""
     Returns a dict of search results
     This function does not perform searching,
-    But puts the search results of "find_terms" in a dict
+    but puts the search results of "find_terms" in a dict
     """
     
     result_dict = {}
@@ -132,12 +136,9 @@ def find_terms(query_terms:list, path_odwn:str) -> dict:
     # importing ODWN
     instance = _set_odwn(path_odwn)
     
-    # change later
-    # importing all synset definitions from GitHub
-    # path_to_glosses = "https://raw.githubusercontent.com/cultural-ai/wordsmatter/main/ODWN/odwn_synset_glosses.json"
-    # synset_glosses = requests.get(path_to_glosses).json()
-    with open("/Users/anesterov/reps/LODlit/ODWN/odwn_synset_glosses.json","r") as jf:
-        synset_glosses = json.load(jf)
+    # load all glosses
+    path_to_glosses = "https://github.com/cultural-ai/LODlit/raw/main/ODWN/odwn_synset_glosses.json"
+    synset_glosses = requests.get(path_to_glosses).json()
 
     results = {}
 
@@ -240,14 +241,13 @@ def get_lit_related_matches_bow() -> dict:
     results = {}
     
     # loading related matches
-    # change path
-    with open('/Users/anesterov/reps/LODlit/bg/related_matches_odwn.json','r') as jf:
-        rm = json.load(jf)
+    path_rm = "https://github.com/cultural-ai/wordsmatter/raw/main/related_matches/rm.json"
+    rm = requests.get(path_rm).json()
+
+    # load odwn bows
+    path_to_bows = f"https://github.com/cultural-ai/LODlit/raw/main/ODWN/odwn_bows.json"
+    odwn_bows = requests.get(path_to_bows).json()
     
-    # change path
-    with open('/Users/anesterov/reps/LODlit/ODWN/odwn_bows.json','r') as jf:
-        odwn_bows = json.load(jf)
-        
     # getting a list of all ODWN LE IDs and synset IDs of related matches
     odwn_les_synsets = []
     for values in rm.values():
@@ -293,15 +293,14 @@ def get_cs():
     nlp = bows._load_spacy_nlp("nl")
 
     # load bckground info
-    # change path
-    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
-        bg_info = json.load(jf)
+    path_bg = "https://github.com/cultural-ai/LODlit/raw/main/bg/background_info_bows.json"
+    bg_info = requests.get(path_bg).json()
+
+    # load all pwn bows
+    path_odwn_bows = f"https://github.com/cultural-ai/LODlit/raw/main/ODWN/odwn_bows.json"
+    odwn_bows = requests.get(path_pwn_bows).json()
 
     odwn_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
-
-    # load all odwn bows
-    with open('/Users/anesterov/reps/LODlit/ODWN/odwn_bows.json','r') as jf:
-            odwn_bows = json.load(jf)
 
     for term, hits in odwn_bows.items():
 

@@ -1,7 +1,10 @@
-#download 'en_core_web_lg' and 'nl_core_news_lg' from https://spacy.io/models
+# Functions to make bag-of-words from strings, collect background information, and  calculare cosine similarity
+# To use 'calculate_cs', download 'en_core_web_lg' and 'nl_core_news_lg' from https://spacy.io/models:
+# python -m spacy download en_core_web_lg AND python -m spacy download nl_core_news_lg
 
 import json
 import re
+import requests
 import math
 import pandas as pd
 import nltk
@@ -94,14 +97,11 @@ def get_top_tokens_tfidf(bow:list,doc_freq:dict,n_docs:int) -> list:
     if len(tokens_scores) < 10:
         top_tokens = [t[0] for t in tokens_scores]
     else:
-        #cut_off_score = tokens_scores[9][1] # taking top 10 scores
-        #top_tokens = [t[0] for t in tokens_scores if t[1] >= cut_off_score]
-        #if len(top_tokens) > 10:
         top_tokens = [t[0] for t in tokens_scores[0:10]]
     
     return top_tokens
 
-def _load_spacy_nlp(lang:str):
+def load_spacy_nlp(lang:str):
     '''
     Loads an NLP pipeline from spacy for terms vectorisation;
     lang: str, language of the strings to process, 'en' or 'nl';
@@ -123,7 +123,7 @@ def calculate_cs(bow_1:list, bow_2:list, nlp) -> float:
     Calculates cosine similarity between two bags of words;
     based on the spacy vectors
     bow_1 and bow_2: list, two bags of words;
-    nlp: spacy nlp class loaded through spacy.load
+    nlp: spacy nlp class loaded through spacy.load; use the function 'load_spacy_nlp'
     '''
 
     # converting list to str, spaces as a separator
@@ -242,7 +242,7 @@ def _vectorize_bows(bow_1:list, bow_2:list) -> int:
 def get_top_10(cs_table_path:str, metric:str, lang:str, groupby='lemma'):
     '''
     Getting top-10 results (max 10) (entities) for every query term based on a metric
-    cs_table_path: str, path to the csv table with cosine similarity scores
+    cs_table_path: str, path to the csv table with cosine similarity scores, see the files '[dataset]_[lang]_cs.csv'; for example, 'aat_en_cs.csv'; wikidata en cs is zipped;
     metric: str, which metric to take to get top-10
         options for metric: (1) "cs_rm" -- only related matches, (2) "cs_wm" -- only WM text, and (3) "cs_rm_wm" -- extended bows with related matches and WM text
     lang: str, 'en' or 'nl'; language of the dataset in teh csv table 
@@ -261,10 +261,10 @@ def get_top_10(cs_table_path:str, metric:str, lang:str, groupby='lemma'):
             top_10 = top_10.append(group[1].sort_values(by=metric, ascending=False)[0:10])
 
     if groupby == 'lemma':
-        # loading the query terms
-        # change path
-        with open('/Users/anesterov/reps/LODlit/query_terms.json','r') as jf:
-            query_terms = json.load(jf)
+
+        # loading query terms
+        path_query_terms = "https://github.com/cultural-ai/LODlit/raw/main/query_terms.json"
+        query_terms = requests.get(path_query_terms).json()
 
         # insert the lemmas column
         lemmas = []

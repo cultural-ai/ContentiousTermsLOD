@@ -1,3 +1,0 @@
-NLTK,
-wordnet31: 'https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip',
-OpenDutchWordnet: 'https://github.com/cultural-ai/OpenDutchWordnet'

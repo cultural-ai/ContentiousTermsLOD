@@ -1,12 +1,12 @@
-# Module for Princeton WordNet 3.1
+# Module to parse Princeton WordNet 3.1
 
-# install NLTK
-# Important! download wordnet31 ('https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip');
-# put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (it is not possible to import wordnet31 from nltk.corpus; See explanations on the WordNet website (retrieved on 10.02.2023): https://wordnet.princeton.edu/download/current-version; "WordNet 3.1 DATABASE FILES ONLY. You can download the WordNet 3.1 database files. Note that this is not a full package as those above, nor does it contain any code for running WordNet. However, you can replace the files in the database directory of your 3.0 local installation with these files and the WordNet interface will run, returning entries from the 3.1 database. This is simply a compressed tar file of the WordNet 3.1 database files."
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords');
+# Important! After installing NLTK, download wordnet31 ('https://github.com/nltk/nltk_data/blob/gh-pages/packages/corpora/wordnet31.zip');
+# put the content of 'wordnet31' to 'wordnet' in 'nltk_data/corpora' (it is not possible to import wordnet31 from nltk.corpus; See explanations on the WordNet website (retrieved on 10.02.2023): https://wordnet.princeton.edu/download/current-version; "WordNet 3.1 DATABASE FILES ONLY. You can download the WordNet 3.1 database files. Note that this is not a full package as those above, nor does it contain any code for running WordNet. However, you can replace the files in the database directory of your 3.0 local installation with these files and the WordNet interface will run, returning entries from the 3.1 database. This is simply a compressed tar file of the WordNet 3.1 database files.";
+# Use check_version() to ensure that WordNet 3.1 is imported
 
 import json
 import re
+import requests
 import nltk
 from nltk.corpus import wordnet as wn
 from nltk.corpus import stopwords
@@ -162,13 +162,12 @@ def get_lit_related_matches_bow() -> dict:
     results = {}
     
     # loading related matches
-    # change path
-    with open('/Users/anesterov/reps/wordsmatter/related_matches/rm.json','r') as jf:
-        rm = json.load(jf)
-    
-    # change path
-    with open('/Users/anesterov/reps/LODlit/PWN/pwn31_bows.json','r') as jf:
-        pwn_bows = json.load(jf)
+    path_rm = "https://github.com/cultural-ai/wordsmatter/raw/main/related_matches/rm.json"
+    rm = requests.get(path_rm).json()
+
+    # load pwn bows
+    path_to_bows = f"https://github.com/cultural-ai/LODlit/raw/main/PWN/pwn31_bows.json"
+    pwn_bows = requests.get(path_to_bows).json()
 
     # getting a list of all PWN synsets of related matches
     pwn_synsets = []
@@ -209,18 +208,17 @@ def get_cs():
     query_term, hit_id, bow, cs_rm, cs_wm, cs_rm_wm
     '''
 
-    nlp = bows._load_spacy_nlp("en")
+    nlp = bows.load_spacy_nlp("en")
 
     # load bckground info
-    # change path
-    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
-        bg_info = json.load(jf)
-
-    pwn_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
+    path_bg = "https://github.com/cultural-ai/LODlit/raw/main/bg/background_info_bows.json"
+    bg_info = requests.get(path_bg).json()
 
     # load all pwn bows
-    with open('/Users/anesterov/reps/LODlit/PWN/pwn31_bows.json','r') as jf:
-            pwn_bows = json.load(jf)
+    path_pwn_bows = f"https://github.com/cultural-ai/LODlit/raw/main/PWN/pwn31_bows.json"
+    pwn_bows = requests.get(path_pwn_bows).json()
+
+    pwn_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
 
     for term, hits in pwn_bows.items():
 
@@ -252,9 +250,3 @@ def get_cs():
             pwn_df.loc[len(pwn_df)] = [term,None,None,None,None,None]
 
     return pwn_df
-
-
-
-
-
-

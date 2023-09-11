@@ -1,6 +1,5 @@
 # Getty AAT
-# A module to parse query results (json) from Getty Art&Archiechture Thesaurus
-# to use 'get_bows', download stopwords from nltk: nltk.download('stopwords'); install simplelemma
+# A module to parse query results (json) from The Getty Art & Archiechture Thesaurus (AAT)
 
 import json
 import gzip
@@ -63,6 +62,7 @@ def sparql(aat_uri:list, lang:str) -> dict:
         sparql.setReturnFormat(JSON)
         results = sparql.query().convert()
         
+        prefLabel = None
         altLabels = []
         scopeNote = None
         prefLabel_comment = None
@@ -70,6 +70,8 @@ def sparql(aat_uri:list, lang:str) -> dict:
         
         for result in results['results']['bindings']:
             
+            if 'prefLabel' in result:
+                prefLabel = result['prefLabel']['value']
             if 'altLabels' in result:
                 altLabels = result['altLabels']['value'].split('#')
             if 'scopeNote' in result:
@@ -80,7 +82,7 @@ def sparql(aat_uri:list, lang:str) -> dict:
                 altLabel_comment = result['altLabel_comment']['value']
 
             result_dict[uri]['lang'] = lang
-            result_dict[uri]['prefLabel'] = result['prefLabel']['value']
+            result_dict[uri]['prefLabel'] = prefLabel
             result_dict[uri]['altLabels'] = altLabels
             result_dict[uri]['prefLabel_comment'] = prefLabel_comment
             result_dict[uri]['altLabel_comment'] = altLabel_comment
@@ -156,9 +158,11 @@ def find_term_in_literals(query_term:str, lang:str) -> list:
     '''
 
     # reading the gzip json file with aat search results
-    # change the path to GitHub
-    with gzip.open(f"/Users/anesterov/reps/LODlit/AAT/gzip_aat_subgraph_{lang}.json", 'r') as gzip_json:
-    	aat_gzip = json.loads(gzip_json.read().decode('utf-8'))
+    # path to raw gzip on GitHub
+    gzip_path = f"https://github.com/cultural-ai/LODlit/raw/main/AAT/gzip_aat_subgraph_{lang}.json"
+    
+    # decompressing
+    aat_gzip = json.loads(gzip.decompress(requests.get(gzip_path).content))
     
     list_of_results = []
     
@@ -220,19 +224,18 @@ def find_term_in_literals(query_term:str, lang:str) -> list:
             
     return list_of_results
 
-def get_bows(path_to_results:str, lang:str) -> dict:
+def get_bows(lang:str) -> dict:
     '''
     Getting bag of words (BoW) from the AAT search results for every search term
-    path_to_results: str, a path to the search results (in json format)
     lang: str, 'en' or 'nl'
     Returns a dict with BoWs per hit per term: {term:[{aat_URI:['token1','token2','token3']}]}
     '''
-    
+
+    path_to_results = f"https://github.com/cultural-ai/LODlit/raw/main/AAT/aat_query_results_{lang}.json"
+    search_results = requests.get(path_to_results).json()
+
     wnl = WordNetLemmatizer()
     all_bows = {}
-   
-    with open(path_to_results,'r') as jf:
-        search_results = json.load(jf)
 
     for query_term, results in search_results.items():
 
@@ -274,61 +277,32 @@ def get_lit_related_matches_bow(lang:str) -> dict:
     path_rm = "https://github.com/cultural-ai/wordsmatter/raw/main/related_matches/rm.json"
     rm = requests.get(path_rm).json()
     
-    # checking lang
-    if lang == "en":
-        # change path
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
-            aat_bows = json.load(jf)
-        
-        # getting a list of all AAT URIs of related matches
-        # terms with no related matches won't be included in the file
-        related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
-                                if values["lang"] == "en" and values["related_matches"]["aat"][0] != 'None']))    
-        
-        # getting BoWs for AAT concept URIs 
-        related_matches_aat_uri_bows = {}
-        for uri_rm in related_matches_aat:
-            for hits in aat_bows.values():
-                for hit in hits:
-                    for uri, bow in hit.items():
-                        if uri == uri_rm:
-                            related_matches_aat_uri_bows[uri_rm] = bow
-                            
-        # shaping resulting dict: terms with related matches and BoWs
-        for values in rm.values():
-            if values["lang"] == "en":
-                rm_aat = values["related_matches"]["aat"][0]
-                if rm_aat != "None":
-                    for term in values["query_terms"]:
-                        if rm_aat in related_matches_aat_uri_bows.keys():
-                            results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
-            
-    if lang == "nl":
-        # change path
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
-            aat_bows = json.load(jf)
-            
-        # getting a list of all AAT URIs of related matches
-        related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
-                                if values["lang"] == "nl" and values["related_matches"]["aat"][0] != 'None']))    
-        
-        # getting BoWs for AAT concept URIs 
-        related_matches_aat_uri_bows = {}
-        for uri_rm in related_matches_aat:
-            for hits in aat_bows.values():
-                for hit in hits:
-                    for uri, bow in hit.items():
-                        if uri == uri_rm:
-                            related_matches_aat_uri_bows[uri_rm] = bow
-                            
-        # shaping resulting dict: terms with related matches and BoWs
-        for values in rm.values():
-            if values["lang"] == "nl":
-                rm_aat = values["related_matches"]["aat"][0]
-                if rm_aat != "None":
-                    for term in values["query_terms"]:
-                        if rm_aat in related_matches_aat_uri_bows.keys():
-                            results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
+    # load aat bows
+    path_to_bows = f"https://github.com/cultural-ai/LODlit/raw/main/AAT/aat_bows_{lang}.json"
+    aat_bows = requests.get(path_to_bows).json()
+
+    # getting a list of all AAT URIs of related matches
+    # terms with no related matches won't be included in the file
+    related_matches_aat = list(set([values["related_matches"]["aat"][0] for values in rm.values() \
+                            if values["lang"] == lang and values["related_matches"]["aat"][0] != 'None']))    
+    
+    # getting BoWs for AAT concept URIs 
+    related_matches_aat_uri_bows = {}
+    for uri_rm in related_matches_aat:
+        for hits in aat_bows.values():
+            for hit in hits:
+                for uri, bow in hit.items():
+                    if uri == uri_rm:
+                        related_matches_aat_uri_bows[uri_rm] = bow
+                        
+    # shaping resulting dict: terms with related matches and BoWs
+    for values in rm.values():
+        if values["lang"] == lang:
+            rm_aat = values["related_matches"]["aat"][0]
+            if rm_aat != "None":
+                for term in values["query_terms"]:
+                    if rm_aat in related_matches_aat_uri_bows.keys():
+                        results[term] = {"aat_uri":rm_aat,"bow":related_matches_aat_uri_bows[rm_aat]}
             
     return results
 
@@ -342,24 +316,18 @@ def get_cs(lang:str):
     query_term, aat_URI, bow, cs_rm, cs_wm, cs_rm_wm
     '''
 
-    nlp = bows._load_spacy_nlp(lang)
+    nlp = bows.load_spacy_nlp(lang)
 
     # load bckground info
-    # change path
-    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
-        bg_info = json.load(jf)
+    path_bg = "https://github.com/cultural-ai/LODlit/raw/main/bg/background_info_bows.json"
+    bg_info = requests.get(path_bg).json()
+
+    # load aat bows
+
+    path_aat_bows = f"https://github.com/cultural-ai/LODlit/raw/main/AAT/aat_bows_{lang}.json"
+    aat_bows = requests.get(path_aat_bows).json()
 
     aat_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
-
-    # check lang and load appropriate file
-
-    if lang == "en":
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_en.json','r') as jf:
-            aat_bows = json.load(jf)
-
-    if lang == "nl":
-        with open('/Users/anesterov/reps/LODlit/AAT/aat_bows_nl.json','r') as jf:
-            aat_bows = json.load(jf)
 
     for term, hits in aat_bows.items():
 
@@ -391,6 +359,3 @@ def get_cs(lang:str):
             aat_df.loc[len(aat_df)] = [term,None,None,None,None,None]
 
     return aat_df
-
-
-

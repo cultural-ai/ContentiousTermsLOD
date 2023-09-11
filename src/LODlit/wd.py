@@ -1,6 +1,4 @@
-# Wikidata module
-# to use 'get_bows': (1) download stopwords from nltk: nltk.download('stopwords');
-# (2) install simplelemma
+# Wikidata module: sending API requests and claning the search results
 
 import nltk
 from nltk.corpus import stopwords
@@ -326,9 +324,10 @@ def get_labels_by_q(qids:list,lang:list,user_agent:str) -> dict:
 def _claims_parse_properties(query_results:dict, QID:str, propepties:list) -> dict:
     """
     Parses the values of the properties of entities from Wikidata response,
-    for example: get the values of the properrty P31 for the entity Q104534511;
-    Takes Wikidata response in json format, QID (str) (only 1 QID),
-    and properties (list of str; for example ['P31','P279']);
+    for example: get the values of the property P31 for the entity Q104534511;
+    query_results: dict, Wikidata response in json format;
+    QID: str, only 1 QID;
+    properties: list of str; for example ['P31','P279'];
     Return a dict {'QID': {'property_ID':{'property_value': ''}}};
     The empty value of the property_value is intended for its label, which is queried using another function
     """
@@ -609,64 +608,33 @@ def get_lit_related_matches_bow(lang:str) -> dict:
     results = {}
     
     # loading related matches
-    # change path
-    with open('/Users/anesterov/reps/wordsmatter/related_matches/rm.json','r') as jf:
-        rm = json.load(jf)
+    path_rm = "https://github.com/cultural-ai/wordsmatter/raw/main/related_matches/rm.json"
+    rm = requests.get(path_rm).json()
     
-    # checking lang
-    if lang == "en":
-        # change path
-        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_en.json", 'r') as gzip_json:
-            wd_bow = json.loads(gzip_json.read().decode('utf-8'))
-        
-        # getting a list of all QIDs of related matches in Wikidata
-        related_matches_wd_qid = list(set([values["related_matches"]["wikidata"][0] for values in rm.values() \
-                         if values["lang"] == "en" and values["related_matches"]["wikidata"][0] != 'None']))    
-        
-        # getting BoWs for QIDs
-        related_matches_wd_qid_bows = {}
-        for q_id_rm in related_matches_wd_qid:
-            for hits in wd_bow.values():
-                for hit in hits:
-                    for q_id, bow in hit.items():
-                        if q_id == q_id_rm:
-                            related_matches_wd_qid_bows[q_id] = bow
-                            
-        # shaping resulting dict: terms with related matches and BoWs
-        for values in rm.values():
-            if values["lang"] == "en":
-                rm_wd = values["related_matches"]["wikidata"][0]
-                if rm_wd != "None":
-                    for term in values["query_terms"]:
-                        if rm_wd in related_matches_wd_qid_bows.keys():
-                            results[term] = {"QID":rm_wd,"bow":related_matches_wd_qid_bows[rm_wd]}
-            
-    if lang == "nl":
-        # change path
-        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_nl.json", 'r') as gzip_json:
-            wd_bow = json.loads(gzip_json.read().decode('utf-8'))
-            
-        # getting a list of all QIDs of related matches in Wikidata
-        related_matches_wd_qid = list(set([values["related_matches"]["wikidata"][0] for values in rm.values() \
-                         if values["lang"] == "nl" and values["related_matches"]["wikidata"][0] != 'None']))    
-        
-        # getting BoWs for QIDs
-        related_matches_wd_qid_bows = {}
-        for q_id_rm in related_matches_wd_qid:
-            for hits in wd_bow.values():
-                for hit in hits:
-                    for q_id, bow in hit.items():
-                        if q_id == q_id_rm:
-                            related_matches_wd_qid_bows[q_id] = bow
-                            
-        # shaping resulting dict: terms with related matches and BoWs
-        for values in rm.values():
-            if values["lang"] == "nl":
-                rm_wd = values["related_matches"]["wikidata"][0]
-                if rm_wd != "None":
-                    for term in values["query_terms"]:
-                        if rm_wd in related_matches_wd_qid_bows.keys():
-                            results[term] = {"QID":rm_wd,"bow":related_matches_wd_qid_bows[rm_wd]}
+    # load wd bows
+    path_to_bows = f"https://github.com/cultural-ai/LODlit/raw/main/Wikidata/gzip_wd_bows_{lang}.json"
+    wd_bow = requests.get(path_to_bows).json()
+
+    # getting a list of all QIDs of related matches in Wikidata
+    related_matches_wd_qid = list(set([values["related_matches"]["wikidata"][0] for values in rm.values() \
+                     if values["lang"] == lang and values["related_matches"]["wikidata"][0] != 'None']))    
+    # getting BoWs for QIDs
+    related_matches_wd_qid_bows = {}
+    for q_id_rm in related_matches_wd_qid:
+        for hits in wd_bow.values():
+            for hit in hits:
+                for q_id, bow in hit.items():
+                    if q_id == q_id_rm:
+                        related_matches_wd_qid_bows[q_id] = bow
+                        
+    # shaping resulting dict: terms with related matches and BoWs
+    for values in rm.values():
+        if values["lang"] == lang:
+            rm_wd = values["related_matches"]["wikidata"][0]
+            if rm_wd != "None":
+                for term in values["query_terms"]:
+                    if rm_wd in related_matches_wd_qid_bows.keys():
+                        results[term] = {"QID":rm_wd,"bow":related_matches_wd_qid_bows[rm_wd]}
             
     return results
 
@@ -679,26 +647,17 @@ def get_cs(lang:str):
     query_term, QID, bow, cs_rm, cs_wm, cs_rm_wm
     '''
 
-    nlp = bows._load_spacy_nlp(lang)
+    nlp = bows.load_spacy_nlp(lang)
 
     # load bckground info
-    # change path
-    with open('/Users/anesterov/reps/LODlit/bg/background_info_bows.json','r') as jf:
-        bg_info = json.load(jf)
+    path_bg = "https://github.com/cultural-ai/LODlit/raw/main/bg/background_info_bows.json"
+    bg_info = requests.get(path_bg).json()
 
     wikidata_df = pd.DataFrame(columns=['term','hit_id','bow','cs_rm','cs_wm','cs_rm_wm'])
 
-    # check lang and load appropriate file
-
-    if lang == "en":
-        # change path
-        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_en.json", 'r') as gzip_json:
-            wikidata_bows = json.loads(gzip_json.read().decode('utf-8'))
-
-    if lang == "nl":
-        # change path
-        with gzip.open(f"/Users/anesterov/reps/LODlit/Wikidata/gzip_wd_bows_nl.json", 'r') as gzip_json:
-            wikidata_bows = json.loads(gzip_json.read().decode('utf-8'))
+    # load wd bows
+    path_wd_bows = f"https://github.com/cultural-ai/LODlit/raw/main/Wikidata/gzip_wd_bows_{lang}.json"
+    wikidata_bows = requests.get(path_wd_bows).json()
 
     for term, hits in wikidata_bows.items():
 
@@ -743,8 +702,9 @@ def get_n_hits_by_properties(path_to_results:str, lang:str, group_by_lemma=False
     Returns a pandas dataframe
     '''
     # importing query terms with lemmas
-    with open('/Users/anesterov/reps/LODlit/query_terms.json','r') as jf:
-        query_terms = json.load(jf)
+    # loading query terms
+    path_query_terms = "https://github.com/cultural-ai/LODlit/raw/main/query_terms.json"
+    query_terms = requests.get(path_query_terms).json()
     
     with open(path_to_results,'r') as jf:
         wd_results = json.load(jf)
