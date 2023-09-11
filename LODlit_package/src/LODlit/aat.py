@@ -12,7 +12,7 @@ from nltk.stem import WordNetLemmatizer
 import simplemma
 import pandas as pd
 import requests
-import bows
+from . import bows
 
 def main():
 	if __name__ == "__main__":

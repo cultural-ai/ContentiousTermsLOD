@@ -11,7 +11,7 @@ import re
 import pandas as pd
 import gzip
 import warnings
-import bows
+from . import bows
 
 def main():
     if __name__ == "__main__":

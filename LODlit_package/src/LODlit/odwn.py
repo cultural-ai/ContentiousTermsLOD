@@ -12,7 +12,11 @@ import nltk
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import simplemma
-import bows
+from . import bows
+
+def main():
+    if __name__ == "__main__":
+        main()
 
 def _set_odwn(path_odwn:str):
     """

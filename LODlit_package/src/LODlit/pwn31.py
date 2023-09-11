@@ -13,7 +13,7 @@ from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 import warnings
 import pandas as pd
-import bows
+from . import bows
 
 def main():
 

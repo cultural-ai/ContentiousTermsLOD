@@ -13,6 +13,10 @@ from nltk.stem import WordNetLemmatizer
 import simplemma
 import spacy # numpy version 1.21
 
+def main():
+    if __name__ == "__main__":
+        main()
+
 def make_bows(text:list, lang:str, merge_bows=False) -> list:
     '''
     Makes a BoW from a list of str:
