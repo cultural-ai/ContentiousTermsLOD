@@ -1,7 +1,0 @@
-sample,annotators,K_alpha_3_options,K_alpha_2_options
-wd_en,"1,2",0.103,0.134
-aat_en,"1,2",0.149,0.074
-pwn,"1,2",0.038,0.057
-wd_nl,"1,3",0.866,0.909
-aat_nl,"1,3",0.721,0.779
-odwn,"1,3",0.586,0.658
