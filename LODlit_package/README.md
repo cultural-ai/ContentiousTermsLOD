@@ -11,7 +11,7 @@ Currently, LODlit supports parsing from [Wikidata](https://www.wikidata.org/wiki
 
 ### Installation
 
-`pip install LODlit`
+```pip install LODlit```
 
 LODlit is available on [PyPI](https://pypi.org/project/LODlit/). The current version is 0.5.0.
 
