@@ -23,6 +23,7 @@ The online Appendix is available at [cultural-ai.github.io/LODlit](https://cultu
 
   #### Set 1: all retrieved literals
   #### Set 2: disambiguated literals
+  * [samples](samples) contains (1) samples for annotations by dataset and language, (2) background information for each term presented to anotators, (3) annotated samples with the prefix "ann_" and IDs of annotators (1 and 3); the notebook [samples.ipynb](samples.ipynb) generates 6 csv files with samples and calculates inter-annotator agreement for each annotated sample; the mean of these agreement scores (0.8) is reported in the section 4.2; 
   #### Set 3: literlas of resources from the knowledge graph
 
 ### Sensitivity markers
@@ -41,3 +42,6 @@ Read more in the package documentation.
 * \[13]: The list of exluded categories in Wikidata at the filtering step is in the file [statements_filter.json](Wikidata/statements_filter.json);
 * \[13]: The number of search results from Wikidata before and after filtering is in the file [n_entities_by_term.csv](Wikidata/n_entities_by_term.csv), the number of retrieved entities (<= 10K) is in [n_entities_retrieved_by_term.csv](Wikidata/n_entities_retrieved_by_term.csv); the number of **entities** after filtering proper names out (Set 1) is in [n_entities_clean_by_term.csv](Wikidata/n_entities_clean_by_term.csv) and the number of **hits** by canonical forms is in [n_hits_by_lemma.csv](Wikidata/n_hits_by_lemma.csv);
 
+### Other directories and files
+
+* [n_hits](n_hits) contains 36 csv files with number of terms' hits in the three sets by property values; the code to generate these files is in the notebook [n_hits.ipynb](n_hits.ipynb);
