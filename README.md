@@ -5,7 +5,7 @@ The online Appendix is available at [cultural-ai.github.io/LODlit](https://cultu
 
 ### Data
 
-* We reuse the previously developed [knowledge graph of contentious terminology][paper](https://doi.org/10.1007/978-3-031-33455-9_30);
+* We reuse the previously developed [knowledge graph of contentious terminology](https://doi.org/10.1007/978-3-031-33455-9_30);
 * From the knowledge graph, we extract culturally sensitive terms to inspect them in LOD-datasets; the process is in the notebook [getting_query_terms.ipynb](getting_query_terms.ipynb), the resulting file is [query_terms.json](query_terms.json); there are 75 EN and 82 NL canonical forms of terms, which are linked to their inflected forms (for example, "aboriginal" and "aboriginals"); with both canonical and inflected forms, there are 154 EN and 242 NL terms;
 * We query terms in four LOD datasets:
   * Wikidata (EN and NL);
