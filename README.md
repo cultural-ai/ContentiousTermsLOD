@@ -24,7 +24,7 @@
   #### Set 1: literlas of resources from the Words Matter Knowledge Graph (or related matches)
   * see [get_literals_set_2.ipynb](get_literals_set_2.ipynb); for the analysis of related matches, refer to [rm](rm)
   #### Set 2: all retrieved literals
-  * all retrieved literals by datasets are in the corresponding directories with the suffix '_query_results_{lang}.json'; for [Wikidata](Wikidata), there are multiple compressed json files: (1) initial search results 'gzip_search_results_{lang}.json', (2) claims (for example, P31 or P279) of the retrieved entities 'gzip_results_with_claims_{lang}.json', (3) filtered results used for analysis 'gzip_results_clean_{lang}.json'
+  * all retrieved literals by datasets are in the corresponding directories with the suffix '\_query_results_{lang}.json'; for [Wikidata](Wikidata), there are multiple compressed json files: (1) initial search results 'gzip_search_results_{lang}.json', (2) claims (for example, P31 or P279) of the retrieved entities 'gzip_results_with_claims_{lang}.json', (3) filtered results used for analysis 'gzip_results_clean_{lang}.json'
   #### Set 3: disambiguated literals
   * [samples](samples) contains (1) samples for annotations by dataset and language, (2) background information for each term presented to annotators, (3) annotated samples with the prefix "ann_" and IDs of annotators (1 and 3); the notebook [samples.ipynb](samples.ipynb) generates 6 csv files with samples and calculates inter-annotator agreement for each annotated sample; the mean of these agreement scores (0.8) is reported in the section 4.3; 
 
@@ -48,7 +48,7 @@ Read more in the [LODlit repository](https://github.com/cultural-ai/LODlit).
 * \[13]: The list of exluded categories in Wikidata is in the file [statements_filter.json](Wikidata/statements_filter.json);
 * \[13]: The number of search results from Wikidata before and after filtering is in the file [n_entities_by_term.csv](Wikidata/n_entities_by_term.csv), the number of retrieved entities (<= 10K) is in [n_entities_retrieved_by_term.csv](Wikidata/n_entities_retrieved_by_term.csv); the number of **entities** after filtering proper names out (Set 1) is in [n_entities_clean_by_term.csv](Wikidata/n_entities_clean_by_term.csv) and the number of **hits** by canonical forms is in [n_hits_by_lemma.csv](Wikidata/n_hits_by_lemma.csv);
 * \[16]: See the functions we added to parse ODWN in [OpenDutchWordnet](https://github.com/cultural-ai/OpenDutchWordnet) (the modules 'le' and 'lemma')
-* \[17]: The Jupyter notebook (experimenting_with_wsd.ipynb)(cs/experimenting_with_wsd.ipynb) demonstrates our attempts to use common token overlap scores and cosine similarity scores with different background information to disambiguate literals.
+* \[17]: The Jupyter notebook [experimenting_with_wsd.ipynb](cs/experimenting_with_wsd.ipynb) demonstrates our attempts to use common token overlap scores and cosine similarity scores with different background information to disambiguate literals.
 
 ### Citation
 
