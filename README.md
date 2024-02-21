@@ -1,6 +1,8 @@
 # How Contentious Terms About People and Cultures are Used in Linked Open Data
 ## The repository of the research paper
 
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.10685532.svg)](https://doi.org/10.5281/zenodo.10685532)
+
 [Online Appendix](https://cultural-ai.github.io/ContentiousTermsLOD)
 
 ### Data
